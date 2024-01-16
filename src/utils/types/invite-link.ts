@@ -1,3 +1,5 @@
 import {ProjectReqDto, ProjectResDto} from "./project"
 
-export interface InviteLinkResDto extends Omit<ProjectResDto, "info" | "photo"> {}
+export interface InviteLinkResDto extends Omit<ProjectResDto, "info" | "photo"> {
+	inviteLink: string
+}

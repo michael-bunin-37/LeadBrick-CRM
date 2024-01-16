@@ -200,6 +200,7 @@ export function ProjectInviteLinksList({className, projectId}: Props) {
 										</div>
 									</Tooltip>
 								</MyTableCell>
+								<MyTableCell>Ссылка</MyTableCell>
 							</MyTableRow>
 						</MyTableHead>
 

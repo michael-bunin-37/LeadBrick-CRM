@@ -3,7 +3,7 @@ import {ButtonBase, ButtonBaseProps} from "@mui/material"
 import {styled} from "@mui/material/styles"
 import {VariantProps, cva} from "class-variance-authority"
 
-export const variants = cva("rounded-md !border-transparent font-medium transition-all focus:border-blue-400", {
+export const variants = cva("rounded-md !border-transparent font-medium transition-all focus:border-blue-600", {
 	variants: {
 		variant: {
 			default: "dark:bg-gray-100 dark:text-gray-50 bg-gray-100 hover:bg-gray-200 text-gray-600",
@@ -12,7 +12,7 @@ export const variants = cva("rounded-md !border-transparent font-medium transiti
 			outlined:
 				"border dark:!border-gray-800 !border-gray-200 text-gray-700 dark:text-white dark:hover:bg-gray-100 hover:bg-gray-100",
 			outlined_active:
-				"border dark:!border-blue-400 !border-blue-400 text-gray-700 dark:text-white dark:hover:bg-gray-100 hover:bg-gray-100",
+				"border dark:!border-blue-600 !border-blue-600 text-gray-700 dark:text-white dark:hover:bg-gray-100 hover:bg-gray-100",
 		},
 		size: {
 			default: "h-[36px] px-[14px] text-sm leading-[14px]",

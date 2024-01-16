@@ -1,3 +1,4 @@
+import {ProjectDepositsSearch} from "@/features/project/project-deposits-search"
 import {ProjectsDateFilter} from "@/features/projects/projects-date-filter"
 import {cn} from "@/utils/lib"
 import {Cursor} from "@/utils/types/server"
@@ -16,6 +17,12 @@ export function ProjectDepositsFilters({className, params, setParams}: Props) {
 				onChange={() => {}}
 				className="flex-grow"
 			/> */}
+
+			<ProjectDepositsSearch
+				className="flex-grow"
+				params={params}
+				setParams={setParams}
+			/>
 
 			<ProjectsDateFilter
 				type="FILTER"

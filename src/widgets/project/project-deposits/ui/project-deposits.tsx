@@ -31,24 +31,12 @@ export function ProjectDeposits({className, projectId}: Props) {
 
 	return (
 		<div className={className}>
-			<div className="flex items-center justify-end gap-x-2">
-				{/* Projects invite links Filters */}
-				{/* <ProjectInviteLinksFilters
-					className="flex-grow"
-					params={params}
-					setParams={setParams}
-				/> */}
-
+			<div className="flex gap-x-2 mb-6">
 				<ProjectDepositsFilters
+					className="flex-grow"
 					setParams={setParams}
 					params={params}
 				/>
-
-				{/* Projects invite links switch active and unactive projects */}
-				{/* <ProjectsUnactiveSwitcher
-					setActive={setShowUnactive}
-					active={showUnActive}
-				/> */}
 			</div>
 
 			{/* Body & Head */}

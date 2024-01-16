@@ -17,15 +17,18 @@ export const MyTableBody = styled(TableBody)(() => ({
 	"tr td": {
 		background: "#ffffff",
 	},
+
+	"tr td:not(:first-child)": {
+		textAlign: "center",
+	},
 }))
 export const MyTableRow = styled(TableRow)(() => ({}))
 export const MyTableCell = styled(TableCell)(({theme}) => ({
 	position: "sticky",
 	left: "0",
-	minWidth: "96px !important",
+	minWidth: "56px !important",
 	maxWidth: "256px !important",
 	whiteSpace: "nowrap",
-	textAlign: "start",
 	padding: "16px 14px !important",
 	border: "none",
 	fontSize: "14px",

@@ -1,4 +1,12 @@
-export type FilterByParam = "userId" | "date" | "inviteLinkName" | "inviteLink"
+export enum FilterByParamEnum {
+	userId = "User Id",
+	date = "Дата",
+	inviteLinkName = "Название ссылки",
+	inviteLink = "Тело ссылки",
+}
+
+export type FilterByParam = keyof typeof FilterByParamEnum
+
 export type FilterOperatorParam = "EQUAL" | "MORE_OR_EQUAL" | "LESS_OR_EQUAL" | "LIKE%" | "%LIKE%"
 export type FilterParam = {
 	filterBy: FilterByParam

@@ -21,9 +21,9 @@ const variants = cva("rounded-md border transition-all text-gray-700 dark:text-g
 	},
 })
 
-type Props = Omit<InputBaseProps, "size" | "variant"> & VariantProps<typeof variants>
+export type MyInputProps = Omit<InputBaseProps, "size" | "variant"> & VariantProps<typeof variants>
 
-export const MyInput = styled(({className, color, size = "default", variant = "default", ...props}: Props) => (
+export const MyInput = styled(({className, color, size = "default", variant = "default", ...props}: MyInputProps) => (
 	<InputBase
 		className={cn(variants({size}), className)}
 		{...props}
@@ -62,7 +62,7 @@ export const MyTextField = styled(TextField)(({theme}) => ({
 }))
 
 type MyInputControlledProps = {
-	inputProps?: Props
+	inputProps?: MyInputProps
 	control: Control<any>
 	name: string
 }

@@ -7,6 +7,7 @@ import {Router} from "next/router"
 // @ts-ignore
 import nProgress from "nprogress"
 import {DrawersProvider} from "./drawers-provider"
+import {SnackbarProvider} from "./snackbar-prodiver"
 
 nProgress.configure({showSpinner: true, minimum: 0.4})
 Router.events.on("routeChangeStart", (url) => {
@@ -26,6 +27,7 @@ export function AppProvider({children}: PropsWithChildren) {
 
 						{/* Drawers */}
 						<DrawersProvider />
+						<SnackbarProvider />
 					</ThemeProvider>
 				</QueryProvider>
 			</ErrorBoundaryProvider>

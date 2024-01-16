@@ -1,21 +1,25 @@
 import {MyTableCell, MyTableRow} from "@/components/Table"
 import {InviteLinkResDto} from "@/utils/types/invite-link"
+import {IconButton} from "@mui/material"
 import {formatDuration, millisecondsToMinutes} from "date-fns"
 import Link from "next/link"
-import React from "react"
+import React, {useCallback} from "react"
+import {IoCopy, IoCopyOutline} from "react-icons/io5"
+import {toast} from "react-toastify"
 
 type Props = InviteLinkResDto
 
 export function InviteLinkPreviewRow(props: Props) {
+	const onCopyLink = useCallback(() => {
+		navigator.clipboard.writeText(props.inviteLink)
+		toast.info("Текст был скопирован")
+	}, [props])
+
 	return (
 		<MyTableRow>
 			<MyTableCell>
 				<div className="flex items-center gap-x-3 truncate">
-					<span
-						// href={`/projects/${props.id}`}
-						className="truncate flex-1">
-						{props.name}
-					</span>
+					<span className="truncate flex-1">{props.name}</span>
 				</div>
 			</MyTableCell>
 			<MyTableCell>{props.usersJoin}</MyTableCell>
@@ -54,6 +58,22 @@ export function InviteLinkPreviewRow(props: Props) {
 							{format: ["months", "days", "hours", "minutes"]},
 					  )
 					: "-"}
+			</MyTableCell>
+			<MyTableCell className="text-left">
+				<div className="flex items-center gap-x-2">
+					<IconButton
+						onClick={onCopyLink}
+						size="small">
+						<IoCopyOutline size={14} />
+					</IconButton>
+					<a
+						href={props.inviteLink}
+						className="text-gray-500 underline"
+						target="_blank"
+						rel="noreferer">
+						{props.inviteLink}
+					</a>
+				</div>
 			</MyTableCell>
 		</MyTableRow>
 	)

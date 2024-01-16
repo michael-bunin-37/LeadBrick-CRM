@@ -5,14 +5,7 @@ import * as React from "react"
 import {variants as buttonVariants} from "./Button"
 
 import {DayPicker} from "react-day-picker"
-import {
-	IoArrowBack,
-	IoArrowForward,
-	IoChevronBack,
-	IoChevronBackOutline,
-	IoChevronForward,
-	IoChevronForwardOutline,
-} from "react-icons/io5"
+import {IoChevronBackOutline, IoChevronForwardOutline} from "react-icons/io5"
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
 
