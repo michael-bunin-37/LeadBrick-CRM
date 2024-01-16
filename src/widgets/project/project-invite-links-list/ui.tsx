@@ -11,7 +11,7 @@ import {Cursor, CursorList, SortParam} from "@/utils/types/server"
 import {Box, Tooltip} from "@mui/material"
 import {useRouter} from "next/router"
 import React, {useState} from "react"
-import {IoHelpCircle} from "react-icons/io5"
+import {IoHelpCircle, IoInformation, IoLink} from "react-icons/io5"
 import {IoCloudOfflineOutline} from "react-icons/io5"
 import {ProjectInviteLinksFilters} from "../project-invite-links-filters"
 import {ProjectsUnactiveSwitcher} from "@/features/projects/projects-unactive-swticher"
@@ -150,10 +150,7 @@ export function ProjectInviteLinksList({className, projectId}: Props) {
 												setSort={onChangeSort}
 											/>
 											FTD
-											<IoHelpCircle
-												className="text-gray-400"
-												size={14}
-											/>
+											<IoInformation size={14} />
 										</div>
 									</Tooltip>
 								</MyTableCell>
@@ -163,10 +160,7 @@ export function ProjectInviteLinksList({className, projectId}: Props) {
 										title="Repeat Deposit">
 										<div className="flex items-center gap-x-2">
 											RD
-											<IoHelpCircle
-												className="text-gray-400"
-												size={14}
-											/>
+											<IoInformation size={14} />
 										</div>
 									</Tooltip>
 								</MyTableCell>
@@ -180,10 +174,7 @@ export function ProjectInviteLinksList({className, projectId}: Props) {
 										title="Time to FTD">
 										<div className="flex items-center gap-x-2">
 											TTD
-											<IoHelpCircle
-												className="text-gray-400"
-												size={14}
-											/>
+											<IoInformation size={14} />
 										</div>
 									</Tooltip>
 								</MyTableCell>
@@ -193,14 +184,16 @@ export function ProjectInviteLinksList({className, projectId}: Props) {
 										title="Time to first Write">
 										<div className="flex items-center gap-x-2">
 											TTW
-											<IoHelpCircle
-												className="text-gray-400"
-												size={14}
-											/>
+											<IoInformation size={14} />
 										</div>
 									</Tooltip>
 								</MyTableCell>
-								<MyTableCell>Ссылка</MyTableCell>
+								<MyTableCell>
+									<div className="flex items-center gap-x-2">
+										<IoLink size={14} />
+										Ссылка
+									</div>
+								</MyTableCell>
 							</MyTableRow>
 						</MyTableHead>
 

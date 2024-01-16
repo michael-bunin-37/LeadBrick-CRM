@@ -6,7 +6,7 @@ import {GrayToken} from "@/utils/theme"
 import {MyPagination} from "@/components/Pagination"
 import {ProjectPreviewRow, ProjectPreviewRowSkeleton} from "@/entities/project"
 import {ProjectsSort} from "@/features/projects/projects-sort"
-import {IoCloudOfflineOutline, IoHelp, IoHelpCircle} from "react-icons/io5"
+import {IoCloudOfflineOutline, IoHelp, IoHelpCircle, IoInformation} from "react-icons/io5"
 import {ProjectResDto} from "@/utils/types/project"
 
 type Props = {
@@ -97,10 +97,7 @@ export function ProjectsList({className, data, params, setParams, isPending}: Pr
 												setSort={onChangeSort}
 											/>
 											FTD
-											<IoHelp
-												className="text-gray-400"
-												size={14}
-											/>
+											<IoInformation size={14} />
 										</div>
 									</Tooltip>
 								</MyTableCell>
@@ -110,10 +107,7 @@ export function ProjectsList({className, data, params, setParams, isPending}: Pr
 										title="Repeat Deposit">
 										<div className="flex items-center gap-x-2">
 											RD
-											<IoHelp
-												className="text-gray-400"
-												size={14}
-											/>
+											<IoInformation size={14} />
 										</div>
 									</Tooltip>
 								</MyTableCell>
@@ -127,10 +121,7 @@ export function ProjectsList({className, data, params, setParams, isPending}: Pr
 										title="Time to FTD">
 										<div className="flex items-center gap-x-2">
 											TTD
-											<IoHelp
-												className="text-gray-400"
-												size={14}
-											/>
+											<IoInformation size={14} />
 										</div>
 									</Tooltip>
 								</MyTableCell>
@@ -140,10 +131,7 @@ export function ProjectsList({className, data, params, setParams, isPending}: Pr
 										title="Time to first Write">
 										<div className="flex items-center gap-x-2">
 											TTW
-											<IoHelp
-												className="text-gray-400"
-												size={14}
-											/>
+											<IoInformation size={14} />
 										</div>
 									</Tooltip>
 								</MyTableCell>

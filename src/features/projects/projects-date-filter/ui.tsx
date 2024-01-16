@@ -86,7 +86,7 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 						<IoCloseOutline size={14} />
 					</IconButton>
 				) : (
-					<IoCalendarOutline size={14} />
+					<IoCalendarOutline size={12} />
 				)}
 			</MyButton>
 
