@@ -1,0 +1,14 @@
+@mixin font-face($name, $path) {
+	@font-face {
+		font-family: $name;
+		font-display: swap;
+		src: local($name + ".ttf"), urL($path) format("TrueType");
+	}
+}
+
+@include font-face("Inter Regular", "/assets/fonts/inter/Inter-Regular.ttf");
+@include font-face("Inter Medium", "/assets/fonts/inter/Inter-Medium.ttf");
+@include font-face("Inter Semibold", "/assets/fonts/inter/Inter-SemiBold.ttf");
+@include font-face("Inter Bold", "/assets/fonts/inter/Inter-Bold.ttf");
+@include font-face("Inter Extra-Bold", "/assets/fonts/inter/Inter-ExtraBold.ttf");
+@include font-face("Inter Black", "/assets/fonts/inter/Inter-Black.ttf");

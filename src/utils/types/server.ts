@@ -1,0 +1,41 @@
+export type FilterByParam = "userId" | "date" | "inviteLinkName" | "inviteLink"
+export type FilterOperatorParam = "EQUAL" | "MORE_OR_EQUAL" | "LESS_OR_EQUAL" | "LIKE%" | "%LIKE%"
+export type FilterParam = {
+	filterBy: FilterByParam
+	filterValue: string | string[]
+	filterOperator: FilterOperatorParam
+}
+
+export type SortByParam =
+	| "lastUpdated"
+	| "subscribers"
+	| "usersJoin"
+	| "usersLeave"
+	| "dialogs"
+	| "firstDeposits"
+	| "reDeposits"
+	| "sumTimeToDeposit"
+	| "countTimeToDeposit"
+	| "sumTimeToDialog"
+	| "countTimeToDialog"
+export type SortOrderParam = "DESC" | "ASC"
+export type SortParam = {
+	sortBy: SortByParam
+	sortOrder: SortOrderParam
+}
+
+export type Cursor = {
+	page: number
+	pageSize: number
+	sort?: SortParam
+	windowStart?: string
+	windowEnd?: string
+	filters?: Array<FilterParam>
+}
+
+export type CursorList<T> = {
+	data: T
+	cursorPrev: Cursor
+	cursorNext: Cursor
+	counter: number
+}

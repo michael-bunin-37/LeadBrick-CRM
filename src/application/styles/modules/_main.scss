@@ -1,0 +1,28 @@
+html {
+	line-height: 1.35 !important; /* 1 */
+	-webkit-text-size-adjust: 100%; /* 2 */
+	@apply font-sans text-gray-700;
+}
+
+body {
+	@apply font-sans text-gray-700;
+}
+
+// NEXT JS PROGRESS BAR
+#nprogress .bar {
+	@apply bg-primary-600;
+	height: 3px !important;
+}
+
+#nprogress {
+	top: 0;
+	left: 0;
+	position: fixed;
+	z-index: 100000;
+	height: 3px;
+	width: 100%;
+}
+
+#nprogress .peg {
+	box-shadow: none !important;
+}
