@@ -71,22 +71,20 @@ export default function ProjectsPage({}: Props) {
 						</div>
 
 						<div className="flex items-center gap-x-2">
+							{/* Projects switch active and unactive projects */}
+							<ProjectsFilters
+								className="flex-grow"
+								setParams={setParams}
+								params={params}
+							/>
+
+							<ProjectsUnactiveSwitcher
+								setActive={setShowUnactive}
+								active={showUnActive}
+							/>
+
 							<ProjectCreate />
 						</div>
-					</div>
-
-					<div className="flex gap-x-2 items-center w-full mt-6">
-						{/* Projects switch active and unactive projects */}
-						<ProjectsFilters
-							className="flex-grow"
-							setParams={setParams}
-							params={params}
-						/>
-
-						<ProjectsUnactiveSwitcher
-							setActive={setShowUnactive}
-							active={showUnActive}
-						/>
 					</div>
 
 					<ProjectsList
