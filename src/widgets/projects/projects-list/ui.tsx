@@ -26,20 +26,22 @@ export function ProjectsList({className, data, params, setParams, isPending}: Pr
 		<div className={className}>
 			<div className={"relative flex-grow"}>
 				<Box
-					sx={{
-						"&::-webkit-scrollbar": {
-							height: "5px",
-							width: "0px",
-						},
-						"&::-webkit-scrollbar-thumb": {
-							background: "transparent",
-							transition: "background 150ms",
-						},
-
-						"&:hover::-webkit-scrollbar-thumb": {
-							background: `${GrayToken[400]}`,
-						},
-					}}
+					sx={
+						{
+							// "&::-webkit-scrollbar": {
+							// 	height: "8px",
+							// 	width: "0px",
+							// 	transition: "all 150ms",
+							// },
+							// "&::-webkit-scrollbar-thumb": {
+							// 	background: GrayToken[300],
+							// 	transition: "all 150ms",
+							// },
+							// "&::-webkit-scrollbar-thumb:hover": {
+							// 	background: GrayToken[400],
+							// },
+						}
+					}
 					className="absolute top-0 left-0 w-full h-full overflow-x-auto">
 					<MyTable>
 						{/* Projects list head */}

@@ -12,11 +12,11 @@ type Props = {
 
 export function ProjectsFilters({className, setParams, params}: Props) {
 	return (
-		<div className={cn("flex items-center gap-x-2", className)}>
-			<ProjectSearch
+		<div className={cn("flex items-center justify-end gap-x-2", className)}>
+			{/* <ProjectSearch
 				onChange={() => {}}
 				className="flex-grow"
-			/>
+			/> */}
 
 			<ProjectsDateFilter
 				setParams={setParams}
