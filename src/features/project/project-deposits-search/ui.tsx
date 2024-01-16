@@ -56,6 +56,7 @@ export function ProjectDepositsSearch({className, setParams, params, slotProps}:
 					if (key == "date") return null
 					return (
 						<MyMenuItem
+							key={key}
 							onClick={() => setType(key as FilterByParam)}
 							selected={key === type}
 							dense>
