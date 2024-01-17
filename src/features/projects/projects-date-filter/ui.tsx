@@ -9,6 +9,7 @@ import {MyMenuItem} from "@/components/MenuItem"
 import {Cursor} from "@/utils/types/server"
 import {usePrevious} from "@/utils/hooks"
 import dayjs from "dayjs"
+import {DateFilterInitialOptionsTypeEnum} from "./model"
 
 type Props = {
 	className?: string
@@ -21,8 +22,13 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 	// STATE
 	const [anch, setAnch] = useState<HTMLElement | null>(null)
 	const [date, setDate] = useState<DateRange>()
+	const [option, setOption] = useState<keyof typeof DateFilterInitialOptionsTypeEnum>()
 
 	const prevDate = usePrevious(date) as undefined | DateRange
+
+	useEffect(() => {
+		if (!date) setOption(undefined)
+	}, [date])
 
 	useEffect(() => {
 		if (date && date.from && date.to) {
@@ -101,7 +107,8 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 				onClose={() => setAnch(null)}
 				open={!!anch}
 				anchorEl={anch}>
-				<div>
+				<div className="flex flex-col gap-y-6">
+					<MyButton variant="outlined">{option ? DateFilterInitialOptionsTypeEnum[option] : "Выберите опц"}</MyButton>
 					<Calendar
 						initialFocus
 						mode="range"
@@ -110,33 +117,6 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 						onSelect={setDate}
 						numberOfMonths={2}
 					/>
-
-					{/* <Divider className="border-gray-200 border-dashed mt-3 mb-6" /> */}
-
-					{/* Default Actions */}
-					{/* <div className="flex gap-x-1 pb-3">
-						<MyButton
-							onClick={() => setDate(getLastWeekRange())}
-							size="sm"
-							className="flex-1 bg-gray-100 text-[12px] gap-x-2 rounded-sm">
-							<IoCalendarOutline size={14} />
-							Последняя неделя
-						</MyButton>
-						<MyButton
-							onClick={() => setDate(getLastMonthRange())}
-							size="sm"
-							className="flex-1 bg-gray-100 text-[12px] gap-x-2 rounded-sm">
-							<IoCalendarNumberOutline size={14} />
-							Последний месяц
-						</MyButton>
-						<MyButton
-							onClick={() => setDate(getLastYearRange())}
-							size="sm"
-							className="flex-1 bg-gray-100 text-[12px] gap-x-2 rounded-sm">
-							<IoCalendarClearOutline size={14} />
-							Последний год
-						</MyButton>
-					</div> */}
 				</div>
 			</Popover>
 		</div>

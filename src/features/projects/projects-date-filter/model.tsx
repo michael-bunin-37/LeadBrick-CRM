@@ -1,29 +1,54 @@
 // import {sub} from "date-fns"
+import dayjs from "dayjs"
 import {DateRange} from "react-day-picker"
 
-// export const getLastWeekRange = () => {
-// 	return {
-// 		from: sub(Date.now(), {
-// 			weeks: 1,
-// 		}),
-// 		to: new Date(Date.now()),
-// 	} as DateRange
-// }
+export const getToday = () => {
+	return {
+		from: dayjs().startOf("day").toDate(),
+		to: dayjs().endOf("day").toDate(),
+	} as DateRange
+}
 
-// export const getLastMonthRange = () => {
-// 	return {
-// 		from: sub(Date.now(), {
-// 			months: 1,
-// 		}),
-// 		to: new Date(Date.now()),
-// 	} as DateRange
-// }
+export const getYesterday = () => {
+	return {
+		from: dayjs().subtract(1, "day").startOf("day").toDate(),
+		to: dayjs().subtract(1, "day").endOf("day").toDate(),
+	} as DateRange
+}
 
-// export const getLastYearRange = () => {
-// 	return {
-// 		from: sub(Date.now(), {
-// 			years: 1,
-// 		}),
-// 		to: new Date(Date.now()),
-// 	}
-// }
+export const getLastSevenDayRange = () => {
+	return {
+		from: dayjs().subtract(7, "day").startOf("day").toDate(),
+		to: dayjs().endOf("day").toDate(),
+	} as DateRange
+}
+
+export const getCurrentWeekRange = () => {
+	return {
+		from: dayjs().startOf("week").startOf("day").toDate(),
+		to: dayjs().endOf("week").endOf("day").toDate(),
+	} as DateRange
+}
+
+export const getLastMonthRange = () => {
+	return {
+		from: dayjs().startOf("month").startOf("day").toDate(),
+		to: new Date(Date.now()),
+	} as DateRange
+}
+
+export const getLastYearRange = () => {
+	return {
+		from: dayjs().startOf("year").startOf("day").toDate(),
+		to: new Date(Date.now()),
+	}
+}
+
+export enum DateFilterInitialOptionsTypeEnum {
+	today = "За сегодня",
+	yesterday = "За вчера",
+	lastSeven = "За последние 7 дней",
+	lastWeek = "За текущую неделю",
+	lastMonth = "За этот месяц",
+	lastYear = "За этот год",
+}

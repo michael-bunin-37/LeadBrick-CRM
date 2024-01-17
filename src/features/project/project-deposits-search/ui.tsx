@@ -27,8 +27,10 @@ export function ProjectDepositsSearch({className, setParams, params, slotProps}:
 
 	// HANDLERS
 	const onChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => setValue(e.currentTarget.value)
-
-	useEffect(() => setValue(""), [type])
+	const onChangeType = (type: FilterByParam) => {
+		setValue("")
+		setType(type)
+	}
 
 	// EFFECTS
 	useEffect(() => {
@@ -38,6 +40,8 @@ export function ProjectDepositsSearch({className, setParams, params, slotProps}:
 			if (type === "inviteLinkName")
 				filters.push({filterBy: "inviteLinkName", filterOperator: "LIKE%", filterValue: debouncedValue})
 			if (type === "userId") filters.push({filterBy: "userId", filterOperator: "EQUAL", filterValue: debouncedValue})
+			setParams({...params, filters})
+		} else {
 			setParams({...params, filters})
 		}
 	}, [debouncedValue, type])
@@ -71,7 +75,7 @@ export function ProjectDepositsSearch({className, setParams, params, slotProps}:
 					return (
 						<MyMenuItem
 							key={key}
-							onClick={() => setType(key as FilterByParam)}
+							onClick={() => onChangeType(key as FilterByParam)}
 							selected={key === type}
 							dense>
 							{/* @ts-ignore */}
