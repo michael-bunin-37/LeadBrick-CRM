@@ -27,7 +27,7 @@ export function DepositPreviewRow(props: Props) {
 			<MyTableCell>{props.inviteLink !== "LINK_NOT_DEFINED" ? props.inviteLink : "-"}</MyTableCell>
 			<MyTableCell>{props.inviteLinkName !== "LINK_NOT_DEFINED" ? props.inviteLinkName : "-"}</MyTableCell>
 			<MyTableCell>{dayjs(props.date).format("lll")}</MyTableCell>
-			<MyTableCell>{props.timeToDeposit != 0 ? "" : "-"}</MyTableCell>
+			<MyTableCell>{props.timeToDeposit != 0 ? dayjs.duration(props.timeToDeposit).humanize() : "-"}</MyTableCell>
 		</MyTableRow>
 	)
 }

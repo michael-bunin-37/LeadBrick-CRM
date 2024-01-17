@@ -9,7 +9,9 @@ import {MyMenuItem} from "@/components/MenuItem"
 import {Cursor} from "@/utils/types/server"
 import {usePrevious} from "@/utils/hooks"
 import dayjs from "dayjs"
-import {DateFilterInitialOptionsTypeEnum} from "./model"
+import {DateFilterInitialOptionsTypeEnum, dateFilterOptionsFunctions} from "./model"
+import {HiOutlineSelector} from "react-icons/hi"
+import {MyMenu} from "@/components/Menu"
 
 type Props = {
 	className?: string
@@ -21,6 +23,7 @@ type Props = {
 export function ProjectsDateFilter({className, setParams, params, type = "PARAMS"}: Props) {
 	// STATE
 	const [anch, setAnch] = useState<HTMLElement | null>(null)
+	const [optionsAnch, setOptionsAnch] = useState<HTMLElement | null>(null)
 	const [date, setDate] = useState<DateRange>()
 	const [option, setOption] = useState<keyof typeof DateFilterInitialOptionsTypeEnum>()
 
@@ -60,6 +63,13 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 				}),
 			})
 	}, [date])
+
+	useEffect(() => {
+		if (option) {
+			const func = dateFilterOptionsFunctions[option]
+			setDate(func())
+		}
+	}, [option])
 
 	return (
 		<div className={className}>
@@ -107,8 +117,47 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 				onClose={() => setAnch(null)}
 				open={!!anch}
 				anchorEl={anch}>
-				<div className="flex flex-col gap-y-6">
-					<MyButton variant="outlined">{option ? DateFilterInitialOptionsTypeEnum[option] : "Выберите опц"}</MyButton>
+				<div className="flex flex-col gap-y-6 ">
+					{/* Preset Options */}
+					<div className="px-3 pt-6">
+						<MyButton
+							onClick={(e) => setOptionsAnch(e.currentTarget)}
+							variant="outlined"
+							className={cn("gap-x-3 w-full justify-between text-xs min-w-[276px] text-gray-500", option && "text-gray-700")}>
+							<div className="flex items-center gap-x-3">
+								<IoCalendarOutline />
+								{option ? DateFilterInitialOptionsTypeEnum[option] : "Выбрать предустановленную опцию"}
+							</div>
+							<HiOutlineSelector />
+						</MyButton>
+
+						<MyMenu
+							onClose={() => setOptionsAnch(null)}
+							anchorOrigin={{
+								vertical: "bottom",
+								horizontal: "left",
+							}}
+							transformOrigin={{
+								vertical: -12,
+								horizontal: "left",
+							}}
+							slotProps={{paper: {className: "min-w-[256px]"}}}
+							anchorEl={optionsAnch}
+							open={!!optionsAnch}>
+							{Object.entries(DateFilterInitialOptionsTypeEnum).map(([key, value]) => (
+								<MyMenuItem
+									onClick={() => {
+										setOption(key as keyof typeof DateFilterInitialOptionsTypeEnum)
+										setOptionsAnch(null)
+									}}
+									selected={key === option}>
+									{value}
+								</MyMenuItem>
+							))}
+						</MyMenu>
+					</div>
+
+					{/* Date Range Picker */}
 					<Calendar
 						initialFocus
 						mode="range"

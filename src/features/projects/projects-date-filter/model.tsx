@@ -5,7 +5,7 @@ import {DateRange} from "react-day-picker"
 export const getToday = () => {
 	return {
 		from: dayjs().startOf("day").toDate(),
-		to: dayjs().endOf("day").toDate(),
+		to: dayjs().add(1, "day").startOf("day").toDate(),
 	} as DateRange
 }
 
@@ -18,7 +18,7 @@ export const getYesterday = () => {
 
 export const getLastSevenDayRange = () => {
 	return {
-		from: dayjs().subtract(7, "day").startOf("day").toDate(),
+		from: dayjs().subtract(6, "day").startOf("day").toDate(),
 		to: dayjs().endOf("day").toDate(),
 	} as DateRange
 }
@@ -33,7 +33,7 @@ export const getCurrentWeekRange = () => {
 export const getLastMonthRange = () => {
 	return {
 		from: dayjs().startOf("month").startOf("day").toDate(),
-		to: new Date(Date.now()),
+		to: dayjs().endOf("month").endOf("day").toDate(),
 	} as DateRange
 }
 
@@ -51,4 +51,13 @@ export enum DateFilterInitialOptionsTypeEnum {
 	lastWeek = "За текущую неделю",
 	lastMonth = "За этот месяц",
 	lastYear = "За этот год",
+}
+
+export const dateFilterOptionsFunctions = {
+	today: getToday,
+	yesterday: getYesterday,
+	lastSeven: getLastSevenDayRange,
+	lastWeek: getCurrentWeekRange,
+	lastMonth: getLastMonthRange,
+	lastYear: getLastYearRange,
 }

@@ -2,11 +2,10 @@ import {Cursor, CursorList, SortParam} from "@/utils/types/server"
 import React from "react"
 import {Box, Tooltip} from "@mui/material"
 import {MyTable, MyTableBody, MyTableCell, MyTableHead, MyTableRow} from "@/components/Table"
-import {GrayToken} from "@/utils/theme"
 import {MyPagination} from "@/components/Pagination"
 import {ProjectPreviewRow, ProjectPreviewRowSkeleton} from "@/entities/project"
 import {ProjectsSort} from "@/features/projects/projects-sort"
-import {IoCloudOfflineOutline, IoHelp, IoHelpCircle, IoInformation} from "react-icons/io5"
+import {IoCloudOfflineOutline, IoInformation} from "react-icons/io5"
 import {ProjectResDto} from "@/utils/types/project"
 
 type Props = {
