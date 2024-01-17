@@ -1,7 +1,7 @@
 import {MyTableCell, MyTableRow} from "@/components/Table"
 import {InviteLinkResDto} from "@/utils/types/invite-link"
 import {IconButton} from "@mui/material"
-import {formatDuration, millisecondsToMinutes} from "date-fns"
+import dayjs from "dayjs"
 import Link from "next/link"
 import React, {useCallback} from "react"
 import {IoCopy, IoCopyOutline} from "react-icons/io5"
@@ -41,22 +41,12 @@ export function InviteLinkPreviewRow(props: Props) {
 			</MyTableCell>
 			<MyTableCell>
 				{props.sumTimeToDeposit != 0 && props.countTimeToDeposit != 0
-					? formatDuration(
-							{
-								minutes: millisecondsToMinutes(props.sumTimeToDeposit / props.countTimeToDeposit),
-							},
-							{format: ["months", "days", "hours", "minutes"]},
-					  )
+					? dayjs.duration(props.sumTimeToDeposit / props.countTimeToDeposit, "milliseconds").humanize()
 					: "-"}
 			</MyTableCell>
 			<MyTableCell>
 				{props.sumTimeToDialog != 0 && props.countTimeToDialog != 0
-					? formatDuration(
-							{
-								minutes: millisecondsToMinutes(props.sumTimeToDialog / props.countTimeToDialog),
-							},
-							{format: ["months", "days", "hours", "minutes"]},
-					  )
+					? dayjs.duration(props.sumTimeToDialog / props.countTimeToDialog, "milliseconds").humanize()
 					: "-"}
 			</MyTableCell>
 			<MyTableCell className="text-left">

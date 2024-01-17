@@ -1,6 +1,6 @@
 import {MyTableCell, MyTableRow} from "@/components/Table"
 import {ProjectResDto} from "@/utils/types/project"
-import {format, formatDuration, millisecondsToHours, millisecondsToMinutes, millisecondsToSeconds} from "date-fns"
+import dayjs from "dayjs"
 import Link from "next/link"
 import React from "react"
 
@@ -8,17 +8,7 @@ type Props = ProjectResDto
 
 export function ProjectPreviewRow(props: Props) {
 	// @ts-ignore
-	if (props.sumTimeToDialog !== "0" && props.countTimeToDialog !== "0") {
-		console.log(
-			formatDuration(
-				{
-					minutes: millisecondsToMinutes(props.sumTimeToDialog / props.countTimeToDialog),
-				},
-				{format: ["months", "days", "hours", "minutes"]},
-			),
-		)
-	}
-
+	console.log(props)
 	return (
 		<MyTableRow>
 			<MyTableCell>
@@ -51,22 +41,12 @@ export function ProjectPreviewRow(props: Props) {
 			</MyTableCell>
 			<MyTableCell>
 				{props.sumTimeToDeposit != 0 && props.countTimeToDeposit != 0
-					? formatDuration(
-							{
-								minutes: millisecondsToMinutes(props.sumTimeToDeposit / props.countTimeToDeposit),
-							},
-							{format: ["months", "days", "hours", "minutes"]},
-					  )
+					? dayjs.duration(props.sumTimeToDeposit / props.countTimeToDeposit, "milliseconds").humanize()
 					: "-"}
 			</MyTableCell>
 			<MyTableCell>
 				{props.sumTimeToDialog != 0 && props.countTimeToDialog != 0
-					? formatDuration(
-							{
-								minutes: millisecondsToMinutes(props.sumTimeToDialog / props.countTimeToDialog),
-							},
-							{format: ["months", "days", "hours", "minutes"]},
-					  )
+					? dayjs.duration(props.sumTimeToDialog / props.countTimeToDialog, "milliseconds").humanize()
 					: "-"}
 			</MyTableCell>
 		</MyTableRow>

@@ -8,6 +8,7 @@ export const variants = cva("rounded-md !border-transparent font-medium transiti
 		variant: {
 			default: "dark:bg-gray-100 dark:text-gray-50 bg-gray-100 hover:bg-gray-200 text-gray-600",
 			primary: "bg-primary-600 text-gray-50",
+			dark: "bg-gray-800 text-gray-50",
 			transparent: "bg-transparent dark:text-white text-gray-700 dark:hover:bg-gray-100",
 			outlined:
 				"border dark:!border-gray-800 !border-gray-200 text-gray-700 dark:text-white dark:hover:bg-gray-100 hover:bg-gray-100",

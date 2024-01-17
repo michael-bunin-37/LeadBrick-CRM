@@ -1,7 +1,7 @@
 import {MyTableCell, MyTableRow} from "@/components/Table"
 import {DepositResDto} from "@/utils/types/deposit"
-import {format, formatDistance, formatDuration, lightFormat, millisecondsToMinutes} from "date-fns"
 import React from "react"
+import dayjs from "dayjs"
 
 type Props = DepositResDto
 
@@ -26,7 +26,7 @@ export function DepositPreviewRow(props: Props) {
 			</MyTableCell>
 			<MyTableCell>{props.inviteLink !== "LINK_NOT_DEFINED" ? props.inviteLink : "-"}</MyTableCell>
 			<MyTableCell>{props.inviteLinkName !== "LINK_NOT_DEFINED" ? props.inviteLinkName : "-"}</MyTableCell>
-			<MyTableCell>{lightFormat(props.date, "dd.MM.yyyy - HH:mm")}</MyTableCell>
+			<MyTableCell>{dayjs(props.date).format("lll")}</MyTableCell>
 			<MyTableCell>{props.timeToDeposit != 0 ? "" : "-"}</MyTableCell>
 		</MyTableRow>
 	)

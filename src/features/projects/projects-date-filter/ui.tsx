@@ -2,14 +2,13 @@ import {MyButton} from "@/components/Button"
 import React, {useEffect, useState} from "react"
 import {IoCalendar, IoCalendarClearOutline, IoCalendarNumberOutline, IoCalendarOutline, IoCloseOutline} from "react-icons/io5"
 import {DateRange} from "react-day-picker"
-import {addDays, format, formatISO} from "date-fns"
 import {cn} from "@/utils/lib"
 import {Divider, IconButton, Popover} from "@mui/material"
 import {Calendar} from "@/components/Calendar"
 import {MyMenuItem} from "@/components/MenuItem"
-import {getLastMonthRange, getLastWeekRange, getLastYearRange} from "./model"
 import {Cursor} from "@/utils/types/server"
 import {usePrevious} from "@/utils/hooks"
+import dayjs from "dayjs"
 
 type Props = {
 	className?: string
@@ -71,8 +70,8 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 				)}
 				{date && (
 					<>
-						{date.from ? format(date.from, "LLL dd, y") : "Дата начала"} -&nbsp;
-						{date.to ? format(date.to, "LLL dd, y") : "Дата окончания"}
+						{date.from ? dayjs(date.from).format("ll") : "Дата начала"} -&nbsp;
+						{date.to ? dayjs(date.to).format("ll") : "Дата окончания"}
 					</>
 				)}
 				{date ? (

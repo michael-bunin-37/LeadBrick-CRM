@@ -4,7 +4,7 @@ import {MyMenu} from "@/components/Menu"
 import {MyMenuItem} from "@/components/MenuItem"
 import {useDebounce} from "@/utils/hooks"
 import {cn} from "@/utils/lib"
-import {Cursor, FilterByParam, FilterByParamEnum} from "@/utils/types/server"
+import {Cursor, FilterByParam, FilterByParamEnum, FilterParam} from "@/utils/types/server"
 import {InputAdornment, InputProps} from "@mui/material"
 import React, {useEffect, useState} from "react"
 import {IoChevronDown, IoSearchOutline} from "react-icons/io5"
@@ -27,6 +27,20 @@ export function ProjectDepositsSearch({className, setParams, params, slotProps}:
 
 	// HANDLERS
 	const onChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => setValue(e.currentTarget.value)
+
+	useEffect(() => setValue(""), [type])
+
+	// EFFECTS
+	useEffect(() => {
+		const filters: FilterParam[] = params.filters ? [...params.filters.filter((filter) => filter.filterBy === "date")] : []
+		if (debouncedValue.length > 2) {
+			if (type === "inviteLink") filters.push({filterBy: "inviteLink", filterOperator: "%LIKE%", filterValue: debouncedValue})
+			if (type === "inviteLinkName")
+				filters.push({filterBy: "inviteLinkName", filterOperator: "LIKE%", filterValue: debouncedValue})
+			if (type === "userId") filters.push({filterBy: "userId", filterOperator: "EQUAL", filterValue: debouncedValue})
+			setParams({...params, filters})
+		}
+	}, [debouncedValue, type])
 
 	return (
 		<div className={cn("flex items-center", className)}>

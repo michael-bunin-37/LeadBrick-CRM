@@ -17,10 +17,6 @@ export const MyTableBody = styled(TableBody)(() => ({
 	"tr td": {
 		background: "#ffffff",
 	},
-
-	"tr td:not(:first-child)": {
-		textAlign: "center",
-	},
 }))
 export const MyTableRow = styled(TableRow)(() => ({}))
 export const MyTableCell = styled(TableCell)(({theme}) => ({

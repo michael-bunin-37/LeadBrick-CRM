@@ -39,6 +39,7 @@ export type Cursor = {
 	windowStart?: string
 	windowEnd?: string
 	filters?: Array<FilterParam>
+	inviteLinkOrName?: string
 }
 
 export type CursorList<T> = {

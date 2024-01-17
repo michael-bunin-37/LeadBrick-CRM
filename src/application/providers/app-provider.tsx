@@ -8,6 +8,7 @@ import {Router} from "next/router"
 import nProgress from "nprogress"
 import {DrawersProvider} from "./drawers-provider"
 import {SnackbarProvider} from "./snackbar-prodiver"
+import {DatePluginProvider} from "./date-plugin-provider"
 
 nProgress.configure({showSpinner: true, minimum: 0.4})
 Router.events.on("routeChangeStart", (url) => {
@@ -25,9 +26,9 @@ export function AppProvider({children}: PropsWithChildren) {
 					<ThemeProvider>
 						{children}
 
-						{/* Drawers */}
 						<DrawersProvider />
 						<SnackbarProvider />
+						<DatePluginProvider />
 					</ThemeProvider>
 				</QueryProvider>
 			</ErrorBoundaryProvider>

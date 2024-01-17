@@ -1,3 +1,4 @@
+import {ProjectInviteLinksSearch} from "@/features/project/project-invite-links-search/ui"
 import {ProjectSearch} from "@/features/project/project-search"
 import {ProjectsDateFilter} from "@/features/projects/projects-date-filter"
 import {cn} from "@/utils/lib"
@@ -13,9 +14,10 @@ type Props = {
 export function ProjectInviteLinksFilters({className, setParams, params}: Props) {
 	return (
 		<div className={cn("flex items-center gap-x-2", className)}>
-			<ProjectSearch
-				onChange={() => {}}
+			<ProjectInviteLinksSearch
 				className="flex-grow"
+				params={params}
+				setParams={setParams}
 			/>
 
 			<ProjectsDateFilter

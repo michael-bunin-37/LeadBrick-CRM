@@ -17,8 +17,8 @@ export function ProjectCreate({}: Props) {
 		<MyButton
 			onClick={onClick}
 			size="sm"
-			className="gap-x-2 H-9"
-			variant="primary">
+			variant={"primary"}
+			className="gap-x-2 h-9">
 			<IoBriefcase size={14} />
 			Новый проект
 		</MyButton>
