@@ -1,6 +1,6 @@
 import {MyPagination} from "@/components/Pagination"
 import {MyTable, MyTableBody, MyTableCell, MyTableHead, MyTableRow} from "@/components/Table"
-import {DepositPreviewRow} from "@/entities/deposit"
+import {DepositPreviewRow, DepositPreviewRowSkeleton} from "@/entities/deposit"
 import {useDepositList} from "@/utils/api/deposit"
 import {GrayToken} from "@/utils/theme"
 import {Cursor, SortParam} from "@/utils/types/server"
@@ -41,24 +41,7 @@ export function ProjectDeposits({className, projectId}: Props) {
 
 			{/* Body & Head */}
 			<div className={"relative flex-grow"}>
-				<Box
-					sx={
-						{
-							// "&::-webkit-scrollbar": {
-							// 	height: "8px",
-							// 	width: "0px",
-							// 	transition: "all 150ms",
-							// },
-							// "&::-webkit-scrollbar-thumb": {
-							// 	background: GrayToken[300],
-							// 	transition: "all 150ms",
-							// },
-							// "&::-webkit-scrollbar-thumb:hover": {
-							// 	background: GrayToken[400],
-							// },
-						}
-					}
-					className="absolute top-0 left-0 w-full h-full overflow-x-auto">
+				<Box className="absolute top-0 left-0 w-full h-full overflow-x-auto">
 					<MyTable>
 						{/* Invite links list head */}
 						<MyTableHead>
@@ -109,6 +92,8 @@ export function ProjectDeposits({className, projectId}: Props) {
 										key={item.userId}
 									/>
 								))}
+
+							{!data && isPending && [...Array(12)].map((_, i) => <DepositPreviewRowSkeleton key={i} />)}
 						</MyTableBody>
 					</MyTable>
 

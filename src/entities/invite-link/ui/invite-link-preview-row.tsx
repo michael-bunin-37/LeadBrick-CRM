@@ -12,7 +12,7 @@ type Props = InviteLinkResDto
 export function InviteLinkPreviewRow(props: Props) {
 	const onCopyLink = useCallback(() => {
 		navigator.clipboard.writeText(props.inviteLink)
-		toast.info("Текст был скопирован")
+		toast.info("Текст был скопирован", {autoClose: 50000})
 	}, [props])
 
 	return (

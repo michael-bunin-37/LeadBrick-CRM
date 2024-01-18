@@ -146,6 +146,7 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 							open={!!optionsAnch}>
 							{Object.entries(DateFilterInitialOptionsTypeEnum).map(([key, value]) => (
 								<MyMenuItem
+									key={key}
 									onClick={() => {
 										setOption(key as keyof typeof DateFilterInitialOptionsTypeEnum)
 										setOptionsAnch(null)
