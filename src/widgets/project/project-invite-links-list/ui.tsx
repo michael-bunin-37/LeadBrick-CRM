@@ -112,7 +112,7 @@ export function ProjectInviteLinksList({className, projectId}: Props) {
 									</div>
 								</MyTableCell> */}
 								<MyTableCell>
-									<div className="flex items-center gap-x-2">
+									<div className="flex items-center justify-center gap-x-2">
 										<ProjectsSort
 											sortBy="usersJoin"
 											sort={params.sort}
@@ -122,7 +122,7 @@ export function ProjectInviteLinksList({className, projectId}: Props) {
 									</div>
 								</MyTableCell>
 								<MyTableCell>
-									<div className="flex items-center gap-x-2">
+									<div className="flex items-center justify-center gap-x-2">
 										<ProjectsSort
 											sortBy="usersLeave"
 											sort={params.sort}
@@ -132,7 +132,7 @@ export function ProjectInviteLinksList({className, projectId}: Props) {
 									</div>
 								</MyTableCell>
 								<MyTableCell>
-									<div className="flex items-center gap-x-2">
+									<div className="flex items-center justify-center gap-x-2">
 										<ProjectsSort
 											sortBy="dialogs"
 											sort={params.sort}
@@ -145,7 +145,7 @@ export function ProjectInviteLinksList({className, projectId}: Props) {
 									<Tooltip
 										placement="top-end"
 										title="First Deposit">
-										<div className="flex items-center gap-x-2">
+										<div className="flex items-center justify-center gap-x-2">
 											<ProjectsSort
 												sortBy="firstDeposits"
 												sort={params.sort}
@@ -160,16 +160,16 @@ export function ProjectInviteLinksList({className, projectId}: Props) {
 									<Tooltip
 										placement="top-end"
 										title="Repeat Deposit">
-										<div className="flex items-center gap-x-2">
+										<div className="flex items-center justify-center gap-x-2">
 											RD
 											<IoInformation size={14} />
 										</div>
 									</Tooltip>
 								</MyTableCell>
-								<MyTableCell>Подп. / Диал.</MyTableCell>
-								<MyTableCell>Подп. / FTD</MyTableCell>
-								<MyTableCell>Диал. / FTD</MyTableCell>
-								<MyTableCell>FTD / RD</MyTableCell>
+								<MyTableCell className="text-center">Подп. / Диал.</MyTableCell>
+								<MyTableCell className="text-center">Подп. / FTD</MyTableCell>
+								<MyTableCell className="text-center">Диал. / FTD</MyTableCell>
+								<MyTableCell className="text-center">FTD / RD</MyTableCell>
 								<MyTableCell>
 									<Tooltip
 										placement="top-end"
@@ -193,7 +193,7 @@ export function ProjectInviteLinksList({className, projectId}: Props) {
 								<MyTableCell>
 									<div className="flex items-center gap-x-2">
 										<IoLink size={14} />
-										Ссылка
+										Приглас. Ссылка
 									</div>
 								</MyTableCell>
 							</MyTableRow>

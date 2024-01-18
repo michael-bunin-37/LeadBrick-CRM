@@ -1,42 +1,38 @@
 import {MyPagination} from "@/components/Pagination"
 import {MyTable, MyTableBody, MyTableCell, MyTableHead, MyTableRow} from "@/components/Table"
-import {DepositPreviewRow, DepositPreviewRowSkeleton} from "@/entities/deposit"
-import {useDepositList} from "@/utils/api/deposit"
-import {GrayToken} from "@/utils/theme"
-import {Cursor, SortParam} from "@/utils/types/server"
-import {Box, Tooltip} from "@mui/material"
+import {useStatisticsList} from "@/utils/api/statistics"
+import {Cursor} from "@/utils/types/server"
+import {Box} from "@mui/material"
 import React, {useState} from "react"
-import {BiLogoTelegram} from "react-icons/bi"
-import {IoCloudOfflineOutline, IoHelpCircle, IoLink} from "react-icons/io5"
-import {ProjectDepositsFilters} from "./project-deposits-filters"
+import {IoCloudOfflineOutline} from "react-icons/io5"
 
 type Props = {
 	projectId?: string
 	className?: string
 }
 
-export function ProjectDeposits({className, projectId}: Props) {
+export function ProjectStatistics({projectId, className}: Props) {
 	// STATE
-	const [params, setParams] = useState<Omit<Cursor, "sort">>({
+	const [params, setParams] = useState<Omit<Cursor, "filters" | "sort"> & {inviteLink?: string}>({
 		page: 1,
 		pageSize: 30,
 	})
 
 	// QUERIES
-	const {data, isPending} = useDepositList({...params, chatId: projectId as string}, {enabled: !!projectId})
+	const {data, isPending} = useStatisticsList({...params, telegramChatId: projectId as string}, {enabled: !!projectId})
 
 	// HANDLERS
 	const onChangePage = (page: number) => setParams({...params, page})
 
 	return (
 		<div className={className}>
-			<div className="flex gap-x-2 mb-6">
+			{/* <div className="flex gap-x-2 mb-6">
 				<ProjectDepositsFilters
 					className="flex-grow"
 					setParams={setParams}
 					params={params}
 				/>
-			</div>
+			</div> */}
 
 			{/* Body & Head */}
 			<div className={"relative flex-grow"}>
@@ -54,23 +50,23 @@ export function ProjectDeposits({className, projectId}: Props) {
 									<div className="flex items-center gap-x-2">Фамилия</div>
 								</MyTableCell>
 								<MyTableCell>
-									<div className="flex items-center gap-x-2">
+									{/* <div className="flex items-center gap-x-2">
 										<BiLogoTelegram size={14} />
 										Никнейм
-									</div>
+									</div> */}
 								</MyTableCell>
 								<MyTableCell>
-									<div className="flex items-center gap-x-2">
+									{/* <div className="flex items-center gap-x-2">
 										<IoLink size={14} />
 										Приглас. Ссылка
-									</div>
+									</div> */}
 								</MyTableCell>
 								<MyTableCell>
 									<div className="flex items-center gap-x-2">Назв. Ссылки</div>
 								</MyTableCell>
 								<MyTableCell>Дата - Время</MyTableCell>
 								<MyTableCell>
-									<Tooltip
+									{/* <Tooltip
 										placement="top-end"
 										title="Time to FTD">
 										<div className="flex items-center gap-x-2">
@@ -80,22 +76,22 @@ export function ProjectDeposits({className, projectId}: Props) {
 												size={14}
 											/>
 										</div>
-									</Tooltip>
+									</Tooltip> */}
 								</MyTableCell>
 							</MyTableRow>
 						</MyTableHead>
 
 						{/* Ivnite links list body */}
 						<MyTableBody>
-							{data &&
+							{/* {data &&
 								data.data.map((item) => (
 									<DepositPreviewRow
 										{...item}
 										key={item.userId}
 									/>
-								))}
+								))} */}
 
-							{!data && isPending && [...Array(12)].map((_, i) => <DepositPreviewRowSkeleton key={i} />)}
+							{/* {!data && isPending && [...Array(12)].map((_, i) => <DepositPreviewRowSkeleton key={i} />)} */}
 						</MyTableBody>
 					</MyTable>
 

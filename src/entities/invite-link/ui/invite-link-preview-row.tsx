@@ -22,21 +22,21 @@ export function InviteLinkPreviewRow(props: Props) {
 					<span className="truncate flex-1">{props.name}</span>
 				</div>
 			</MyTableCell>
-			<MyTableCell>{props.usersJoin}</MyTableCell>
-			<MyTableCell>{props.usersLeave}</MyTableCell>
-			<MyTableCell>{props.dialogs}</MyTableCell>
-			<MyTableCell>{props.firstDeposits}</MyTableCell>
-			<MyTableCell>{props.reDeposits}</MyTableCell>
-			<MyTableCell>
+			<MyTableCell className="text-center">{props.usersJoin}</MyTableCell>
+			<MyTableCell className="text-center">{props.usersLeave}</MyTableCell>
+			<MyTableCell className="text-center">{props.dialogs}</MyTableCell>
+			<MyTableCell className="text-center">{props.firstDeposits}</MyTableCell>
+			<MyTableCell className="text-center">{props.reDeposits}</MyTableCell>
+			<MyTableCell className="text-center">
 				{props.dialogs != 0 && props.usersJoin != 0 ? `${(props.dialogs / props.usersJoin) * 100}%` : "-"}
 			</MyTableCell>
-			<MyTableCell>
+			<MyTableCell className="text-center">
 				{props.firstDeposits != 0 && props.usersJoin != 0 ? `${(props.firstDeposits / props.usersJoin) * 100}%` : "-"}
 			</MyTableCell>
-			<MyTableCell>
+			<MyTableCell className="text-center">
 				{props.firstDeposits != 0 && props.usersJoin != 0 ? `${(props.firstDeposits / props.dialogs) * 100}%` : "-"}
 			</MyTableCell>
-			<MyTableCell>
+			<MyTableCell className="text-center">
 				{props.reDeposits != 0 && props.firstDeposits != 0 ? `${(props.reDeposits / props.firstDeposits) * 100}%` : "-"}
 			</MyTableCell>
 			<MyTableCell>
