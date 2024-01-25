@@ -65,16 +65,16 @@ export function StatisticsPreviewRow(props: Props) {
 				</Tooltip> */}
 			</MyTableCell>
 			<MyTableCell className="text-center">
-				{props.dialogs != 0 && props.usersJoin != 0 ? `${(props.dialogs / props.usersJoin) * 100}%` : "-"}
+				{props.dialogs != 0 && props.usersJoin != 0 ? `${(((props.dialogs / props.usersJoin)) * 100).toFixed(1)}%` : "-"}
 			</MyTableCell>
 			<MyTableCell className="text-center">
-				{props.firstDeposits != 0 && props.usersJoin != 0 ? `${(props.firstDeposits / props.usersJoin) * 100}%` : "-"}
+				{props.firstDeposits != 0 && props.usersJoin != 0 ? `${((props.firstDeposits / props.usersJoin) * 100).toFixed(1)}%` : "-"}
 			</MyTableCell>
 			<MyTableCell className="text-center">
-				{props.firstDeposits != 0 && props.usersJoin != 0 ? `${(props.firstDeposits / props.dialogs) * 100}%` : "-"}
+				{props.firstDeposits != 0 && props.usersJoin != 0 ? `${((props.firstDeposits / props.dialogs) * 100).toFixed(1)}%` : "-"}
 			</MyTableCell>
 			<MyTableCell className="text-center">
-				{props.reDeposits != 0 && props.firstDeposits != 0 ? `${(props.reDeposits / props.firstDeposits) * 100}%` : "-"}
+				{props.reDeposits != 0 && props.firstDeposits != 0 ? `${((props.reDeposits / props.firstDeposits) * 100).toFixed(1)}%` : "-"}
 			</MyTableCell>
 			<MyTableCell>
 				{props.sumTimeToDeposit != 0 && props.countTimeToDeposit != 0
