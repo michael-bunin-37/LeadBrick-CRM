@@ -34,24 +34,7 @@ export function DepositPreviewRow(props: Props) {
 				)}
 			</MyTableCell>
 			<MyTableCell>
-				{props.inviteLink !== "LINK_NOT_DEFINED" ? (
-					<div className="flex items-center gap-x-2">
-						<IconButton
-							onClick={onCopyLink}
-							size="small">
-							<IoCopyOutline size={14} />
-						</IconButton>
-						<a
-							href={props.inviteLink}
-							className="text-gray-500 underline"
-							target="_blank"
-							rel="noreferer">
-							{props.inviteLink}
-						</a>
-					</div>
-				) : (
-					"-"
-				)}
+				{props.inviteLink !== "LINK_NOT_DEFINED" ? <div className="flex items-center gap-x-2">{props.inviteLink}</div> : "-"}
 			</MyTableCell>
 			<MyTableCell>{props.inviteLinkName !== "LINK_NOT_DEFINED" ? props.inviteLinkName : "-"}</MyTableCell>
 			<MyTableCell>{dayjs(props.date).format("lll")}</MyTableCell>

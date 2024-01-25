@@ -50,20 +50,7 @@ export function InviteLinkPreviewRow(props: Props) {
 					: "-"}
 			</MyTableCell>
 			<MyTableCell className="text-left">
-				<div className="flex items-center gap-x-2">
-					<IconButton
-						onClick={onCopyLink}
-						size="small">
-						<IoCopyOutline size={14} />
-					</IconButton>
-					<a
-						href={props.inviteLink}
-						className="text-gray-500 underline"
-						target="_blank"
-						rel="noreferer">
-						{props.inviteLink}
-					</a>
-				</div>
+				<div className="flex items-center gap-x-2">{props.inviteLink}</div>
 			</MyTableCell>
 		</MyTableRow>
 	)
