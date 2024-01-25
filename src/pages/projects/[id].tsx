@@ -8,16 +8,13 @@ import {Navbar} from "@/widgets/navbar"
 import {useRouter} from "next/router"
 import React, {useState} from "react"
 import TabsContext from "@mui/lab/TabContext"
-import {useInviteLinksList} from "@/utils/api/invite-links"
-import {Cursor} from "@/utils/types/server"
 import {Breadcrumbs} from "@mui/material"
 import Link from "next/link"
 import {MyChip} from "@/components/Chip"
 import {IoBriefcase} from "react-icons/io5"
-import {ProjectInviteLinksList} from "@/widgets/project/project-invite-links-list"
-import {ProjectInviteLinksFilters} from "@/widgets/project/project-invite-links-filters"
-import {ProjectsUnactiveSwitcher} from "@/features/projects/projects-unactive-swticher"
+import {ProjectInviteLinksList} from "@/widgets/project/project-invite-links"
 import {ProjectDeposits} from "@/widgets/project/project-deposits"
+import {ProjectStatistics} from "@/widgets/project/project-statistics"
 
 type Props = {}
 
@@ -99,6 +96,10 @@ export default function ProjectPage({}: Props) {
 									label="Все депозиты"
 									value="1"
 								/>
+								<MyTab
+									label="Статистика"
+									value="2"
+								/>
 							</MyTabList>
 						</div>
 
@@ -110,6 +111,12 @@ export default function ProjectPage({}: Props) {
 						)}
 						{tab == "1" && (
 							<ProjectDeposits
+								projectId={query.id as string}
+								className="flex flex-col flex-grow mt-6"
+							/>
+						)}
+						{tab == "2" && (
+							<ProjectStatistics
 								projectId={query.id as string}
 								className="flex flex-col flex-grow mt-6"
 							/>

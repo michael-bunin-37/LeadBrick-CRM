@@ -67,7 +67,7 @@ export default function ProjectsPage({}: Props) {
 						{/* Heading */}
 						<div className="flex items-start gap-x-2">
 							<span className="text-md text-gray-900 font-bold">Проекты</span>
-							<span className="text-xs text-gray-500">{data && `(${data.counter})`}</span>
+							<span className="text-sm text-gray-500">{data && `(${data.counter})`}</span>
 						</div>
 
 						<div className="flex items-center gap-x-2">

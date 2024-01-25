@@ -1,10 +1,12 @@
 import {MyPagination} from "@/components/Pagination"
 import {MyTable, MyTableBody, MyTableCell, MyTableHead, MyTableRow} from "@/components/Table"
+import {StatisticsPreviewRow} from "@/entities/statistics"
+import {StatisticsPreviewRowSkeleton} from "@/entities/statistics"
 import {useStatisticsList} from "@/utils/api/statistics"
 import {Cursor} from "@/utils/types/server"
-import {Box} from "@mui/material"
+import {Box, Tooltip} from "@mui/material"
 import React, {useState} from "react"
-import {IoCloudOfflineOutline} from "react-icons/io5"
+import {IoCloudOfflineOutline, IoHelpCircle, IoInformation} from "react-icons/io5"
 
 type Props = {
 	projectId?: string
@@ -12,7 +14,7 @@ type Props = {
 }
 
 export function ProjectStatistics({projectId, className}: Props) {
-	// STATE
+	// STATEs
 	const [params, setParams] = useState<Omit<Cursor, "filters" | "sort"> & {inviteLink?: string}>({
 		page: 1,
 		pageSize: 30,
@@ -41,57 +43,100 @@ export function ProjectStatistics({projectId, className}: Props) {
 						{/* Invite links list head */}
 						<MyTableHead>
 							<MyTableRow>
-								<MyTableCell>User Id</MyTableCell>
-
+								<MyTableCell>Дата</MyTableCell>
 								<MyTableCell>
-									<div className="flex items-center gap-x-2">Имя</div>
+									<div className="flex items-center justify-center gap-x-2">
+										{/* <ProjectsSort
+											sortBy="usersJoin"
+											sort={params.sort}
+											setSort={onChangeSort}
+										/> */}
+										Подписки
+									</div>
 								</MyTableCell>
 								<MyTableCell>
-									<div className="flex items-center gap-x-2">Фамилия</div>
+									<div className="flex items-center justify-center gap-x-2">
+										{/* <ProjectsSort
+											sortBy="usersLeave"
+											sort={params.sort}
+											setSort={onChangeSort}
+										/> */}
+										Отписки
+									</div>
 								</MyTableCell>
 								<MyTableCell>
-									{/* <div className="flex items-center gap-x-2">
-										<BiLogoTelegram size={14} />
-										Никнейм
-									</div> */}
+									<div className="flex items-center justify-center gap-x-2">
+										{/* <ProjectsSort
+											sortBy="dialogs"
+											sort={params.sort}
+											setSort={onChangeSort}
+										/> */}
+										Диалоги
+									</div>
 								</MyTableCell>
 								<MyTableCell>
-									{/* <div className="flex items-center gap-x-2">
-										<IoLink size={14} />
-										Приглас. Ссылка
-									</div> */}
+									<Tooltip
+										placement="top-end"
+										title="First Deposit">
+										<div className="flex items-center justify-center gap-x-2">
+											{/* <ProjectsSort
+												sortBy="firstDeposits"
+												sort={params.sort}
+												setSort={onChangeSort}
+											/> */}
+											FTD
+											<IoInformation size={14} />
+										</div>
+									</Tooltip>
 								</MyTableCell>
 								<MyTableCell>
-									<div className="flex items-center gap-x-2">Назв. Ссылки</div>
+									<Tooltip
+										placement="top-end"
+										title="Repeat Deposit">
+										<div className="flex items-center justify-center gap-x-2">
+											RD
+											<IoInformation size={14} />
+										</div>
+									</Tooltip>
 								</MyTableCell>
-								<MyTableCell>Дата - Время</MyTableCell>
+								<MyTableCell className="text-center">Подп. / Диал.</MyTableCell>
+								<MyTableCell className="text-center">Подп. / FTD</MyTableCell>
+								<MyTableCell className="text-center">Диал. / FTD</MyTableCell>
+								<MyTableCell className="text-center">FTD / RD</MyTableCell>
 								<MyTableCell>
-									{/* <Tooltip
+									<Tooltip
 										placement="top-end"
 										title="Time to FTD">
 										<div className="flex items-center gap-x-2">
 											TTD
-											<IoHelpCircle
-												className="text-gray-400"
-												size={14}
-											/>
+											<IoInformation size={14} />
 										</div>
-									</Tooltip> */}
+									</Tooltip>
+								</MyTableCell>
+								<MyTableCell>
+									<Tooltip
+										placement="top-end"
+										title="Time to first Write">
+										<div className="flex items-center gap-x-2">
+											TTW
+											<IoInformation size={14} />
+										</div>
+									</Tooltip>
 								</MyTableCell>
 							</MyTableRow>
 						</MyTableHead>
 
-						{/* Ivnite links list body */}
+						{/* Statistics List */}
 						<MyTableBody>
-							{/* {data &&
+							{data &&
 								data.data.map((item) => (
-									<DepositPreviewRow
+									<StatisticsPreviewRow
 										{...item}
-										key={item.userId}
+										key={item.windowStart}
 									/>
-								))} */}
+								))}
 
-							{/* {!data && isPending && [...Array(12)].map((_, i) => <DepositPreviewRowSkeleton key={i} />)} */}
+							{!data && isPending && [...Array(12)].map((_, i) => <StatisticsPreviewRowSkeleton key={i} />)}
 						</MyTableBody>
 					</MyTable>
 

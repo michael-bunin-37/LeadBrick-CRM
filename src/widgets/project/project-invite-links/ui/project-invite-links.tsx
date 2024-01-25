@@ -13,7 +13,7 @@ import {useRouter} from "next/router"
 import React, {useState} from "react"
 import {IoHelpCircle, IoInformation, IoLink} from "react-icons/io5"
 import {IoCloudOfflineOutline} from "react-icons/io5"
-import {ProjectInviteLinksFilters} from "../project-invite-links-filters"
+import {ProjectInviteLinksFilters} from "./project-invite-links-filters"
 import {ProjectsUnactiveSwitcher} from "@/features/projects/projects-unactive-swticher"
 
 type Props = {
@@ -78,29 +78,17 @@ export function ProjectInviteLinksList({className, projectId}: Props) {
 
 			{/* Body & Head */}
 			<div className={"relative flex-grow"}>
-				<Box
-					sx={
-						{
-							// "&::-webkit-scrollbar": {
-							// 	height: "8px",
-							// 	width: "0px",
-							// 	transition: "all 150ms",
-							// },
-							// "&::-webkit-scrollbar-thumb": {
-							// 	background: GrayToken[300],
-							// 	transition: "all 150ms",
-							// },
-							// "&::-webkit-scrollbar-thumb:hover": {
-							// 	background: GrayToken[400],
-							// },
-						}
-					}
-					className="absolute top-0 left-0 w-full h-full overflow-x-auto">
+				<Box className="absolute top-0 left-0 w-full h-full overflow-x-auto">
 					<MyTable>
 						{/* Invite links list head */}
-						<MyTableHead>
+						<MyTableHead className="sticky top-[-1px] z-10">
 							<MyTableRow>
-								<MyTableCell>Название ссылки</MyTableCell>
+								<MyTableCell>
+									<div className="flex items-center gap-x-2">
+										Название ссылки
+										<span className="text-gray-500">{data ? `(${data.counter})` : ``}</span>
+									</div>
+								</MyTableCell>
 								{/* <MyTableCell>
 									<div className="flex items-center gap-x-2">
 										<ProjectsSort

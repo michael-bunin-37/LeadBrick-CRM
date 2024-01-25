@@ -43,9 +43,14 @@ export function ProjectDeposits({className, projectId}: Props) {
 				<Box className="absolute top-0 left-0 w-full h-full overflow-x-auto">
 					<MyTable>
 						{/* Invite links list head */}
-						<MyTableHead>
+						<MyTableHead className="sticky top-[-1px] z-10">
 							<MyTableRow>
-								<MyTableCell>User Id</MyTableCell>
+								<MyTableCell>
+									<div className="flex items-center gap-x-2">
+										User Id
+										<span className="text-gray-500">{data ? `(${data.counter})` : ``}</span>
+									</div>
+								</MyTableCell>
 
 								<MyTableCell>
 									<div className="flex items-center gap-x-2">Имя</div>
