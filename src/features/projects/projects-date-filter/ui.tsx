@@ -9,7 +9,7 @@ import {MyMenuItem} from "@/components/MenuItem"
 import {Cursor} from "@/utils/types/server"
 import {usePrevious} from "@/utils/hooks"
 import dayjs from "dayjs"
-import {DateFilterInitialOptionsTypeEnum, dateFilterOptionsFunctions} from "./model"
+import {DateFilterInitialOptionsTypeEnum, dateFilterOptionsFunctions, getToday} from "./model"
 import {HiOutlineSelector} from "react-icons/hi"
 import {MyMenu} from "@/components/Menu"
 
@@ -117,45 +117,62 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 				onClose={() => setAnch(null)}
 				open={!!anch}
 				anchorEl={anch}>
-				<div className="flex flex-col gap-y-6 ">
+				<div className="flex gap-x-6 pt-6">
 					{/* Preset Options */}
-					<div className="px-3 pt-6">
-						<MyButton
-							onClick={(e) => setOptionsAnch(e.currentTarget)}
-							variant="outlined"
-							className={cn("gap-x-3 w-full justify-between text-xs min-w-[276px] text-gray-500", option && "text-gray-700")}>
-							<div className="flex items-center gap-x-3">
-								<IoCalendarOutline />
-								{option ? DateFilterInitialOptionsTypeEnum[option] : "Выбрать предустановленную опцию"}
-							</div>
-							<HiOutlineSelector />
-						</MyButton>
-
-						<MyMenu
-							onClose={() => setOptionsAnch(null)}
-							anchorOrigin={{
-								vertical: "bottom",
-								horizontal: "left",
-							}}
-							transformOrigin={{
-								vertical: -12,
-								horizontal: "left",
-							}}
-							slotProps={{paper: {className: "min-w-[256px]"}}}
-							anchorEl={optionsAnch}
-							open={!!optionsAnch}>
-							{Object.entries(DateFilterInitialOptionsTypeEnum).map(([key, value]) => (
-								<MyMenuItem
-									key={key}
-									onClick={() => {
-										setOption(key as keyof typeof DateFilterInitialOptionsTypeEnum)
-										setOptionsAnch(null)
-									}}
-									selected={key === option}>
-									{value}
-								</MyMenuItem>
-							))}
-						</MyMenu>
+					<div className="flex items-start">
+						<div className="grid grid-cols-4 gap-y-2 mt-3 pr-6 pl-3 border-r border-r-gray-200 border-dashed">
+							<MyButton
+								onClick={() => setOption("today")}
+								size={"sm"}
+								variant={option == "today" ? "default" : "transparent"}
+								className="col-span-4 justify-start gap-x-2 rounded-sm">
+								<IoCalendarClearOutline />
+								За сегодня
+							</MyButton>
+							<MyButton
+								onClick={() => setOption("yesterday")}
+								size={"sm"}
+								variant={option == "yesterday" ? "default" : "transparent"}
+								className="col-span-4 justify-start gap-x-2 rounded-sm">
+								<IoCalendarClearOutline />
+								За вчера
+							</MyButton>
+							<MyButton
+								onClick={() => setOption("lastWeek")}
+								size={"sm"}
+								variant={option == "lastWeek" ? "default" : "transparent"}
+								className="col-span-4 justify-start gap-x-2 rounded-sm">
+								<IoCalendarClearOutline />
+								За эту неделю
+							</MyButton>
+							<MyButton
+								onClick={() => setOption("lastSeven")}
+								size={"sm"}
+								variant={option == "lastSeven" ? "default" : "transparent"}
+								className="col-span-4 justify-start gap-x-2 rounded-sm">
+								<IoCalendarClearOutline />
+								За последние 7 дней
+							</MyButton>
+							<MyButton
+								onClick={() => setOption("lastMonth")}
+								size={"sm"}
+								variant={option == "lastMonth" ? "default" : "transparent"}
+								className="col-span-4 justify-start gap-x-2 rounded-sm">
+								<IoCalendarClearOutline />
+								За этот месяц
+							</MyButton>
+							<MyButton
+								onClick={() => {
+									setOption(undefined)
+									setDate(undefined)
+								}}
+								size={"sm"}
+								variant="transparent"
+								className="col-span-4 justify-start gap-x-2 rounded-sm">
+								<IoCalendarClearOutline />
+								За всё время
+							</MyButton>
+						</div>
 					</div>
 
 					{/* Date Range Picker */}
@@ -166,6 +183,9 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 						selected={date}
 						onSelect={setDate}
 						numberOfMonths={2}
+						disabled={{
+							before: dayjs().subtract(2, "month").toDate(),
+						}}
 					/>
 				</div>
 			</Popover>

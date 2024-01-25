@@ -6,6 +6,7 @@ import {variants as buttonVariants} from "./Button"
 
 import {DayPicker} from "react-day-picker"
 import {IoChevronBackOutline, IoChevronForwardOutline} from "react-icons/io5"
+import dayjs from "dayjs"
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
 
@@ -35,6 +36,7 @@ export function Calendar({className, classNames, showOutsideDays = true, ...prop
 				day_outside: "opacity-50",
 				day_range_start: "bg-gray-900 text-gray-50",
 				day_range_end: "bg-gray-900 text-gray-50",
+				day_disabled: "opacity-20 pointer-events-none",
 				// day_disabled: "text-gray-400 opacity-50",
 				// day_hidden: "invisible",
 				...classNames,
