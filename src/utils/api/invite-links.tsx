@@ -13,6 +13,7 @@ export const useInviteLinksList = (
 	return useQuery({
 		queryKey: [QueryKeys["INVITE.LINK"], params],
 		queryFn: () => api.post(`${API_URL}/project/invite-link/list/${chatId}`, {json: p}).json<CursorList<InviteLinkResDto[]>>(),
+		refetchInterval: 1000 * 30,
 		...config,
 	})
 }

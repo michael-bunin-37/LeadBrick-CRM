@@ -75,13 +75,13 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 		<div className={className}>
 			<MyButton
 				onClick={(e) => setAnch(e.currentTarget)}
-				variant="outlined"
-				size="sm"
+				variant='outlined'
+				size='sm'
 				className={cn("gap-x-2 h-9 w-full", !date && "text-gray-500")}>
 				{!date && (
 					<>
 						Дата:
-						<span className="text-gray-400">Выбрать дату</span>
+						<span className='text-gray-400'>Выбрать дату</span>
 					</>
 				)}
 				{date && (
@@ -92,7 +92,7 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 				)}
 				{date ? (
 					<IconButton
-						size="small"
+						size='small'
 						onClick={(e) => {
 							e.preventDefault()
 							e.stopPropagation()
@@ -117,15 +117,15 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 				onClose={() => setAnch(null)}
 				open={!!anch}
 				anchorEl={anch}>
-				<div className="flex gap-x-6 pt-6">
+				<div className='flex gap-x-6 pt-6'>
 					{/* Preset Options */}
-					<div className="flex items-start">
-						<div className="grid grid-cols-4 gap-y-2 mt-3 pr-6 pl-3 border-r border-r-gray-200 border-dashed">
+					<div className='flex items-start'>
+						<div className='grid grid-cols-4 gap-y-2 mt-3 pr-6 pl-3 border-r border-r-gray-200 border-dashed'>
 							<MyButton
 								onClick={() => setOption("today")}
 								size={"sm"}
 								variant={option == "today" ? "default" : "transparent"}
-								className="col-span-4 justify-start gap-x-2 rounded-sm">
+								className='col-span-4 justify-start gap-x-2 rounded-sm'>
 								<IoCalendarClearOutline />
 								За сегодня
 							</MyButton>
@@ -133,7 +133,7 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 								onClick={() => setOption("yesterday")}
 								size={"sm"}
 								variant={option == "yesterday" ? "default" : "transparent"}
-								className="col-span-4 justify-start gap-x-2 rounded-sm">
+								className='col-span-4 justify-start gap-x-2 rounded-sm'>
 								<IoCalendarClearOutline />
 								За вчера
 							</MyButton>
@@ -141,7 +141,7 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 								onClick={() => setOption("lastWeek")}
 								size={"sm"}
 								variant={option == "lastWeek" ? "default" : "transparent"}
-								className="col-span-4 justify-start gap-x-2 rounded-sm">
+								className='col-span-4 justify-start gap-x-2 rounded-sm'>
 								<IoCalendarClearOutline />
 								За эту неделю
 							</MyButton>
@@ -149,7 +149,7 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 								onClick={() => setOption("lastSeven")}
 								size={"sm"}
 								variant={option == "lastSeven" ? "default" : "transparent"}
-								className="col-span-4 justify-start gap-x-2 rounded-sm">
+								className='col-span-4 justify-start gap-x-2 rounded-sm'>
 								<IoCalendarClearOutline />
 								За последние 7 дней
 							</MyButton>
@@ -157,7 +157,7 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 								onClick={() => setOption("lastMonth")}
 								size={"sm"}
 								variant={option == "lastMonth" ? "default" : "transparent"}
-								className="col-span-4 justify-start gap-x-2 rounded-sm">
+								className='col-span-4 justify-start gap-x-2 rounded-sm'>
 								<IoCalendarClearOutline />
 								За этот месяц
 							</MyButton>
@@ -167,8 +167,8 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 									setDate(undefined)
 								}}
 								size={"sm"}
-								variant="transparent"
-								className="col-span-4 justify-start gap-x-2 rounded-sm">
+								variant='transparent'
+								className='col-span-4 justify-start gap-x-2 rounded-sm'>
 								<IoCalendarClearOutline />
 								За всё время
 							</MyButton>
@@ -178,7 +178,7 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 					{/* Date Range Picker */}
 					<Calendar
 						initialFocus
-						mode="range"
+						mode='range'
 						defaultMonth={date?.from}
 						selected={date}
 						onSelect={setDate}

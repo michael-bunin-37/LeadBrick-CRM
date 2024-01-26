@@ -11,6 +11,7 @@ export const useStatisticsList = (
 ) => {
 	return useQuery({
 		queryKey: [QueryKeys["STATISTICS"], params],
+		refetchInterval: 1000 * 30,
 		queryFn: () =>
 			api
 				.get(`${API_URL}/event/aggregation`, {
@@ -24,6 +25,7 @@ export const useStatisticsList = (
 export const useStatisticsListCursorCounter = () => {
 	return useQuery({
 		queryKey: [QueryKeys["STATISTICS.COUNTER"]],
+		refetchInterval: 1000 * 30,
 		queryFn: () => api.get(`${API_URL}/event/aggregation/counter`),
 	})
 }

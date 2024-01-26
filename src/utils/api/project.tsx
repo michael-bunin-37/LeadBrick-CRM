@@ -9,6 +9,7 @@ export const useProjectList = (params: Cursor, config?: Partial<UseQueryOptions<
 	return useQuery<CursorList<ProjectResDto[]>, Error>({
 		queryFn: () => api.post(API_URL + "/project/list", {json: params}).json(),
 		queryKey: [QueryKeys["PROJECT"], params],
+		refetchInterval: 1000 * 30,
 		...config,
 	})
 }
@@ -17,6 +18,7 @@ export const useProjectById = (id: string, config?: Partial<UseQueryOptions<Proj
 	return useQuery({
 		queryKey: [QueryKeys["PROJECT"], id],
 		queryFn: () => api.get(`${API_URL}/project/${id}`).json<ProjectResDto>(),
+		refetchInterval: 1000 * 30,
 		...config,
 	})
 }
