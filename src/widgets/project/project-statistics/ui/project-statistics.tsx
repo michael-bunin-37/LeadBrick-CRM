@@ -1,40 +1,37 @@
-import {MyPagination} from "@/components/Pagination"
-import {MyTable, MyTableBody, MyTableCell, MyTableHead, MyTableRow} from "@/components/Table"
-import {StatisticsPreviewRow} from "@/entities/statistics"
-import {StatisticsPreviewRowSkeleton} from "@/entities/statistics"
-import {useStatisticsList} from "@/utils/api/statistics"
-import {Cursor} from "@/utils/types/server"
-import {Box, Tooltip} from "@mui/material"
-import React, {useState} from "react"
-import {IoCloudOfflineOutline, IoHelpCircle, IoInformation} from "react-icons/io5"
+import {MyPagination} from "@/components/Pagination";
+import {MyTable, MyTableBody, MyTableCell, MyTableHead, MyTableRow} from "@/components/Table";
+import {StatisticsPreviewRow} from "@/entities/statistics";
+import {StatisticsPreviewRowSkeleton} from "@/entities/statistics";
+import {useStatisticsList} from "@/utils/api/statistics";
+import {Cursor} from "@/utils/types/server";
+import {Box, Tooltip} from "@mui/material";
+import React, {useState} from "react";
+import {IoCloudOfflineOutline, IoHelpCircle, IoInformation} from "react-icons/io5";
+import {ProjectStatisticsFilters} from "./project-statistics-filters";
 
 type Props = {
-	projectId?: string
-	className?: string
-}
+	projectId?: string;
+	className?: string;
+};
 
 export function ProjectStatistics({projectId, className}: Props) {
 	// STATEs
 	const [params, setParams] = useState<Omit<Cursor, "filters" | "sort"> & {inviteLink?: string}>({
 		page: 1,
 		pageSize: 30,
-	})
+	});
 
 	// QUERIES
-	const {data, isPending} = useStatisticsList({...params, telegramChatId: projectId as string}, {enabled: !!projectId})
+	const {data, isPending} = useStatisticsList({...params, telegramChatId: projectId as string}, {enabled: !!projectId});
 
 	// HANDLERS
-	const onChangePage = (page: number) => setParams({...params, page})
+	const onChangePage = (page: number) => setParams({...params, page});
 
 	return (
 		<div className={className}>
-			{/* <div className="flex gap-x-2 mb-6">
-				<ProjectDepositsFilters
-					className="flex-grow"
-					setParams={setParams}
-					params={params}
-				/>
-			</div> */}
+			<div className="flex gap-x-2 mb-6">
+				<ProjectStatisticsFilters className="flex-grow" setParams={setParams} params={params} />
+			</div>
 
 			{/* Body & Head */}
 			<div className={"relative flex-grow"}>
@@ -75,9 +72,7 @@ export function ProjectStatistics({projectId, className}: Props) {
 									</div>
 								</MyTableCell>
 								<MyTableCell>
-									<Tooltip
-										placement="top-end"
-										title="First Deposit">
+									<Tooltip placement="top-end" title="First Deposit">
 										<div className="flex items-center justify-center gap-x-2">
 											{/* <ProjectsSort
 												sortBy="firstDeposits"
@@ -90,9 +85,7 @@ export function ProjectStatistics({projectId, className}: Props) {
 									</Tooltip>
 								</MyTableCell>
 								<MyTableCell>
-									<Tooltip
-										placement="top-end"
-										title="Repeat Deposit">
+									<Tooltip placement="top-end" title="Repeat Deposit">
 										<div className="flex items-center justify-center gap-x-2">
 											RD
 											<IoInformation size={14} />
@@ -104,9 +97,7 @@ export function ProjectStatistics({projectId, className}: Props) {
 								<MyTableCell className="text-center">Диал. / FTD</MyTableCell>
 								<MyTableCell className="text-center">FTD / RD</MyTableCell>
 								<MyTableCell>
-									<Tooltip
-										placement="top-end"
-										title="Time to FTD">
+									<Tooltip placement="top-end" title="Time to FTD">
 										<div className="flex items-center gap-x-2">
 											TTD
 											<IoInformation size={14} />
@@ -114,9 +105,7 @@ export function ProjectStatistics({projectId, className}: Props) {
 									</Tooltip>
 								</MyTableCell>
 								<MyTableCell>
-									<Tooltip
-										placement="top-end"
-										title="Time to first Write">
+									<Tooltip placement="top-end" title="Time to first Write">
 										<div className="flex items-center gap-x-2">
 											TTW
 											<IoInformation size={14} />
@@ -128,13 +117,7 @@ export function ProjectStatistics({projectId, className}: Props) {
 
 						{/* Statistics List */}
 						<MyTableBody>
-							{data &&
-								data.data.map((item) => (
-									<StatisticsPreviewRow
-										{...item}
-										key={item.windowStart}
-									/>
-								))}
+							{data && data.data.map((item) => <StatisticsPreviewRow {...item} key={item.windowStart} />)}
 
 							{!data && isPending && [...Array(12)].map((_, i) => <StatisticsPreviewRowSkeleton key={i} />)}
 						</MyTableBody>
@@ -159,5 +142,5 @@ export function ProjectStatistics({projectId, className}: Props) {
 				size="small"
 			/>
 		</div>
-	)
+	);
 }
