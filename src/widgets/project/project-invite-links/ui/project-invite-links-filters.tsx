@@ -15,7 +15,7 @@ export function ProjectInviteLinksFilters({className, setParams, params}: Props)
 	return (
 		<div className={cn("flex items-center gap-x-2", className)}>
 			<ProjectInviteLinksSearch
-				className="flex-grow"
+				className='flex-grow'
 				params={params}
 				setParams={setParams}
 			/>

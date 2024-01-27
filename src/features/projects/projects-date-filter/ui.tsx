@@ -1,6 +1,12 @@
-import {MyButton} from "@/components/Button"
+import {MyButton, buttonVariants} from "@/components/Button"
 import React, {useEffect, useState} from "react"
-import {IoCalendar, IoCalendarClearOutline, IoCalendarNumberOutline, IoCalendarOutline, IoCloseOutline} from "react-icons/io5"
+import {
+	IoCalendar,
+	IoCalendarClearOutline,
+	IoCalendarNumberOutline,
+	IoCalendarOutline,
+	IoCloseOutline,
+} from "react-icons/io5"
 import {DateRange} from "react-day-picker"
 import {cn} from "@/utils/lib"
 import {Divider, IconButton, Popover} from "@mui/material"
@@ -12,6 +18,7 @@ import dayjs from "dayjs"
 import {DateFilterInitialOptionsTypeEnum, dateFilterOptionsFunctions, getToday} from "./model"
 import {HiOutlineSelector} from "react-icons/hi"
 import {MyMenu} from "@/components/Menu"
+import {useDateFilterStore} from "@/entities/date-filter-store"
 
 type Props = {
 	className?: string
@@ -23,12 +30,12 @@ type Props = {
 export function ProjectsDateFilter({className, setParams, params, type = "PARAMS"}: Props) {
 	// STATE
 	const [anch, setAnch] = useState<HTMLElement | null>(null)
-	const [optionsAnch, setOptionsAnch] = useState<HTMLElement | null>(null)
-	const [date, setDate] = useState<DateRange>()
 	const [option, setOption] = useState<keyof typeof DateFilterInitialOptionsTypeEnum>()
+	const {dateRange: date, setDateRange: setDate} = useDateFilterStore()
 
 	const prevDate = usePrevious(date) as undefined | DateRange
 
+	// EFFECTS
 	useEffect(() => {
 		if (!date) setOption(undefined)
 	}, [date])
@@ -45,8 +52,16 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 					filters: params.filters
 						? [
 								...params.filters.filter((filter) => filter.filterBy !== "date"),
-								{filterBy: "date", filterValue: date.from.toISOString(), filterOperator: "MORE_OR_EQUAL"},
-								{filterBy: "date", filterValue: date.to.toISOString(), filterOperator: "LESS_OR_EQUAL"},
+								{
+									filterBy: "date",
+									filterValue: date.from.toISOString(),
+									filterOperator: "MORE_OR_EQUAL",
+								},
+								{
+									filterBy: "date",
+									filterValue: date.to.toISOString(),
+									filterOperator: "LESS_OR_EQUAL",
+								},
 						  ]
 						: [],
 				}),
@@ -59,7 +74,9 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 					windowEnd: new Date().toISOString(),
 				}),
 				...(type == "FILTER" && {
-					filters: params.filters ? [...params.filters.filter((filter) => filter.filterBy !== "date")] : [],
+					filters: params.filters
+						? [...params.filters.filter((filter) => filter.filterBy !== "date")]
+						: [],
 				}),
 			})
 	}, [date])
@@ -73,11 +90,13 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 
 	return (
 		<div className={className}>
-			<MyButton
+			<div
 				onClick={(e) => setAnch(e.currentTarget)}
-				variant='outlined'
-				size='sm'
-				className={cn("gap-x-2 h-9 w-full", !date && "text-gray-500")}>
+				className={cn(
+					buttonVariants({size: "sm", variant: "outlined"}),
+					"gap-x-2 h-9 w-full flex items-center cursor-pointer",
+					!date && "text-gray-500",
+				)}>
 				{!date && (
 					<>
 						Дата:
@@ -103,7 +122,7 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 				) : (
 					<IoCalendarOutline size={12} />
 				)}
-			</MyButton>
+			</div>
 
 			<Popover
 				anchorOrigin={{

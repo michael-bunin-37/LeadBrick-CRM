@@ -23,16 +23,19 @@ export function ProjectDeposits({className, projectId}: Props) {
 	})
 
 	// QUERIES
-	const {data, isPending} = useDepositList({...params, chatId: projectId as string}, {enabled: !!projectId})
+	const {data, isPending} = useDepositList(
+		{...params, chatId: projectId as string},
+		{enabled: !!projectId},
+	)
 
 	// HANDLERS
 	const onChangePage = (page: number) => setParams({...params, page})
 
 	return (
 		<div className={className}>
-			<div className="flex gap-x-2 mb-6">
+			<div className='flex gap-x-2 mb-6'>
 				<ProjectDepositsFilters
-					className="flex-grow"
+					className='flex-grow'
 					setParams={setParams}
 					params={params}
 				/>
@@ -40,48 +43,45 @@ export function ProjectDeposits({className, projectId}: Props) {
 
 			{/* Body & Head */}
 			<div className={"relative flex-grow"}>
-				<Box className="absolute top-0 left-0 w-full h-full overflow-x-auto">
+				<Box className='absolute top-0 left-0 w-full h-full overflow-x-auto'>
 					<MyTable>
 						{/* Invite links list head */}
-						<MyTableHead className="sticky top-[-1px] z-10">
+						<MyTableHead className='sticky top-[-1px] z-10'>
 							<MyTableRow>
 								<MyTableCell>
-									<div className="flex items-center gap-x-2">
+									<div className='flex items-center gap-x-2'>
 										User Id
-										<span className="text-gray-500">{data ? `(${data.counter})` : ``}</span>
+										<span className='text-gray-500'>{data ? `(${data.counter})` : ``}</span>
 									</div>
 								</MyTableCell>
 
 								<MyTableCell>
-									<div className="flex items-center gap-x-2">Имя</div>
+									<div className='flex items-center gap-x-2'>Имя</div>
 								</MyTableCell>
 								<MyTableCell>
-									<div className="flex items-center gap-x-2">Фамилия</div>
+									<div className='flex items-center gap-x-2'>Фамилия</div>
 								</MyTableCell>
 								<MyTableCell>
-									<div className="flex items-center gap-x-2">
-										<BiLogoTelegram size={14} />
-										Никнейм
-									</div>
+									<div className='flex items-center gap-x-2'>Никнейм</div>
 								</MyTableCell>
 								<MyTableCell>
-									<div className="flex items-center gap-x-2">
+									<div className='flex items-center gap-x-2'>
 										<IoLink size={14} />
 										Приглас. Ссылка
 									</div>
 								</MyTableCell>
 								<MyTableCell>
-									<div className="flex items-center gap-x-2">Назв. Ссылки</div>
+									<div className='flex items-center gap-x-2'>Назв. Ссылки</div>
 								</MyTableCell>
 								<MyTableCell>Дата - Время</MyTableCell>
 								<MyTableCell>
 									<Tooltip
-										placement="top-end"
-										title="Time to FTD">
-										<div className="flex items-center gap-x-2">
+										placement='top-end'
+										title='Time to FTD'>
+										<div className='flex items-center gap-x-2'>
 											TTD
 											<IoHelpCircle
-												className="text-gray-400"
+												className='text-gray-400'
 												size={14}
 											/>
 										</div>
@@ -100,13 +100,15 @@ export function ProjectDeposits({className, projectId}: Props) {
 									/>
 								))}
 
-							{!data && isPending && [...Array(12)].map((_, i) => <DepositPreviewRowSkeleton key={i} />)}
+							{!data &&
+								isPending &&
+								[...Array(12)].map((_, i) => <DepositPreviewRowSkeleton key={i} />)}
 						</MyTableBody>
 					</MyTable>
 
 					{/* No Result */}
 					{data && data.data.length == 0 && !isPending && (
-						<div className="w-full px-[14px] py-9 flex gap-x-6 text-sm text-gray-500">
+						<div className='w-full px-[14px] py-9 flex gap-x-6 text-sm text-gray-500'>
 							<IoCloudOfflineOutline size={20} />К сожалению, но мы ничего не нашли
 						</div>
 					)}
@@ -115,12 +117,12 @@ export function ProjectDeposits({className, projectId}: Props) {
 
 			{/* Pagination */}
 			<MyPagination
-				className="mt-6"
+				className='mt-6'
 				pageSize={params.pageSize}
 				page={params.page}
 				handleChange={(e, page) => onChangePage(page)}
 				counter={data?.counter || 0}
-				size="small"
+				size='small'
 			/>
 		</div>
 	)

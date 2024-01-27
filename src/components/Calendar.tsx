@@ -2,7 +2,7 @@
 
 import {cn} from "@/utils/lib"
 import * as React from "react"
-import {variants as buttonVariants} from "./Button"
+import {buttonVariants as buttonVariants} from "./Button"
 
 import {DayPicker} from "react-day-picker"
 import {IoChevronBackOutline, IoChevronForwardOutline} from "react-icons/io5"
@@ -21,7 +21,10 @@ export function Calendar({className, classNames, showOutsideDays = true, ...prop
 				caption: "flex justify-center pt-1 relative items-center",
 				caption_label: "text-sm font-medium",
 				nav: "space-x-1 flex items-center",
-				nav_button: cn(buttonVariants({variant: "outlined"}), "h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100"),
+				nav_button: cn(
+					buttonVariants({variant: "outlined"}),
+					"h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100",
+				),
 				nav_button_previous: "absolute left-1",
 				nav_button_next: "absolute right-1",
 				table: "w-full border-collapse space-y-1",
@@ -45,13 +48,13 @@ export function Calendar({className, classNames, showOutsideDays = true, ...prop
 				IconLeft: ({...props}) => (
 					<IoChevronBackOutline
 						size={16}
-						className="w-6"
+						className='w-6'
 					/>
 				),
 				IconRight: ({...props}) => (
 					<IoChevronForwardOutline
 						size={16}
-						className="w-6"
+						className='w-6'
 					/>
 				),
 			}}

@@ -11,7 +11,7 @@ export const useStatisticsList = (
 ) => {
 	return useQuery({
 		queryKey: [QueryKeys["STATISTICS"], params],
-		refetchInterval: 1000 * 30,
+		refetchInterval: 1000 * 60 * 5,
 		queryFn: () =>
 			api
 				.get(`${API_URL}/event/aggregation`, {
@@ -22,10 +22,20 @@ export const useStatisticsList = (
 	})
 }
 
-export const useStatisticsListCursorCounter = () => {
+export const useStatisticsListCursorCounter = (
+	params: {
+		telegramChatId: string
+		windowStart?: string
+		windowEnd?: string
+		inviteLink?: string
+	},
+	config?: Partial<UseQueryOptions<{counter: number}, Error>>,
+) => {
 	return useQuery({
-		queryKey: [QueryKeys["STATISTICS.COUNTER"]],
-		refetchInterval: 1000 * 30,
-		queryFn: () => api.get(`${API_URL}/event/aggregation/counter`),
+		queryKey: [QueryKeys["STATISTICS.COUNTER"], params],
+		refetchInterval: 1000 * 60 * 5,
+		queryFn: () =>
+			api.get(`${API_URL}/event/aggregation/counter`, {searchParams: Object.entries(params)}).json<{counter: number}>(),
+		...config,
 	})
 }

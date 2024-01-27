@@ -24,16 +24,16 @@ export function ProjectsList({className, data, params, setParams, isPending}: Pr
 	return (
 		<div className={className}>
 			<div className={"relative flex-grow"}>
-				<Box className="absolute top-0 left-0 w-full h-full overflow-x-auto">
+				<Box className='absolute top-0 left-0 w-full h-full overflow-x-auto'>
 					<MyTable>
 						{/* Projects list head */}
 						<MyTableHead>
 							<MyTableRow>
 								<MyTableCell>Название проекта</MyTableCell>
 								<MyTableCell>
-									<div className="flex items-center justify-center gap-x-2">
+									<div className='flex items-center justify-center gap-x-2'>
 										<ProjectsSort
-											sortBy="subscribers"
+											sortBy='subscribers'
 											sort={params.sort}
 											setSort={onChangeSort}
 										/>
@@ -41,9 +41,9 @@ export function ProjectsList({className, data, params, setParams, isPending}: Pr
 									</div>
 								</MyTableCell>
 								<MyTableCell>
-									<div className="flex items-center justify-center gap-x-2">
+									<div className='flex items-center justify-center gap-x-2'>
 										<ProjectsSort
-											sortBy="usersJoin"
+											sortBy='usersJoin'
 											sort={params.sort}
 											setSort={onChangeSort}
 										/>
@@ -51,9 +51,9 @@ export function ProjectsList({className, data, params, setParams, isPending}: Pr
 									</div>
 								</MyTableCell>
 								<MyTableCell>
-									<div className="flex items-center justify-center gap-x-2">
+									<div className='flex items-center justify-center gap-x-2'>
 										<ProjectsSort
-											sortBy="usersLeave"
+											sortBy='usersLeave'
 											sort={params.sort}
 											setSort={onChangeSort}
 										/>
@@ -61,9 +61,9 @@ export function ProjectsList({className, data, params, setParams, isPending}: Pr
 									</div>
 								</MyTableCell>
 								<MyTableCell>
-									<div className="flex items-center justify-center gap-x-2">
+									<div className='flex items-center justify-center gap-x-2'>
 										<ProjectsSort
-											sortBy="dialogs"
+											sortBy='dialogs'
 											sort={params.sort}
 											setSort={onChangeSort}
 										/>
@@ -72,11 +72,11 @@ export function ProjectsList({className, data, params, setParams, isPending}: Pr
 								</MyTableCell>
 								<MyTableCell>
 									<Tooltip
-										placement="top-end"
-										title="First Deposit">
-										<div className="flex items-center justify-center gap-x-2">
+										placement='top-end'
+										title='First Deposit'>
+										<div className='flex items-center justify-center gap-x-2'>
 											<ProjectsSort
-												sortBy="firstDeposits"
+												sortBy='firstDeposits'
 												sort={params.sort}
 												setSort={onChangeSort}
 											/>
@@ -87,23 +87,28 @@ export function ProjectsList({className, data, params, setParams, isPending}: Pr
 								</MyTableCell>
 								<MyTableCell>
 									<Tooltip
-										placement="top-end"
-										title="Repeat Deposit">
-										<div className="flex items-center justify-center gap-x-2">
+										placement='top-end'
+										title='Repeat Deposit'>
+										<div className='flex items-center justify-center gap-x-2'>
+											<ProjectsSort
+												sortBy='reDeposits'
+												sort={params.sort}
+												setSort={onChangeSort}
+											/>
 											RD
 											<IoInformation size={14} />
 										</div>
 									</Tooltip>
 								</MyTableCell>
-								<MyTableCell className="text-center">Подп. / Диал.</MyTableCell>
-								<MyTableCell className="text-center">Подп. / FTD</MyTableCell>
-								<MyTableCell className="text-center">Диал. / FTD</MyTableCell>
-								<MyTableCell className="text-center">FTD / RD</MyTableCell>
+								<MyTableCell className='text-center'>Подп. / Диал.</MyTableCell>
+								<MyTableCell className='text-center'>Подп. / FTD</MyTableCell>
+								<MyTableCell className='text-center'>Диал. / FTD</MyTableCell>
+								<MyTableCell className='text-center'>FTD / RD</MyTableCell>
 								<MyTableCell>
 									<Tooltip
-										placement="top-end"
-										title="Time to FTD">
-										<div className="flex items-center gap-x-2">
+										placement='top-end'
+										title='Time to FTD'>
+										<div className='flex items-center gap-x-2'>
 											TTD
 											<IoInformation size={14} />
 										</div>
@@ -111,9 +116,9 @@ export function ProjectsList({className, data, params, setParams, isPending}: Pr
 								</MyTableCell>
 								<MyTableCell>
 									<Tooltip
-										placement="top-end"
-										title="Time to first Write">
-										<div className="flex items-center gap-x-2">
+										placement='top-end'
+										title='Time to first Write'>
+										<div className='flex items-center gap-x-2'>
 											TTW
 											<IoInformation size={14} />
 										</div>
@@ -138,7 +143,7 @@ export function ProjectsList({className, data, params, setParams, isPending}: Pr
 
 					{/* No Result */}
 					{data && data.data.length == 0 && !isPending && (
-						<div className="w-full px-[14px] py-9 flex gap-x-6 text-sm text-gray-500">
+						<div className='w-full px-[14px] py-9 flex gap-x-6 text-sm text-gray-500'>
 							<IoCloudOfflineOutline size={20} />К сожалению, но мы ничего не нашли
 						</div>
 					)}
@@ -147,12 +152,12 @@ export function ProjectsList({className, data, params, setParams, isPending}: Pr
 
 			{/* Pagination */}
 			<MyPagination
-				className="mt-6"
+				className='mt-6'
 				pageSize={params.pageSize}
 				page={params.page}
 				handleChange={(e, page) => onChangePage(page)}
 				counter={data?.counter || 0}
-				size="small"
+				size='small'
 			/>
 		</div>
 	)
