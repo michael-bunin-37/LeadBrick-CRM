@@ -32,7 +32,10 @@ export default function ProjectsPage({}: Props) {
 						...data,
 						data: data.data.filter(
 							(project) =>
-								project.usersJoin != 0 || project.dialogs != 0 || project.firstDeposits != 0 || project.reDeposits != 0,
+								project.usersJoin != 0 ||
+								project.dialogs != 0 ||
+								project.firstDeposits != 0 ||
+								project.reDeposits != 0,
 						),
 				  }
 				: data
@@ -70,21 +73,24 @@ export default function ProjectsPage({}: Props) {
 							<span className="text-sm text-gray-500">{data && `(${data.counter})`}</span>
 						</div>
 
-						<div className="flex items-center gap-x-2">
-							{/* Projects switch active and unactive projects */}
-							<ProjectsFilters
-								className="flex-grow"
-								setParams={setParams}
-								params={params}
-							/>
+						{/* Project Create */}
+						<ProjectCreate />
+					</div>
 
-							<ProjectsUnactiveSwitcher
-								setActive={setShowUnactive}
-								active={showUnActive}
-							/>
+					<div className="border-b border-gray-200 w-full mt-3" />
 
-							<ProjectCreate />
-						</div>
+					<div className="flex items-center gap-x-2 mt-6">
+						<ProjectsFilters
+							className="flex-grow"
+							setParams={setParams}
+							params={params}
+						/>
+
+						{/* Projects switch active and unactive projects */}
+						<ProjectsUnactiveSwitcher
+							setActive={setShowUnactive}
+							active={showUnActive}
+						/>
 					</div>
 
 					<ProjectsList

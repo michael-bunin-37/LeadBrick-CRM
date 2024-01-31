@@ -5,7 +5,10 @@ import {API_URL} from "../config"
 import {ProjectResDto} from "../types/project"
 import {Cursor, CursorList} from "../types/server"
 
-export const useProjectList = (params: Cursor, config?: Partial<UseQueryOptions<CursorList<ProjectResDto[]>, Error>>) => {
+export const useProjectList = (
+	params: Cursor,
+	config?: Partial<UseQueryOptions<CursorList<ProjectResDto[]>, Error>>,
+) => {
 	return useQuery<CursorList<ProjectResDto[]>, Error>({
 		queryFn: () => api.post(API_URL + "/project/list", {json: params}).json(),
 		queryKey: [QueryKeys["PROJECT"], params],
@@ -14,7 +17,10 @@ export const useProjectList = (params: Cursor, config?: Partial<UseQueryOptions<
 	})
 }
 
-export const useProjectById = (id: string, config?: Partial<UseQueryOptions<ProjectResDto, Error>>) => {
+export const useProjectById = (
+	id: string,
+	config?: Partial<UseQueryOptions<ProjectResDto, Error>>,
+) => {
 	return useQuery({
 		queryKey: [QueryKeys["PROJECT"], id],
 		queryFn: () => api.get(`${API_URL}/project/${id}`).json<ProjectResDto>(),

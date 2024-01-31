@@ -25,4 +25,5 @@ export interface ProjectResDto extends ProjectReqDto {
 	sumTimeToDialog: number
 	countTimeToDeposit: number
 	sumTimeToDeposit: number
+	tag?: string
 }

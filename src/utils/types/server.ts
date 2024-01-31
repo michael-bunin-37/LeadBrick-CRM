@@ -3,6 +3,7 @@ export enum FilterByParamEnum {
 	date = "Дата",
 	inviteLinkName = "Название ссылки",
 	inviteLink = "Тело ссылки",
+	tag = "По тегу",
 }
 
 export type FilterByParam = keyof typeof FilterByParamEnum
@@ -40,6 +41,7 @@ export type Cursor = {
 	windowEnd?: string
 	filters?: Array<FilterParam>
 	inviteLinkOrName?: string
+	tag?: string
 }
 
 export type CursorList<T> = {

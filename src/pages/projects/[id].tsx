@@ -24,7 +24,9 @@ export default function ProjectPage({}: Props) {
 	const [tab, setTab] = useState("0")
 
 	// QUERIES
-	const {data: project, isPending: isProjectPending} = useProjectById(query.id as string, {enabled: !!query.id})
+	const {data: project, isPending: isProjectPending} = useProjectById(query.id as string, {
+		enabled: !!query.id,
+	})
 
 	return (
 		<Layout>
@@ -100,6 +102,10 @@ export default function ProjectPage({}: Props) {
 									label="Статистика"
 									value="2"
 								/>
+								<MyTab
+									label="Подписки"
+									value="3"
+								/>
 							</MyTabList>
 						</div>
 
@@ -116,6 +122,12 @@ export default function ProjectPage({}: Props) {
 							/>
 						)}
 						{tab == "2" && (
+							<ProjectStatistics
+								projectId={query.id as string}
+								className="flex flex-col flex-grow mt-6"
+							/>
+						)}
+						{tab == "3" && (
 							<ProjectStatistics
 								projectId={query.id as string}
 								className="flex flex-col flex-grow mt-6"

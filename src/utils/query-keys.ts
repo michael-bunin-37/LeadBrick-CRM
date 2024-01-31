@@ -4,4 +4,5 @@ export enum QueryKeys {
 	"DEPOSIT",
 	"STATISTICS",
 	"STATISTICS.COUNTER",
+	"TAGS",
 }
