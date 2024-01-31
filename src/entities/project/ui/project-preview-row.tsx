@@ -17,21 +17,6 @@ export function ProjectPreviewRow(props: Props) {
 	return (
 		<MyTableRow>
 			<MyTableCell>
-				<div className="flex items-center gap-x-3">
-					{props.tag ? (
-						<>
-							<MyChip
-								className="text-xs rounded-md h-[24px] px-2"
-								label={props.tag}
-							/>
-							{props.Slots?.ProjectDeleteTag && <props.Slots.ProjectDeleteTag id={props.id} />}
-						</>
-					) : (
-						props.Slots?.ProjectAddTag && <props.Slots.ProjectAddTag id={props.id} />
-					)}
-				</div>
-			</MyTableCell>
-			<MyTableCell>
 				<div className="flex items-center gap-x-3 truncate">
 					<div className="h-6 w-6 rounded-[4px] bg-gray-100" />
 					<Link
@@ -80,6 +65,21 @@ export function ProjectPreviewRow(props: Props) {
 							.duration(props.sumTimeToDialog / props.countTimeToDialog, "milliseconds")
 							.humanize()
 					: "-"}
+			</MyTableCell>
+			<MyTableCell>
+				<div className="flex items-center gap-x-3">
+					{props.tag ? (
+						<>
+							<MyChip
+								className="text-xs rounded-md h-[24px] px-2"
+								label={props.tag}
+							/>
+							{props.Slots?.ProjectDeleteTag && <props.Slots.ProjectDeleteTag id={props.id} />}
+						</>
+					) : (
+						props.Slots?.ProjectAddTag && <props.Slots.ProjectAddTag id={props.id} />
+					)}
+				</div>
 			</MyTableCell>
 		</MyTableRow>
 	)

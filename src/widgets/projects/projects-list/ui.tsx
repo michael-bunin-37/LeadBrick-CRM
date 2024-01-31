@@ -31,12 +31,6 @@ export function ProjectsList({className, data, params, setParams, isPending}: Pr
 						{/* Projects list head */}
 						<MyTableHead>
 							<MyTableRow>
-								<MyTableCell>
-									<div className="flex items-center gap-x-3">
-										<IoPricetagsOutline />
-										Тег
-									</div>
-								</MyTableCell>
 								<MyTableCell>Название проекта</MyTableCell>
 								<MyTableCell>
 									<div className="flex items-center justify-center gap-x-2">
@@ -131,6 +125,12 @@ export function ProjectsList({className, data, params, setParams, isPending}: Pr
 											<IoInformation size={14} />
 										</div>
 									</Tooltip>
+								</MyTableCell>
+								<MyTableCell>
+									<div className="flex items-center gap-x-3">
+										<IoPricetagsOutline />
+										Тег
+									</div>
 								</MyTableCell>
 							</MyTableRow>
 						</MyTableHead>

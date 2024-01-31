@@ -15,6 +15,7 @@ import {IoBriefcase} from "react-icons/io5"
 import {ProjectInviteLinksList} from "@/widgets/project/project-invite-links"
 import {ProjectDeposits} from "@/widgets/project/project-deposits"
 import {ProjectStatistics} from "@/widgets/project/project-statistics"
+import {ProjectRename} from "@/widgets/project/project-rename"
 
 type Props = {}
 
@@ -73,7 +74,10 @@ export default function ProjectPage({}: Props) {
 					{/* Header */}
 					<div className="flex items-start gap-x-2 mt-6">
 						{project ? (
-							<span className="text-md text-gray-900 font-bold">{project.name}</span>
+							<ProjectRename
+								id={project.id}
+								name={project.name}
+							/>
 						) : (
 							<MySkeleton
 								width="196px"
