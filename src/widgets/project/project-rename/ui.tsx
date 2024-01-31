@@ -23,10 +23,15 @@ function ProjectRename({name, id: chatId}: ProjectRenameProps) {
 	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		e.stopPropagation()
-		mutate({chatId, name: value})
+		mutate(
+			{chatId, name: value},
+			{
+				onSuccess: () => {
+					setEdit(false)
+				},
+			},
+		)
 	}
-
-	console.log("edit")
 
 	const onToggleEdit = () => {
 		if (isEdit) setValue(name)
@@ -34,9 +39,6 @@ function ProjectRename({name, id: chatId}: ProjectRenameProps) {
 	}
 
 	// EFFECTS
-	// useEffect(() => {
-	// 	if (!isSuccess) setValue(name)
-	// }, [isEdit, isSuccess])
 	useEffect(() => setValue(name), [name])
 
 	return (
@@ -44,6 +46,7 @@ function ProjectRename({name, id: chatId}: ProjectRenameProps) {
 			onSubmit={onSubmit}
 			className="flex items-center gap-x-4">
 			{/* <span className="text-md text-gray-900 font-bold">{name}</span> */}
+
 			<input
 				placeholder="Название проекта"
 				onChange={(e) => setValue(e.currentTarget.value)}
@@ -51,8 +54,9 @@ function ProjectRename({name, id: chatId}: ProjectRenameProps) {
 				disabled={!isEdit || isPending}
 				className={`outline-none text-md text-gray-900 font-bold bg-transparent`}
 				style={{
-					minWidth: `${value.length * 10}px`,
-					width: "auto",
+					minWidth: "186px",
+					width: `${value.length * 11}px`,
+					maxWidth: "512px",
 				}}
 			/>
 
