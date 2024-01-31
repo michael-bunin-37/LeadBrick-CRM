@@ -16,6 +16,7 @@ import {ProjectInviteLinksList} from "@/widgets/project/project-invite-links"
 import {ProjectDeposits} from "@/widgets/project/project-deposits"
 import {ProjectStatistics} from "@/widgets/project/project-statistics"
 import {ProjectRename} from "@/widgets/project/project-rename"
+import {truncate} from "@/utils/lib"
 
 type Props = {}
 
@@ -60,7 +61,7 @@ export default function ProjectPage({}: Props) {
 							<MyChip
 								className="text-[12px] rounded-sm"
 								size="sm"
-								label={project.name}
+								label={truncate(project.name, 48)}
 							/>
 						) : (
 							<MySkeleton

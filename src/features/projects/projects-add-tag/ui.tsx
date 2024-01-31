@@ -1,7 +1,13 @@
 import {MyButton} from "@/components/Button"
 import {MyChip} from "@/components/Chip"
 import React, {useEffect, useState} from "react"
-import {IoCloseOutline, IoPricetag, IoPricetagOutline, IoPricetagsOutline} from "react-icons/io5"
+import {
+	IoAdd,
+	IoCloseOutline,
+	IoPricetag,
+	IoPricetagOutline,
+	IoPricetagsOutline,
+} from "react-icons/io5"
 import {useProjectsAddTag} from "./model"
 import {MyMenu} from "@/components/Menu"
 import {useTagsList} from "@/utils/api/tags"
@@ -55,19 +61,19 @@ function ProjectsAddTag({id: chatId}: ProjectsAddTagProps) {
 						variant={"transparent"}
 						size="sm"
 						className="gap-x-2 text-gray-500 hover:text-gray-700 text-[11px] h-[24px] px-1">
-						<IoPricetagOutline />
-						Добав...
+						Добавить
+						<IoAdd />
 					</MyButton>
 
 					<Popover
 						onClose={() => setAnchor(null)}
 						anchorOrigin={{
 							vertical: "bottom",
-							horizontal: "left",
+							horizontal: "right",
 						}}
 						transformOrigin={{
 							vertical: -12,
-							horizontal: "left",
+							horizontal: "right",
 						}}
 						slotProps={{paper: {className: "min-w-[256px] p-0"}}}
 						open={!!anchor}

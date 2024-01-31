@@ -12,9 +12,6 @@ export function ProjectPreviewRowSkeleton({className}: Props) {
 	return (
 		<MyTableRow>
 			<MyTableCell>
-				<div className="bg-gray-100 rounded-sm h-[10px] w-[36px]" />
-			</MyTableCell>
-			<MyTableCell>
 				<div className="flex items-center gap-x-3 truncate">
 					<div className="h-6 w-6 rounded-[4px] bg-gray-100" />
 					<div className="bg-gray-100 rounded-sm h-[10px] w-[128px]" />
@@ -25,6 +22,9 @@ export function ProjectPreviewRowSkeleton({className}: Props) {
 					<div className="bg-gray-100 rounded-sm h-[10px] w-[36px]" />
 				</MyTableCell>
 			))}
+			<MyTableCell>
+				<div className="bg-gray-100 rounded-sm h-[10px] w-[36px]" />
+			</MyTableCell>
 		</MyTableRow>
 	)
 }

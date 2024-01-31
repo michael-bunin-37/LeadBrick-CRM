@@ -67,7 +67,7 @@ export function ProjectPreviewRow(props: Props) {
 					: "-"}
 			</MyTableCell>
 			<MyTableCell>
-				<div className="flex items-center gap-x-3">
+				<div className="flex items-center gap-x-1">
 					{props.tag ? (
 						<>
 							<MyChip
