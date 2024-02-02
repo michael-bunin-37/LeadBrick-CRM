@@ -14,16 +14,16 @@ export function ProjectsUnactiveSwitcher({active, setActive}: Props) {
 			onClick={() => setActive(!active)}
 			variant="outlined"
 			size="sm"
-			className="h-9 gap-x-2 bg-gray-50">
+			className="h-9 gap-x-2">
 			{active ? (
 				<IoCheckbox
 					className="text-blue-500"
-					size={14}
+					size={12}
 				/>
 			) : (
-				<IoSquareOutline size={14} />
+				<IoSquareOutline size={12} />
 			)}
-			Показывать неактивные
+			Показ. Неактивные
 		</MyButton>
 	)
 }

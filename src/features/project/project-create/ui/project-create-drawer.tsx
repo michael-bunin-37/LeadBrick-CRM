@@ -17,7 +17,10 @@ type Props = {}
 export function ProjectCreateDrawer({}: Props) {
 	// STATE
 	const {isOpen, type, setOpen, setType} = useDrawersStore()
-	const {control, handleSubmit, reset} = useForm({resolver: zodResolver(ProjectCreateSchema), defaultValues})
+	const {control, handleSubmit, reset} = useForm({
+		resolver: zodResolver(ProjectCreateSchema),
+		defaultValues,
+	})
 
 	// HANDLERS
 	const {isPending, onSubmit, isSuccess, error} = useProjectCreate()

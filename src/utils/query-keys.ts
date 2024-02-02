@@ -3,6 +3,7 @@ export enum QueryKeys {
 	"INVITE.LINK",
 	"DEPOSIT",
 	"STATISTICS",
+	"STATISTICS.HOURLY",
 	"STATISTICS.COUNTER",
 	"TAGS",
 }

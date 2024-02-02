@@ -3,19 +3,28 @@ import {Table, TableBody, TableCell, TableHead, TableRow} from "@mui/material"
 import {styled} from "@mui/material/styles"
 
 export const MyTable = styled(Table)(() => ({
-	border: `1px dashed`,
-	borderColor: GrayToken[200],
+	// border: `1px dashed`,
+	// borderColor: GrayToken[200],
 }))
 export const MyTableHead = styled(TableHead)(() => ({
-	background: `${GrayToken[100]} !important`,
+	background: `${GrayToken[50]} !important`,
+	// background: "#ffffff",
+	// borderBottom: `1px solid`,
+	// borderColor: GrayToken[400],
+
 	"th": {
 		background: `${GrayToken[50]} !important`,
+		// background: "#ffffff",
 		fontSize: "12px",
 	},
 }))
 export const MyTableBody = styled(TableBody)(() => ({
 	"tr td": {
 		background: "#ffffff",
+	},
+
+	"tr:nth-child(2n) td": {
+		background: GrayToken[50],
 	},
 }))
 export const MyTableRow = styled(TableRow)(() => ({}))

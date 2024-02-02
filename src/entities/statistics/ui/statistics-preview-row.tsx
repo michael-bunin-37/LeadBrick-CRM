@@ -1,13 +1,20 @@
 import {MyTableCell, MyTableRow} from "@/components/Table"
+import {cn} from "@/utils/lib"
 import {StatisticsResDto} from "@/utils/types/statistics"
 import dayjs from "dayjs"
 import React from "react"
 
-type Props = StatisticsResDto
+type Props = StatisticsResDto & {
+	onClick?: (e: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
+}
 
 export function StatisticsPreviewRow(props: Props) {
 	return (
-		<MyTableRow>
+		<MyTableRow
+			onClick={props.onClick}
+			className={cn(
+				props.onClick && "[&>*]:transition-all cursor-pointer [&>*]:hover:!bg-gray-100",
+			)}>
 			<MyTableCell>{dayjs(props.windowStart).format("lll")}</MyTableCell>
 			<MyTableCell>
 				<div className="flex items-center justify-center gap-x-2">
@@ -65,25 +72,37 @@ export function StatisticsPreviewRow(props: Props) {
 				</Tooltip> */}
 			</MyTableCell>
 			<MyTableCell className="text-center">
-				{props.dialogs != 0 && props.usersJoin != 0 ? `${(((props.dialogs / props.usersJoin)) * 100).toFixed(1)}%` : "-"}
+				{props.dialogs != 0 && props.usersJoin != 0
+					? `${((props.dialogs / props.usersJoin) * 100).toFixed(1)}%`
+					: "-"}
 			</MyTableCell>
 			<MyTableCell className="text-center">
-				{props.firstDeposits != 0 && props.usersJoin != 0 ? `${((props.firstDeposits / props.usersJoin) * 100).toFixed(1)}%` : "-"}
+				{props.firstDeposits != 0 && props.usersJoin != 0
+					? `${((props.firstDeposits / props.usersJoin) * 100).toFixed(1)}%`
+					: "-"}
 			</MyTableCell>
 			<MyTableCell className="text-center">
-				{props.firstDeposits != 0 && props.usersJoin != 0 ? `${((props.firstDeposits / props.dialogs) * 100).toFixed(1)}%` : "-"}
+				{props.firstDeposits != 0 && props.usersJoin != 0
+					? `${((props.firstDeposits / props.dialogs) * 100).toFixed(1)}%`
+					: "-"}
 			</MyTableCell>
 			<MyTableCell className="text-center">
-				{props.reDeposits != 0 && props.firstDeposits != 0 ? `${((props.reDeposits / props.firstDeposits) * 100).toFixed(1)}%` : "-"}
+				{props.reDeposits != 0 && props.firstDeposits != 0
+					? `${((props.reDeposits / props.firstDeposits) * 100).toFixed(1)}%`
+					: "-"}
 			</MyTableCell>
 			<MyTableCell>
 				{props.sumTimeToDeposit != 0 && props.countTimeToDeposit != 0
-					? dayjs.duration(props.sumTimeToDeposit / props.countTimeToDeposit, "milliseconds").humanize()
+					? dayjs
+							.duration(props.sumTimeToDeposit / props.countTimeToDeposit, "milliseconds")
+							.humanize()
 					: "-"}
 			</MyTableCell>
 			<MyTableCell>
 				{props.sumTimeToDialog != 0 && props.countTimeToDialog != 0
-					? dayjs.duration(props.sumTimeToDialog / props.countTimeToDialog, "milliseconds").humanize()
+					? dayjs
+							.duration(props.sumTimeToDialog / props.countTimeToDialog, "milliseconds")
+							.humanize()
 					: "-"}
 			</MyTableCell>
 		</MyTableRow>

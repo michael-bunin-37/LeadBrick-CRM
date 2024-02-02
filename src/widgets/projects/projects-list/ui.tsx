@@ -29,7 +29,7 @@ export function ProjectsList({className, data, params, setParams, isPending}: Pr
 				<Box className="absolute top-0 left-0 w-full h-full overflow-x-auto">
 					<MyTable>
 						{/* Projects list head */}
-						<MyTableHead>
+						<MyTableHead className="sticky top-[-1px] z-10">
 							<MyTableRow>
 								<MyTableCell>Название проекта</MyTableCell>
 								<MyTableCell>

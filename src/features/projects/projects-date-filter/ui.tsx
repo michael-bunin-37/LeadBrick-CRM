@@ -139,7 +139,8 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 				<div className="flex gap-x-6 pt-6">
 					{/* Preset Options */}
 					<div className="flex items-start">
-						<div className="grid grid-cols-4 gap-y-2 mt-3 pr-6 pl-3 border-r border-r-gray-200 border-dashed">
+						<div className="flex flex-col gap-y-1 mt-3 pr-6 pl-3 border-r border-r-gray-200 border-dashed">
+							<div className="px-3 text-xs font-medium text-gray-500 mb-2">Выберите опции</div>
 							<MyButton
 								onClick={() => setOption("today")}
 								size={"sm"}

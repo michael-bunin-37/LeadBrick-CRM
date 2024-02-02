@@ -107,10 +107,10 @@ export default function ProjectPage({}: Props) {
 									label="Статистика"
 									value="2"
 								/>
-								<MyTab
+								{/* <MyTab
 									label="Подписки"
 									value="3"
-								/>
+								/> */}
 							</MyTabList>
 						</div>
 

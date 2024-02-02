@@ -22,6 +22,23 @@ export const useStatisticsList = (
 	})
 }
 
+export const useStatisticsHourlyList = (
+	params: Omit<Cursor, "filters" | "sort"> & {telegramChatId: string; inviteLink?: string},
+	config?: Partial<UseQueryOptions<CursorList<StatisticsResDto[]>, Error>>,
+) => {
+	return useQuery({
+		queryKey: [QueryKeys["STATISTICS.HOURLY"], params],
+		refetchInterval: 1000 * 60 * 5,
+		queryFn: () =>
+			api
+				.get(`${API_URL}/event/aggregation/hourly`, {
+					searchParams: Object.entries(params),
+				})
+				.json<CursorList<StatisticsResDto[]>>(),
+		...config,
+	})
+}
+
 export const useStatisticsListCursorCounter = (
 	params: {
 		telegramChatId: string
@@ -35,7 +52,9 @@ export const useStatisticsListCursorCounter = (
 		queryKey: [QueryKeys["STATISTICS.COUNTER"], params],
 		refetchInterval: 1000 * 60 * 5,
 		queryFn: () =>
-			api.get(`${API_URL}/event/aggregation/counter`, {searchParams: Object.entries(params)}).json<{counter: number}>(),
+			api
+				.get(`${API_URL}/event/aggregation/counter`, {searchParams: Object.entries(params)})
+				.json<{counter: number}>(),
 		...config,
 	})
 }
