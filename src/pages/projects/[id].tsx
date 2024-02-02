@@ -82,7 +82,14 @@ export default function ProjectPage({}: Props) {
 									id={project.id}
 									name={project.name}
 								/>
-								<ProjectActions Slots={[<ProjectDelete id={project.id} />]} />
+								<ProjectActions
+									Slots={[
+										<ProjectDelete
+											key={0}
+											id={project.id}
+										/>,
+									]}
+								/>
 							</div>
 						) : (
 							<MySkeleton
