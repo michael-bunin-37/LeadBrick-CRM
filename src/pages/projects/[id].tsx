@@ -17,6 +17,8 @@ import {ProjectDeposits} from "@/widgets/project/project-deposits"
 import {ProjectStatistics} from "@/widgets/project/project-statistics"
 import {ProjectRename} from "@/widgets/project/project-rename"
 import {truncate} from "@/utils/lib"
+import {ProjectActions} from "@/features/project/project-actions"
+import {ProjectDelete} from "@/features/project/project-delete"
 
 type Props = {}
 
@@ -73,12 +75,15 @@ export default function ProjectPage({}: Props) {
 					</Breadcrumbs>
 
 					{/* Header */}
-					<div className="flex items-start gap-x-2 mt-6">
+					<div className="mt-6">
 						{project ? (
-							<ProjectRename
-								id={project.id}
-								name={project.name}
-							/>
+							<div className="flex items-center gap-x-6 justify-between">
+								<ProjectRename
+									id={project.id}
+									name={project.name}
+								/>
+								<ProjectActions Slots={[<ProjectDelete id={project.id} />]} />
+							</div>
 						) : (
 							<MySkeleton
 								width="196px"
