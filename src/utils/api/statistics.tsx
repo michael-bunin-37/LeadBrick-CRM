@@ -14,7 +14,7 @@ export const useStatisticsList = (
 		refetchInterval: 1000 * 60 * 5,
 		queryFn: () =>
 			api
-				.get(`${API_URL}/event/aggregation`, {
+				.get(`${API_URL}/event/aggregation/daily`, {
 					searchParams: Object.entries(params),
 				})
 				.json<CursorList<StatisticsResDto[]>>(),
@@ -53,7 +53,7 @@ export const useStatisticsListCursorCounter = (
 		refetchInterval: 1000 * 60 * 5,
 		queryFn: () =>
 			api
-				.get(`${API_URL}/event/aggregation/counter`, {searchParams: Object.entries(params)})
+				.get(`${API_URL}/event/aggregation/daily/counter`, {searchParams: Object.entries(params)})
 				.json<{counter: number}>(),
 		...config,
 	})
