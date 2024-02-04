@@ -26,7 +26,8 @@ export function ProjectInviteLinksSearch({className, setParams, params, slotProp
 	const debouncedValue = useDebounce(value, 350)
 
 	// HANDLERS
-	const onChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => setValue(e.currentTarget.value)
+	const onChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) =>
+		setValue(e.currentTarget.value)
 
 	useEffect(() => setValue(""), [type])
 

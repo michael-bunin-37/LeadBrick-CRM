@@ -37,10 +37,10 @@ export function JoinPreviewRow(props: Props) {
 			<MyTableCell>{props.dialog}</MyTableCell>
 			<MyTableCell>{props.firstDeposit}</MyTableCell>
 			<MyTableCell>{props.reDeposit}</MyTableCell>
-			<MyTableCell>{dayjs(props.createdAt).format("ll")}</MyTableCell>
-			<MyTableCell>{dayjs(props.dialogAt).format("ll")}</MyTableCell>
-			<MyTableCell>{dayjs(props.depositAt).format("ll")}</MyTableCell>
-			<MyTableCell>{dayjs(props.reDepositAt).format("ll")}</MyTableCell>
+			<MyTableCell>{props.createdAt ? dayjs(props.createdAt).format("lll") : "-"}</MyTableCell>
+			<MyTableCell>{props.dialogAt ? dayjs(props.dialogAt).format("lll") : ""}</MyTableCell>
+			<MyTableCell>{props.depositAt ? dayjs(props.depositAt).format("lll") : ""}</MyTableCell>
+			<MyTableCell>{props.reDepositAt ? dayjs(props.reDepositAt).format("lll") : ""}</MyTableCell>
 		</MyTableRow>
 	)
 }
