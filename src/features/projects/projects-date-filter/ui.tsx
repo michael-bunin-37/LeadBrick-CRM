@@ -47,8 +47,6 @@ export function ProjectsDateFilter({
 		if (!date) setOption(undefined)
 	}, [date])
 
-	console.log("RENDER")
-
 	useEffect(() => {
 		if (date && date.from && date.to) {
 			setParams({
@@ -60,7 +58,7 @@ export function ProjectsDateFilter({
 				...(type == "FILTER" && {
 					filters: params.filters
 						? [
-								...params.filters.filter((filter) => filter.filterBy !== "date"),
+								...params.filters.filter((filter) => filter.filterBy !== filterBy),
 								{
 									filterBy,
 									filterValue: date.from.toISOString(),
@@ -84,7 +82,7 @@ export function ProjectsDateFilter({
 				}),
 				...(type == "FILTER" && {
 					filters: params.filters
-						? [...params.filters.filter((filter) => filter.filterBy !== "date")]
+						? [...params.filters.filter((filter) => filter.filterBy !== filterBy)]
 						: [],
 				}),
 			})

@@ -40,7 +40,7 @@ export function ProjectJoins({projectId, className}: Props) {
 			<div className="flex items-center justify-end gap-x-2 mb-6">
 				{/* Projects invite links Filters */}
 				<ProjectJoinsFilters
-					className="flex-grow"
+					className=""
 					params={params}
 					setParams={setParams}
 				/>
