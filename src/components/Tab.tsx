@@ -5,7 +5,7 @@ import {styled} from "@mui/material/styles"
 import {VariantProps, cva} from "class-variance-authority"
 import colors from "tailwindcss/colors"
 
-const variants = cva([cn(`text-sm font-medium`)], {
+const variants = cva([cn(`text-[13px] font-medium`)], {
 	variants: {
 		variant: {
 			default: "",

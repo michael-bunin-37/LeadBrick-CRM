@@ -87,7 +87,7 @@ export function ProjectDeposits({className, projectId}: Props) {
 										</div>
 									</Tooltip>
 								</MyTableCell>
-								<MyTableCell>FTD</MyTableCell>
+								<MyTableCell>Тип Депозита</MyTableCell>
 							</MyTableRow>
 						</MyTableHead>
 

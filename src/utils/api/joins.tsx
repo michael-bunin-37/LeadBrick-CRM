@@ -11,6 +11,7 @@ export const useJoinsList = (
 ) => {
 	return useQuery({
 		queryKey: [QueryKeys["JOINS"], params],
+		refetchInterval: 1000 * 30,
 		queryFn: () =>
 			api
 				.post(`${API_URL}/project/invite-link/users/list`, {json: params})

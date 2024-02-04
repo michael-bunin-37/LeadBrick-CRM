@@ -44,7 +44,7 @@ export function DepositPreviewRow(props: Props) {
 					? dayjs.duration(props.timeToDeposit, "milliseconds").humanize()
 					: "-"}
 			</MyTableCell>
-			<MyTableCell>{capitalize(`${props.firstDeposit}`)}</MyTableCell>
+			<MyTableCell>{props.firstDeposit ? "FTD" : "RD"}</MyTableCell>
 		</MyTableRow>
 	)
 }
