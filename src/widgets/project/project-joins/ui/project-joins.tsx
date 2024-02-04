@@ -62,8 +62,8 @@ export function ProjectJoins({projectId, className}: Props) {
 							<MyTableCell>RD</MyTableCell>
 							<MyTableCell>Регистрация</MyTableCell>
 							<MyTableCell>Первый Диалог</MyTableCell>
-							<MyTableCell>Первый FTD</MyTableCell>
-							<MyTableCell>Первый RD</MyTableCell>
+							<MyTableCell>FTD</MyTableCell>
+							<MyTableCell>FTRD</MyTableCell>
 						</MyTableHead>
 
 						{/* Ivnite links list body */}

@@ -34,8 +34,8 @@ export function JoinPreviewRow(props: Props) {
 			<MyTableCell>
 				{props.inviteLinkName !== "LINK_NOT_DEFINED" ? props.inviteLinkName : "-"}
 			</MyTableCell>
-			<MyTableCell>{props.dialog}</MyTableCell>
-			<MyTableCell>{props.firstDeposit}</MyTableCell>
+			<MyTableCell>{`${props.dialog}`}</MyTableCell>
+			<MyTableCell>{`${props.firstDeposit}`}</MyTableCell>
 			<MyTableCell>{props.reDeposit}</MyTableCell>
 			<MyTableCell>{props.createdAt ? dayjs(props.createdAt).format("lll") : "-"}</MyTableCell>
 			<MyTableCell>{props.dialogAt ? dayjs(props.dialogAt).format("lll") : ""}</MyTableCell>
