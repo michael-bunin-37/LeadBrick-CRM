@@ -97,7 +97,7 @@ export function ProjectDeposits({className, projectId}: Props) {
 								data.data.map((item) => (
 									<DepositPreviewRow
 										{...item}
-										key={item.userId}
+										key={item.date}
 									/>
 								))}
 

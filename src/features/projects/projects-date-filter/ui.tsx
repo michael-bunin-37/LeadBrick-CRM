@@ -12,7 +12,7 @@ import {cn} from "@/utils/lib"
 import {Divider, IconButton, Popover} from "@mui/material"
 import {Calendar} from "@/components/Calendar"
 import {MyMenuItem} from "@/components/MenuItem"
-import {Cursor} from "@/utils/types/server"
+import {Cursor, FilterByParam} from "@/utils/types/server"
 import {usePrevious} from "@/utils/hooks"
 import dayjs from "dayjs"
 import {DateFilterInitialOptionsTypeEnum, dateFilterOptionsFunctions, getToday} from "./model"
@@ -25,9 +25,16 @@ type Props = {
 	setParams: (cursor: Cursor) => void
 	params: Cursor
 	type?: "FILTER" | "PARAMS"
+	filterBy?: FilterByParam
 }
 
-export function ProjectsDateFilter({className, setParams, params, type = "PARAMS"}: Props) {
+export function ProjectsDateFilter({
+	className,
+	setParams,
+	params,
+	type = "PARAMS",
+	filterBy = "date",
+}: Props) {
 	// STATE
 	const [anch, setAnch] = useState<HTMLElement | null>(null)
 	const [option, setOption] = useState<keyof typeof DateFilterInitialOptionsTypeEnum>()
@@ -39,6 +46,8 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 	useEffect(() => {
 		if (!date) setOption(undefined)
 	}, [date])
+
+	console.log("RENDER")
 
 	useEffect(() => {
 		if (date && date.from && date.to) {
@@ -53,12 +62,12 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 						? [
 								...params.filters.filter((filter) => filter.filterBy !== "date"),
 								{
-									filterBy: "date",
+									filterBy,
 									filterValue: date.from.toISOString(),
 									filterOperator: "MORE_OR_EQUAL",
 								},
 								{
-									filterBy: "date",
+									filterBy,
 									filterValue: date.to.toISOString(),
 									filterOperator: "LESS_OR_EQUAL",
 								},
@@ -79,7 +88,7 @@ export function ProjectsDateFilter({className, setParams, params, type = "PARAMS
 						: [],
 				}),
 			})
-	}, [date])
+	}, [date, type, prevDate])
 
 	useEffect(() => {
 		if (option) {
