@@ -2,7 +2,7 @@ import {MyTableCell, MyTableRow} from "@/components/Table"
 import {DepositResDto} from "@/utils/types/deposit"
 import React, {useCallback} from "react"
 import dayjs from "dayjs"
-import {IconButton} from "@mui/material"
+import {IconButton, capitalize} from "@mui/material"
 import {IoCopyOutline} from "react-icons/io5"
 import {toast} from "react-toastify"
 import {MyTab} from "@/components/Tab"
@@ -44,6 +44,7 @@ export function DepositPreviewRow(props: Props) {
 					? dayjs.duration(props.timeToDeposit, "milliseconds").humanize()
 					: "-"}
 			</MyTableCell>
+			<MyTableCell>{capitalize(`${props.firstDeposit}`)}</MyTableCell>
 		</MyTableRow>
 	)
 }

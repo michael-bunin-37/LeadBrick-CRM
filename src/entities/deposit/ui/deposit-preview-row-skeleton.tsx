@@ -11,7 +11,7 @@ export function DepositPreviewRowSkeleton({}: Props) {
 					<div className="bg-gray-100 rounded-sm h-[10px] w-[128px]" />
 				</div>
 			</MyTableCell>
-			{[...Array(7)].map((_, i) => (
+			{[...Array(8)].map((_, i) => (
 				<MyTableCell key={i}>
 					<div className="bg-gray-100 rounded-sm h-[10px] w-[36px]" />
 				</MyTableCell>

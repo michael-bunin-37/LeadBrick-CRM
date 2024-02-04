@@ -17,9 +17,15 @@ function ProjectDelete({className, id}: ProjectDeleteProps) {
 	// MUTATIONS
 	const {mutate, data, isPending} = useProjectDelete()
 
+	// HANDLERS
+	const onClick = () => {
+		const isConfirm = window.confirm("Подтвердите действие удаления")
+		if (isConfirm) mutate({chatId: id})
+	}
+
 	return (
 		<MyMenuItem
-			onClick={() => mutate({chatId: id})}
+			onClick={onClick}
 			disabled={isPending}
 			dense
 			className={cn("flex items-center gap-x-3", className)}>
