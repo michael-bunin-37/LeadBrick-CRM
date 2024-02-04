@@ -12,11 +12,12 @@ export function ProjectSearch({onChange: handleChage, className}: Props) {
 	const debouncedValue = useDebounce(value, 350)
 
 	// HANDLERS
-	const onChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => setValue(e.currentTarget.value)
+	const onChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) =>
+		setValue(e.currentTarget.value)
 
 	// EFFECTS
 	useEffect(() => {
-		if (debouncedValue.length > 0) handleChage(debouncedValue)
+		handleChage(debouncedValue)
 	}, [debouncedValue])
 
 	return (

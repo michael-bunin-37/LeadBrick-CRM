@@ -4,6 +4,7 @@ export enum FilterByParamEnum {
 	inviteLinkName = "Название ссылки",
 	inviteLink = "Тело ссылки",
 	tag = "По тегу",
+	createdAt = "Дата создания",
 }
 
 export type FilterByParam = keyof typeof FilterByParamEnum
@@ -27,6 +28,7 @@ export type SortByParam =
 	| "countTimeToDeposit"
 	| "sumTimeToDialog"
 	| "countTimeToDialog"
+	| "createdAt"
 export type SortOrderParam = "DESC" | "ASC"
 export type SortParam = {
 	sortBy: SortByParam

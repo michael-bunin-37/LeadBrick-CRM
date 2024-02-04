@@ -1,7 +1,26 @@
+import {cn} from "@/utils/lib"
+import {Cursor} from "@/utils/types/server"
 import React from "react"
 
-type Props = {}
+type Props = {
+	className?: string
+	setParams: (cursor: Cursor) => void
+	params: Cursor
+}
 
-export function ProjectJoinsFilters({}: Props) {
-	return <div>ProjectJoinsFilters</div>
+export function ProjectJoinsFilters({className, setParams, params}: Props) {
+	return (
+		<div className={cn("flex items-center gap-x-2", className)}>
+			{/* <ProjectInviteLinksSearch
+				className="flex-grow"
+				params={params}
+				setParams={setParams}
+			/>
+
+			<ProjectsDateFilter
+				setParams={setParams}
+				params={params}
+			/> */}
+		</div>
+	)
 }

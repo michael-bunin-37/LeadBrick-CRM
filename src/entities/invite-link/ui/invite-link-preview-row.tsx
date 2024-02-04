@@ -10,11 +10,6 @@ import {toast} from "react-toastify"
 type Props = InviteLinkResDto
 
 export function InviteLinkPreviewRow(props: Props) {
-	const onCopyLink = useCallback(() => {
-		navigator.clipboard.writeText(props.inviteLink)
-		toast.info("Текст был скопирован", {autoClose: 50000})
-	}, [props])
-
 	return (
 		<MyTableRow>
 			<MyTableCell>
@@ -28,25 +23,37 @@ export function InviteLinkPreviewRow(props: Props) {
 			<MyTableCell className="text-center">{props.firstDeposits}</MyTableCell>
 			<MyTableCell className="text-center">{props.reDeposits}</MyTableCell>
 			<MyTableCell className="text-center">
-				{props.dialogs != 0 && props.usersJoin != 0 ? `${(((props.dialogs / props.usersJoin)) * 100).toFixed(1)}%` : "-"}
+				{props.dialogs != 0 && props.usersJoin != 0
+					? `${((props.dialogs / props.usersJoin) * 100).toFixed(1)}%`
+					: "-"}
 			</MyTableCell>
 			<MyTableCell className="text-center">
-				{props.firstDeposits != 0 && props.usersJoin != 0 ? `${((props.firstDeposits / props.usersJoin) * 100).toFixed(1)}%` : "-"}
+				{props.firstDeposits != 0 && props.usersJoin != 0
+					? `${((props.firstDeposits / props.usersJoin) * 100).toFixed(1)}%`
+					: "-"}
 			</MyTableCell>
 			<MyTableCell className="text-center">
-				{props.firstDeposits != 0 && props.usersJoin != 0 ? `${((props.firstDeposits / props.dialogs) * 100).toFixed(1)}%` : "-"}
+				{props.firstDeposits != 0 && props.usersJoin != 0
+					? `${((props.firstDeposits / props.dialogs) * 100).toFixed(1)}%`
+					: "-"}
 			</MyTableCell>
 			<MyTableCell className="text-center">
-				{props.reDeposits != 0 && props.firstDeposits != 0 ? `${((props.reDeposits / props.firstDeposits) * 100).toFixed(1)}%` : "-"}
+				{props.reDeposits != 0 && props.firstDeposits != 0
+					? `${((props.reDeposits / props.firstDeposits) * 100).toFixed(1)}%`
+					: "-"}
 			</MyTableCell>
 			<MyTableCell>
 				{props.sumTimeToDeposit != 0 && props.countTimeToDeposit != 0
-					? dayjs.duration(props.sumTimeToDeposit / props.countTimeToDeposit, "milliseconds").humanize()
+					? dayjs
+							.duration(props.sumTimeToDeposit / props.countTimeToDeposit, "milliseconds")
+							.humanize()
 					: "-"}
 			</MyTableCell>
 			<MyTableCell>
 				{props.sumTimeToDialog != 0 && props.countTimeToDialog != 0
-					? dayjs.duration(props.sumTimeToDialog / props.countTimeToDialog, "milliseconds").humanize()
+					? dayjs
+							.duration(props.sumTimeToDialog / props.countTimeToDialog, "milliseconds")
+							.humanize()
 					: "-"}
 			</MyTableCell>
 			<MyTableCell className="text-left">

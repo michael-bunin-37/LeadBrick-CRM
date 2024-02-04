@@ -23,10 +23,10 @@ type Props = {
 
 export function ProjectInviteLinksList({className, projectId}: Props) {
 	// STATE
-	const [showUnActive, setShowUnactive] = useState(true)
+	const [showUnActive, setShowUnactive] = useState(false)
 	const [params, setParams] = useState<Cursor>({
 		page: 1,
-		pageSize: 30,
+		pageSize: 200,
 		sort: {sortOrder: "DESC", sortBy: "lastUpdated"},
 	})
 

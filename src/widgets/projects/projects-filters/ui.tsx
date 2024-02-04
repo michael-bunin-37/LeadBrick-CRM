@@ -14,11 +14,6 @@ type Props = {
 export function ProjectsFilters({className, setParams, params}: Props) {
 	return (
 		<div className={cn("flex items-center justify-end gap-x-2", className)}>
-			{/* <ProjectSearch
-				onChange={() => {}}
-				className="flex-grow"
-			/> */}
-
 			<ProjectsTagFilter
 				params={params}
 				setParams={setParams}

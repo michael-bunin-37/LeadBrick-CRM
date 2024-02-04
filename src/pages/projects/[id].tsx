@@ -15,10 +15,11 @@ import {IoBriefcase} from "react-icons/io5"
 import {ProjectInviteLinksList} from "@/widgets/project/project-invite-links"
 import {ProjectDeposits} from "@/widgets/project/project-deposits"
 import {ProjectStatistics} from "@/widgets/project/project-statistics"
-import {ProjectRename} from "@/widgets/project/project-rename"
+import {ProjectRename} from "@/features/project/project-rename"
 import {truncate} from "@/utils/lib"
 import {ProjectActions} from "@/features/project/project-actions"
 import {ProjectDelete} from "@/features/project/project-delete"
+import {ProjectJoins} from "@/widgets/project/project-joins"
 
 type Props = {}
 
@@ -119,10 +120,10 @@ export default function ProjectPage({}: Props) {
 									label="Статистика"
 									value="2"
 								/>
-								{/* <MyTab
+								<MyTab
 									label="Подписки"
 									value="3"
-								/> */}
+								/>
 							</MyTabList>
 						</div>
 
@@ -145,7 +146,7 @@ export default function ProjectPage({}: Props) {
 							/>
 						)}
 						{tab == "3" && (
-							<ProjectStatistics
+							<ProjectJoins
 								projectId={query.id as string}
 								className="flex flex-col flex-grow mt-6"
 							/>

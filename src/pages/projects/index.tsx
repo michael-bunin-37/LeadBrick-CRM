@@ -1,6 +1,7 @@
 import {Layout} from "@/application/layout"
 import {MyChip} from "@/components/Chip"
 import {ProjectCreate} from "@/features/project/project-create"
+import {ProjectSearch} from "@/features/project/project-search"
 import {ProjectsUnactiveSwitcher} from "@/features/projects/projects-unactive-swticher"
 import {useProjectList} from "@/utils/api/project"
 import {Cursor, SortParam} from "@/utils/types/server"
@@ -16,16 +17,27 @@ type Props = {}
 
 export default function ProjectsPage({}: Props) {
 	// STATE
-	const [showUnActive, setShowUnactive] = useState(true)
+	const [searchQuery, setSearchQuery] = useState("")
+	const [showUnActive, setShowUnactive] = useState(false)
 	const [params, setParams] = useState<Cursor>({
 		page: 1,
-		pageSize: 30,
+		pageSize: 100,
 		sort: {sortOrder: "DESC", sortBy: "lastUpdated"},
 	})
 
 	// QUERIES
 	const {data, isPending} = useProjectList(params, {
 		select(data) {
+			console.log(searchQuery)
+			if (searchQuery.length > 1) {
+				return {
+					...data,
+					data: data.data.filter((project) =>
+						project.name.toLowerCase().match(searchQuery.toLowerCase()),
+					),
+				}
+			}
+
 			// Select active & unactive projects by show param
 			return !showUnActive
 				? {
@@ -80,8 +92,12 @@ export default function ProjectsPage({}: Props) {
 					<div className="border-b border-gray-200 w-full mt-3" />
 
 					<div className="flex items-center gap-x-2 mt-6">
-						<ProjectsFilters
+						<ProjectSearch
 							className="flex-grow"
+							onChange={(searchQuery) => setSearchQuery(searchQuery)}
+						/>
+
+						<ProjectsFilters
 							setParams={setParams}
 							params={params}
 						/>

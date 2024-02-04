@@ -10,11 +10,6 @@ import {MyTab} from "@/components/Tab"
 type Props = DepositResDto
 
 export function DepositPreviewRow(props: Props) {
-	const onCopyLink = useCallback(() => {
-		navigator.clipboard.writeText(props.inviteLink)
-		toast.info("Текст был скопирован")
-	}, [props])
-
 	return (
 		<MyTableRow>
 			<MyTableCell>{props.userId}</MyTableCell>
@@ -34,11 +29,21 @@ export function DepositPreviewRow(props: Props) {
 				)}
 			</MyTableCell>
 			<MyTableCell>
-				{props.inviteLink !== "LINK_NOT_DEFINED" ? <div className="flex items-center gap-x-2">{props.inviteLink}</div> : "-"}
+				{props.inviteLink !== "LINK_NOT_DEFINED" ? (
+					<div className="flex items-center gap-x-2">{props.inviteLink}</div>
+				) : (
+					"-"
+				)}
 			</MyTableCell>
-			<MyTableCell>{props.inviteLinkName !== "LINK_NOT_DEFINED" ? props.inviteLinkName : "-"}</MyTableCell>
+			<MyTableCell>
+				{props.inviteLinkName !== "LINK_NOT_DEFINED" ? props.inviteLinkName : "-"}
+			</MyTableCell>
 			<MyTableCell>{dayjs(props.date).format("lll")}</MyTableCell>
-			<MyTableCell>{props.timeToDeposit != 0 ? dayjs.duration(props.timeToDeposit, "milliseconds").humanize() : "-"}</MyTableCell>
+			<MyTableCell>
+				{props.timeToDeposit != 0
+					? dayjs.duration(props.timeToDeposit, "milliseconds").humanize()
+					: "-"}
+			</MyTableCell>
 		</MyTableRow>
 	)
 }

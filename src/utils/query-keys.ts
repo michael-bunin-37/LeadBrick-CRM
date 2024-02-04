@@ -6,4 +6,5 @@ export enum QueryKeys {
 	"STATISTICS.HOURLY",
 	"STATISTICS.COUNTER",
 	"TAGS",
+	"JOINS",
 }
