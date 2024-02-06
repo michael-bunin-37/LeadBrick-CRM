@@ -1,14 +1,26 @@
 import {Cursor, CursorList, SortParam} from "@/utils/types/server"
 import React from "react"
 import {Box, Tooltip} from "@mui/material"
-import {MyTable, MyTableBody, MyTableCell, MyTableHead, MyTableRow} from "@/components/Table"
+import {
+	MyTable,
+	MyTableBody,
+	MyTableCell,
+	MyTableHead,
+	MyTableRow,
+} from "@/components/Table"
 import {MyPagination} from "@/components/Pagination"
 import {ProjectPreviewRow, ProjectPreviewRowSkeleton} from "@/entities/project"
 import {ProjectsSort} from "@/features/projects/projects-sort"
-import {IoCloudOfflineOutline, IoInformation, IoPricetag, IoPricetagsOutline} from "react-icons/io5"
+import {
+	IoCloudOfflineOutline,
+	IoInformation,
+	IoPricetag,
+	IoPricetagsOutline,
+} from "react-icons/io5"
 import {ProjectResDto} from "@/utils/types/project"
 import {ProjectsAddTag} from "@/features/projects/projects-add-tag"
 import {ProjectsDeleteTag} from "@/features/projects/projects-delete-tag"
+import {ProjectsTotalStatistics} from "../projects-total"
 
 type Props = {
 	className?: string
@@ -18,7 +30,13 @@ type Props = {
 	isPending: boolean
 }
 
-export function ProjectsList({className, data, params, setParams, isPending}: Props) {
+export function ProjectsList({
+	className,
+	data,
+	params,
+	setParams,
+	isPending,
+}: Props) {
 	// HANDLERS
 	const onChangeSort = (sort: SortParam) => setParams({...params, sort})
 	const onChangePage = (page: number) => setParams({...params, page})
@@ -137,6 +155,8 @@ export function ProjectsList({className, data, params, setParams, isPending}: Pr
 
 						{/* Projects list */}
 						<MyTableBody>
+							<ProjectsTotalStatistics params={params} />
+
 							{data &&
 								data.data.map((item) => (
 									<ProjectPreviewRow
@@ -149,14 +169,18 @@ export function ProjectsList({className, data, params, setParams, isPending}: Pr
 									/>
 								))}
 
-							{isPending && [...Array(24)].map((_, i) => <ProjectPreviewRowSkeleton key={i} />)}
+							{isPending &&
+								[...Array(24)].map((_, i) => (
+									<ProjectPreviewRowSkeleton key={i} />
+								))}
 						</MyTableBody>
 					</MyTable>
 
 					{/* No Result */}
 					{data && data.data.length == 0 && !isPending && (
 						<div className="w-full px-[14px] py-9 flex gap-x-6 text-sm text-gray-500">
-							<IoCloudOfflineOutline size={20} />К сожалению, но мы ничего не нашли
+							<IoCloudOfflineOutline size={20} />К сожалению, но мы ничего не
+							нашли
 						</div>
 					)}
 				</Box>

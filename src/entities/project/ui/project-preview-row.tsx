@@ -11,11 +11,12 @@ type Props = ProjectResDto & {
 		ProjectAddTag?: React.ElementType<{id: string}>
 		ProjectDeleteTag?: React.ElementType<{id: string}>
 	}
+	className?: string
 }
 
 export function ProjectPreviewRow(props: Props) {
 	return (
-		<MyTableRow>
+		<MyTableRow className={props.className}>
 			<MyTableCell>
 				<div className="flex items-center gap-x-3 truncate">
 					<div className="h-6 w-6 rounded-[4px] bg-gray-100" />
@@ -55,14 +56,20 @@ export function ProjectPreviewRow(props: Props) {
 			<MyTableCell>
 				{props.sumTimeToDeposit != 0 && props.countTimeToDeposit != 0
 					? dayjs
-							.duration(props.sumTimeToDeposit / props.countTimeToDeposit, "milliseconds")
+							.duration(
+								props.sumTimeToDeposit / props.countTimeToDeposit,
+								"milliseconds",
+							)
 							.humanize()
 					: "-"}
 			</MyTableCell>
 			<MyTableCell>
 				{props.sumTimeToDialog != 0 && props.countTimeToDialog != 0
 					? dayjs
-							.duration(props.sumTimeToDialog / props.countTimeToDialog, "milliseconds")
+							.duration(
+								props.sumTimeToDialog / props.countTimeToDialog,
+								"milliseconds",
+							)
 							.humanize()
 					: "-"}
 			</MyTableCell>
@@ -74,10 +81,14 @@ export function ProjectPreviewRow(props: Props) {
 								className="text-xs rounded-md h-[24px] px-2"
 								label={props.tag}
 							/>
-							{props.Slots?.ProjectDeleteTag && <props.Slots.ProjectDeleteTag id={props.id} />}
+							{props.Slots?.ProjectDeleteTag && (
+								<props.Slots.ProjectDeleteTag id={props.id} />
+							)}
 						</>
 					) : (
-						props.Slots?.ProjectAddTag && <props.Slots.ProjectAddTag id={props.id} />
+						props.Slots?.ProjectAddTag && (
+							<props.Slots.ProjectAddTag id={props.id} />
+						)
 					)}
 				</div>
 			</MyTableCell>

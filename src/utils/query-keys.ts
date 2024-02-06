@@ -1,5 +1,6 @@
 export enum QueryKeys {
 	"PROJECT",
+	"PROJECT.STATISTICS",
 	"INVITE.LINK",
 	"DEPOSIT",
 	"STATISTICS",

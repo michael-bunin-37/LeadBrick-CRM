@@ -29,9 +29,12 @@ export default function ProjectPage({}: Props) {
 	const [tab, setTab] = useState("0")
 
 	// QUERIES
-	const {data: project, isPending: isProjectPending} = useProjectById(query.id as string, {
-		enabled: !!query.id,
-	})
+	const {data: project, isPending: isProjectPending} = useProjectById(
+		query.id as string,
+		{
+			enabled: !!query.id,
+		},
+	)
 
 	return (
 		<Layout>

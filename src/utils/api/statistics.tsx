@@ -6,7 +6,10 @@ import {API_URL} from "../config"
 import {StatisticsResDto} from "../types/statistics"
 
 export const useStatisticsList = (
-	params: Omit<Cursor, "filters" | "sort"> & {telegramChatId: string; inviteLink?: string},
+	params: Omit<Cursor, "filters" | "sort"> & {
+		telegramChatId: string
+		inviteLink?: string
+	},
 	config?: Partial<UseQueryOptions<CursorList<StatisticsResDto[]>, Error>>,
 ) => {
 	return useQuery({
@@ -23,7 +26,10 @@ export const useStatisticsList = (
 }
 
 export const useStatisticsHourlyList = (
-	params: Omit<Cursor, "filters" | "sort"> & {telegramChatId: string; inviteLink?: string},
+	params: Omit<Cursor, "filters" | "sort"> & {
+		telegramChatId: string
+		inviteLink?: string
+	},
 	config?: Partial<UseQueryOptions<CursorList<StatisticsResDto[]>, Error>>,
 ) => {
 	return useQuery({
@@ -53,7 +59,9 @@ export const useStatisticsListCursorCounter = (
 		refetchInterval: 1000 * 60 * 5,
 		queryFn: () =>
 			api
-				.get(`${API_URL}/event/aggregation/daily/counter`, {searchParams: Object.entries(params)})
+				.get(`${API_URL}/event/aggregation/daily/counter`, {
+					searchParams: Object.entries(params),
+				})
 				.json<{counter: number}>(),
 		...config,
 	})

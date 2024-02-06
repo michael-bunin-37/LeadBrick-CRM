@@ -3,7 +3,7 @@ import {MyChip} from "@/components/Chip"
 import {ProjectCreate} from "@/features/project/project-create"
 import {ProjectSearch} from "@/features/project/project-search"
 import {ProjectsUnactiveSwitcher} from "@/features/projects/projects-unactive-swticher"
-import {useProjectList} from "@/utils/api/project"
+import {useProjectList, useProjectsTotalStatistics} from "@/utils/api/project"
 import {Cursor, SortParam} from "@/utils/types/server"
 import {Header} from "@/widgets/header"
 import {Navbar} from "@/widgets/navbar"
@@ -82,7 +82,9 @@ export default function ProjectsPage({}: Props) {
 						{/* Heading */}
 						<div className="flex items-start gap-x-2">
 							<span className="text-md text-gray-900 font-bold">Проекты</span>
-							<span className="text-sm text-gray-500">{data && `(${data.counter})`}</span>
+							<span className="text-sm text-gray-500">
+								{data && `(${data.counter})`}
+							</span>
 						</div>
 
 						{/* Project Create */}

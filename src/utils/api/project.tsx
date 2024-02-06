@@ -28,3 +28,20 @@ export const useProjectById = (
 		...config,
 	})
 }
+
+export const useProjectsTotalStatistics = (
+	params: Omit<Cursor, "filters" | "sort" | "page" | "pageSize">,
+	config?: Partial<UseQueryOptions<ProjectResDto, Error>>,
+) => {
+	return useQuery({
+		queryKey: [QueryKeys["PROJECT.STATISTICS"], params],
+		refetchInterval: 1000 * 60 * 5,
+		queryFn: () =>
+			api
+				.get(`${API_URL}/event/aggregation`, {
+					searchParams: Object.entries(params),
+				})
+				.json<ProjectResDto>(),
+		...config,
+	})
+}
