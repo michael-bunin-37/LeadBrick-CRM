@@ -163,6 +163,9 @@ export function ProjectsList({
 										Slots={{
 											ProjectAddTag: ProjectsAddTag,
 											ProjectDeleteTag: ProjectsDeleteTag,
+											Img: (
+												<div className="h-6 w-6 rounded-[4px] bg-gray-100" />
+											),
 										}}
 										{...item}
 										key={item.id}

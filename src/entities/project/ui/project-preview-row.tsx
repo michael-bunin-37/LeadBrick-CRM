@@ -10,6 +10,7 @@ type Props = ProjectResDto & {
 	Slots?: {
 		ProjectAddTag?: React.ElementType<{id: string}>
 		ProjectDeleteTag?: React.ElementType<{id: string}>
+		Img?: JSX.Element
 	}
 	className?: string
 }
@@ -19,7 +20,8 @@ export function ProjectPreviewRow(props: Props) {
 		<MyTableRow className={props.className}>
 			<MyTableCell>
 				<div className="flex items-center gap-x-3 truncate">
-					<div className="h-6 w-6 rounded-[4px] bg-gray-100" />
+					{/* <div className="h-6 w-6 rounded-[4px] bg-gray-100" /> */}
+					{props.Slots?.Img}
 					<Link
 						href={`/projects/${props.id}`}
 						className="truncate flex-1">

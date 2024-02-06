@@ -1,4 +1,4 @@
-import {ProjectPreviewRow} from "@/entities/project"
+import {ProjectPreviewRow, ProjectPreviewRowSkeleton} from "@/entities/project"
 import {useProjectsTotalStatistics} from "@/utils/api/project"
 import {Cursor} from "@/utils/types/server"
 import React from "react"
@@ -8,7 +8,7 @@ type ProjectsTotalStatisticsProps = {
 }
 
 function ProjectsTotalStatistics({params}: ProjectsTotalStatisticsProps) {
-	const {data, isLoading} = useProjectsTotalStatistics({
+	const {data, isPending} = useProjectsTotalStatistics({
 		...(params.windowStart && {windowStart: params.windowStart}),
 		...(params.windowEnd && {windowEnd: params.windowEnd}),
 	})
@@ -19,9 +19,11 @@ function ProjectsTotalStatistics({params}: ProjectsTotalStatisticsProps) {
 				<ProjectPreviewRow
 					{...data}
 					name="Общие показатели"
-					className="[&>td]:!bg-blue-50"
+					className="[&>*]:!font-semibold [&>*]:!text-gray-900"
 				/>
 			)}
+
+			{isPending && <ProjectPreviewRowSkeleton />}
 		</>
 	)
 }
