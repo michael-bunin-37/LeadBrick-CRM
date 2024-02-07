@@ -8,4 +8,5 @@ export enum QueryKeys {
 	"STATISTICS.COUNTER",
 	"TAGS",
 	"JOINS",
+	"USER.BY.ID",
 }
