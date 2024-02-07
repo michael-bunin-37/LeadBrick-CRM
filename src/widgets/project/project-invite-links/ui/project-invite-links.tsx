@@ -205,11 +205,6 @@ export function ProjectInviteLinksList({className, projectId}: Props) {
 
 						{/* Ivnite links list body */}
 						<MyTableBody>
-							<ProjectInviteLinksTotal
-								projectId={projectId}
-								params={params}
-							/>
-
 							{data &&
 								data.data.map((item) => (
 									<InviteLinkPreviewRow
@@ -222,6 +217,11 @@ export function ProjectInviteLinksList({className, projectId}: Props) {
 								[...Array(24)].map((_, i) => (
 									<InviteLinkPreviewRowSkeleton key={i} />
 								))}
+
+							<ProjectInviteLinksTotal
+								projectId={projectId}
+								params={params}
+							/>
 						</MyTableBody>
 					</MyTable>
 

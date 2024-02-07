@@ -29,7 +29,7 @@ export function ProjectPreviewRow(props: Props) {
 					{/* <div className="h-6 w-6 rounded-[4px] bg-gray-100" /> */}
 					{props.Slots?.Img}
 					<Link
-						href={`/projects/${props.id}`}
+						href={`/app/projects/${props.id}`}
 						className={cn(
 							"truncate flex-1",
 							props.slotsProps?.Link?.className,

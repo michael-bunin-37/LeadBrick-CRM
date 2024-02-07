@@ -178,11 +178,6 @@ export function ProjectStatistics({projectId, className}: Props) {
 
 						{/* Statistics List */}
 						<MyTableBody>
-							<ProjectStatisticsTotal
-								projectId={projectId}
-								params={params}
-							/>
-
 							{data &&
 								data.data.map((item) => (
 									<StatisticsPreviewRow
@@ -197,6 +192,11 @@ export function ProjectStatistics({projectId, className}: Props) {
 								[...Array(12)].map((_, i) => (
 									<StatisticsPreviewRowSkeleton key={i} />
 								))}
+
+							<ProjectStatisticsTotal
+								projectId={projectId}
+								params={params}
+							/>
 						</MyTableBody>
 					</MyTable>
 

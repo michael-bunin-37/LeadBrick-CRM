@@ -69,7 +69,7 @@ function SessionMenu({}: SessionMenuProps) {
 					onClick={() => sessionLogout()}
 					className="gap-x-3 text-error-500">
 					<RiLogoutBoxRFill />
-					Вийти
+					Выйти
 				</MyMenuItem>
 			</MyMenu>
 		</React.Fragment>

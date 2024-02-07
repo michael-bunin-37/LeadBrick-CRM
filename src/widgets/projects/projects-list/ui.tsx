@@ -155,8 +155,6 @@ export function ProjectsList({
 
 						{/* Projects list */}
 						<MyTableBody>
-							<ProjectsTotalStatistics params={params} />
-
 							{data &&
 								data.data.map((item) => (
 									<ProjectPreviewRow
@@ -176,6 +174,8 @@ export function ProjectsList({
 								[...Array(24)].map((_, i) => (
 									<ProjectPreviewRowSkeleton key={i} />
 								))}
+
+							<ProjectsTotalStatistics params={params} />
 						</MyTableBody>
 					</MyTable>
 

@@ -55,7 +55,7 @@ export default function ProjectPage({}: Props) {
 						{/* Breadcrumbs */}
 						<Breadcrumbs className="text-sm font-medium">
 							<Link
-								href="/projects"
+								href="/app/projects"
 								passHref
 								legacyBehavior>
 								<MyChip
