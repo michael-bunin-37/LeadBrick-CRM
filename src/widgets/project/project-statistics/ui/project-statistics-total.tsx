@@ -1,21 +1,21 @@
+import {MyTableCell} from "@/components/Table"
 import {
-	InviteLinkPreviewRow,
-	InviteLinkPreviewRowSkeleton,
-} from "@/entities/invite-link"
-import {ProjectPreviewRow, ProjectPreviewRowSkeleton} from "@/entities/project"
+	StatisticsPreviewRow,
+	StatisticsPreviewRowSkeleton,
+} from "@/entities/statistics"
 import {useProjectById} from "@/utils/api/project"
 import {Cursor} from "@/utils/types/server"
 import React from "react"
 
-type ProjectInviteLinksTotalProps = {
+type ProjectStatisticsTotalProps = {
 	params: Omit<Cursor, "filters" | "sort" | "page" | "pageSize">
 	projectId?: string
 }
 
-function ProjectInviteLinksTotal({
+function ProjectStatisticsTotal({
 	params,
 	projectId,
-}: ProjectInviteLinksTotalProps) {
+}: ProjectStatisticsTotalProps) {
 	// QUERIES
 	const {data, isPending} = useProjectById(
 		{
@@ -32,17 +32,19 @@ function ProjectInviteLinksTotal({
 		<>
 			{data && (
 				// @ts-ignore
-				<InviteLinkPreviewRow
+				<StatisticsPreviewRow
 					{...data}
-					name="Общие показатели"
+					windowStart={undefined}
+					Slots={{
+						Name: <MyTableCell>Общие показатели</MyTableCell>,
+					}}
 					className="[&>*]:!font-semibold [&>*]:!text-gray-900"
-					// slotsProps={{Link: {className: "pointer-events-none"}}}
 				/>
 			)}
 
-			{isPending && <InviteLinkPreviewRowSkeleton />}
+			{isPending && <StatisticsPreviewRowSkeleton />}
 		</>
 	)
 }
 
-export {ProjectInviteLinksTotal}
+export {ProjectStatisticsTotal}

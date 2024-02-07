@@ -7,11 +7,13 @@ import React, {useCallback} from "react"
 import {IoCopy, IoCopyOutline} from "react-icons/io5"
 import {toast} from "react-toastify"
 
-type Props = InviteLinkResDto
+type Props = InviteLinkResDto & {
+	className?: string
+}
 
 export function InviteLinkPreviewRow(props: Props) {
 	return (
-		<MyTableRow>
+		<MyTableRow className={props.className}>
 			<MyTableCell>
 				<div className="flex items-center gap-x-3 truncate">
 					<span className="truncate flex-1">{props.name}</span>

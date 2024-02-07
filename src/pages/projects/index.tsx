@@ -18,7 +18,7 @@ type Props = {}
 export default function ProjectsPage({}: Props) {
 	// STATE
 	const [searchQuery, setSearchQuery] = useState("")
-	const [showUnActive, setShowUnactive] = useState(false)
+	const [showUnActive, setShowUnactive] = useState(true)
 	const [params, setParams] = useState<Cursor>({
 		page: 1,
 		pageSize: 100,

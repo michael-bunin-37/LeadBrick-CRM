@@ -1,21 +1,14 @@
-import {
-	InviteLinkPreviewRow,
-	InviteLinkPreviewRowSkeleton,
-} from "@/entities/invite-link"
-import {ProjectPreviewRow, ProjectPreviewRowSkeleton} from "@/entities/project"
+import {DepositPreviewRow, DepositPreviewRowSkeleton} from "@/entities/deposit"
 import {useProjectById} from "@/utils/api/project"
 import {Cursor} from "@/utils/types/server"
 import React from "react"
 
-type ProjectInviteLinksTotalProps = {
+type ProjectDepositsTotalProps = {
 	params: Omit<Cursor, "filters" | "sort" | "page" | "pageSize">
 	projectId?: string
 }
 
-function ProjectInviteLinksTotal({
-	params,
-	projectId,
-}: ProjectInviteLinksTotalProps) {
+function ProjectDepositsTotal({params, projectId}: ProjectDepositsTotalProps) {
 	// QUERIES
 	const {data, isPending} = useProjectById(
 		{
@@ -32,17 +25,17 @@ function ProjectInviteLinksTotal({
 		<>
 			{data && (
 				// @ts-ignore
-				<InviteLinkPreviewRow
+				<DepositPreviewRow
 					{...data}
-					name="Общие показатели"
+					userId="Общие показатели"
 					className="[&>*]:!font-semibold [&>*]:!text-gray-900"
 					// slotsProps={{Link: {className: "pointer-events-none"}}}
 				/>
 			)}
 
-			{isPending && <InviteLinkPreviewRowSkeleton />}
+			{isPending && <DepositPreviewRowSkeleton />}
 		</>
 	)
 }
 
-export {ProjectInviteLinksTotal}
+export {ProjectDepositsTotal}

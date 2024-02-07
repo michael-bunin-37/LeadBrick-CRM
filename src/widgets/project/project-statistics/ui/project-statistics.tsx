@@ -25,6 +25,7 @@ import {
 	ProjectStatisticsStoreState,
 	useProjectStatisticsStore,
 } from "../model/project-statistics-store"
+import {ProjectStatisticsTotal} from "./project-statistics-total"
 
 type Props = {
 	projectId?: string
@@ -177,6 +178,11 @@ export function ProjectStatistics({projectId, className}: Props) {
 
 						{/* Statistics List */}
 						<MyTableBody>
+							<ProjectStatisticsTotal
+								projectId={projectId}
+								params={params}
+							/>
+
 							{data &&
 								data.data.map((item) => (
 									<StatisticsPreviewRow

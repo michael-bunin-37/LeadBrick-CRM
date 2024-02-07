@@ -15,6 +15,7 @@ import React, {useState} from "react"
 import {BiLogoTelegram} from "react-icons/bi"
 import {IoCloudOfflineOutline, IoHelpCircle, IoLink} from "react-icons/io5"
 import {ProjectDepositsFilters} from "./project-deposits-filters"
+import {ProjectDepositsTotal} from "./project-deposits-total"
 
 type Props = {
 	projectId?: string

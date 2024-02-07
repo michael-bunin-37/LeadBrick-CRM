@@ -7,14 +7,20 @@ import {IoCopyOutline} from "react-icons/io5"
 import {toast} from "react-toastify"
 import {MyTab} from "@/components/Tab"
 
-type Props = DepositResDto
+type Props = DepositResDto & {
+	className?: string
+}
 
 export function DepositPreviewRow(props: Props) {
 	return (
-		<MyTableRow>
+		<MyTableRow className={props.className}>
 			<MyTableCell>{props.userId}</MyTableCell>
-			<MyTableCell>{props.firstName !== "UNKNOWN" ? props.firstName : "-"}</MyTableCell>
-			<MyTableCell>{props.lastName !== "UNKNOWN" ? props.lastName : "-"}</MyTableCell>
+			<MyTableCell>
+				{props.firstName !== "UNKNOWN" ? props.firstName : "-"}
+			</MyTableCell>
+			<MyTableCell>
+				{props.lastName !== "UNKNOWN" ? props.lastName : "-"}
+			</MyTableCell>
 			<MyTableCell>
 				{props.username !== "UNKNOWN" ? (
 					<a
@@ -36,7 +42,9 @@ export function DepositPreviewRow(props: Props) {
 				)}
 			</MyTableCell>
 			<MyTableCell>
-				{props.inviteLinkName !== "LINK_NOT_DEFINED" ? props.inviteLinkName : "-"}
+				{props.inviteLinkName !== "LINK_NOT_DEFINED"
+					? props.inviteLinkName
+					: "-"}
 			</MyTableCell>
 			<MyTableCell>{dayjs(props.date).format("lll")}</MyTableCell>
 			<MyTableCell>

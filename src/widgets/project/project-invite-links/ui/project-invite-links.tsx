@@ -33,7 +33,7 @@ type Props = {
 
 export function ProjectInviteLinksList({className, projectId}: Props) {
 	// STATE
-	const [showUnActive, setShowUnactive] = useState(false)
+	const [showUnActive, setShowUnactive] = useState(true)
 	const [params, setParams] = useState<Cursor>({
 		page: 1,
 		pageSize: 200,
