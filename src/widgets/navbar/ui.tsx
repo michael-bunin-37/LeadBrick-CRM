@@ -1,4 +1,5 @@
 import {NavbarItem} from "@/entities/navbar/navbar-item"
+import {SessionMenu} from "@/features/session/session-menu"
 import {Divider} from "@mui/material"
 import React from "react"
 import {
@@ -15,9 +16,9 @@ type Props = {}
 
 export function Navbar({}: Props) {
 	return (
-		<div className="h-full flex items-start flex-col gap-y-2 bg-gray-900">
+		<div className="h-full flex items-start flex-col gap-y-3 bg-gray-50/50 border-r border-r-gray-200">
 			{/* Navbar logo */}
-			<div className=" h-[56px] flex items-center justify-center border-b border-gray-800 border-dashed w-full">
+			<div className=" h-[56px] flex items-center justify-center border-b border-gray-200 w-full">
 				<img
 					src="/assets/imgs/logo.svg"
 					className="h-[24px]"
@@ -26,32 +27,36 @@ export function Navbar({}: Props) {
 			</div>
 
 			{/* Navbar Items */}
-			<div className="flex flex-col px-2 gap-y-1 w-full mt-3">
-				<NavbarItem
-					href="/"
-					label="Дашборд"
-					Slots={{Icon: IoAnalyticsOutline}}
-				/>
+			<div className="flex flex-grow flex-col items-center justify-between my-3">
+				<div className="flex flex-col px-3 gap-y-1">
+					<NavbarItem
+						href="/app"
+						label="Дашборд"
+						Slots={{Icon: IoAnalyticsOutline}}
+					/>
 
-				<NavbarItem
-					href="/projects"
-					label="Проекты"
-					Slots={{Icon: IoBriefcaseOutline}}
-				/>
+					<NavbarItem
+						href="/app/projects"
+						label="Проекты"
+						Slots={{Icon: IoBriefcaseOutline}}
+					/>
 
-				<Divider className="border-gray-800 border-dashed mx-3 my-2" />
+					<Divider className="border-gray-200 border-dashed mx-2 my-2" />
 
-				<NavbarItem
-					href="/settings"
-					label="Настройки"
-					Slots={{Icon: IoSettingsOutline}}
-				/>
+					<NavbarItem
+						href="/app/settings"
+						label="Настройки"
+						Slots={{Icon: IoSettingsOutline}}
+					/>
 
-				<NavbarItem
-					href="/help"
-					label="Помощь"
-					Slots={{Icon: IoHelp}}
-				/>
+					<NavbarItem
+						href="/app/help"
+						label="Помощь"
+						Slots={{Icon: IoHelp}}
+					/>
+				</div>
+
+				<SessionMenu />
 			</div>
 		</div>
 	)

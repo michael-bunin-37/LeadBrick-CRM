@@ -3,6 +3,7 @@ import {MyChip} from "@/components/Chip"
 import {ProjectCreate} from "@/features/project/project-create"
 import {ProjectSearch} from "@/features/project/project-search"
 import {ProjectsUnactiveSwitcher} from "@/features/projects/projects-unactive-swticher"
+import {SessionRequired} from "@/features/session/session-required"
 import {useProjectList, useProjectsTotalStatistics} from "@/utils/api/project"
 import {Cursor, SortParam} from "@/utils/types/server"
 import {Header} from "@/widgets/header"
@@ -55,71 +56,73 @@ export default function ProjectsPage({}: Props) {
 	})
 
 	return (
-		<Layout>
-			{/* Navbar */}
-			<Navbar />
+		<SessionRequired>
+			<Layout>
+				{/* Navbar */}
+				<Navbar />
 
-			<div className="flex flex-col flex-grow">
-				{/* Header */}
-				<Header />
+				<div className="flex flex-col flex-grow">
+					{/* Header */}
+					{/* <Header /> */}
 
-				<div
-					style={{
-						height: "calc(100vh - 56px)	",
-					}}
-					className="overflow-y-auto py-9 px-12 flex flex-col">
-					<Breadcrumbs className="text-sm font-medium">
-						<MyChip
-							className="text-gray-700 text-[12px] font-medium rounded-sm"
-							size="sm"
-							label="Проекты"
-							icon={<IoBriefcase className="mr-2 ml-[-2px]" />}
-						/>
-						<span></span>
-					</Breadcrumbs>
+					<div
+						style={{
+							height: "100vh",
+						}}
+						className="overflow-y-auto py-9 px-12 flex flex-col">
+						<Breadcrumbs className="text-sm font-medium">
+							<MyChip
+								className="text-gray-700 text-[12px] font-medium rounded-sm"
+								size="sm"
+								label="Проекты"
+								icon={<IoBriefcase className="mr-2 ml-[-2px]" />}
+							/>
+							<span></span>
+						</Breadcrumbs>
 
-					<div className={"flex items-center justify-between mt-6"}>
-						{/* Heading */}
-						<div className="flex items-start gap-x-2">
-							<span className="text-md text-gray-900 font-bold">Проекты</span>
-							<span className="text-sm text-gray-500">
-								{data && `(${data.counter})`}
-							</span>
+						<div className={"flex items-center justify-between mt-6"}>
+							{/* Heading */}
+							<div className="flex items-start gap-x-2">
+								<span className="text-md text-gray-900 font-bold">Проекты</span>
+								<span className="text-sm text-gray-500">
+									{data && `(${data.counter})`}
+								</span>
+							</div>
+
+							{/* Project Create */}
+							<ProjectCreate />
 						</div>
 
-						{/* Project Create */}
-						<ProjectCreate />
-					</div>
+						<div className="border-b border-gray-200 w-full mt-3" />
 
-					<div className="border-b border-gray-200 w-full mt-3" />
+						<div className="flex items-center gap-x-2 mt-6">
+							<ProjectSearch
+								className="flex-grow"
+								onChange={(searchQuery) => setSearchQuery(searchQuery)}
+							/>
 
-					<div className="flex items-center gap-x-2 mt-6">
-						<ProjectSearch
-							className="flex-grow"
-							onChange={(searchQuery) => setSearchQuery(searchQuery)}
-						/>
+							<ProjectsFilters
+								setParams={setParams}
+								params={params}
+							/>
 
-						<ProjectsFilters
-							setParams={setParams}
+							{/* Projects switch active and unactive projects */}
+							<ProjectsUnactiveSwitcher
+								setActive={setShowUnactive}
+								active={showUnActive}
+							/>
+						</div>
+
+						<ProjectsList
 							params={params}
-						/>
-
-						{/* Projects switch active and unactive projects */}
-						<ProjectsUnactiveSwitcher
-							setActive={setShowUnactive}
-							active={showUnActive}
+							setParams={setParams}
+							data={data}
+							isPending={isPending}
+							className="flex flex-col flex-grow mt-6"
 						/>
 					</div>
-
-					<ProjectsList
-						params={params}
-						setParams={setParams}
-						data={data}
-						isPending={isPending}
-						className="flex flex-col flex-grow mt-6"
-					/>
 				</div>
-			</div>
-		</Layout>
+			</Layout>
+		</SessionRequired>
 	)
 }

@@ -9,6 +9,8 @@ import nProgress from "nprogress"
 import {DrawersProvider} from "./drawers-provider"
 import {SnackbarProvider} from "./snackbar-prodiver"
 import {DatePluginProvider} from "./date-plugin-provider"
+import {SessionRequired} from "@/features/session/session-required"
+import {SessionProvider} from "./session-provider"
 
 nProgress.configure({showSpinner: true, minimum: 0.4})
 Router.events.on("routeChangeStart", (url) => {
@@ -20,18 +22,19 @@ Router.events.on("routeChangeComplete", (url) => {
 
 export function AppProvider({children}: PropsWithChildren) {
 	return (
-		<EmotionProvider>
-			<ErrorBoundaryProvider>
-				<QueryProvider>
-					<ThemeProvider>
-						{children}
-
-						<DrawersProvider />
-						<SnackbarProvider />
-						<DatePluginProvider />
-					</ThemeProvider>
-				</QueryProvider>
-			</ErrorBoundaryProvider>
-		</EmotionProvider>
+		<ErrorBoundaryProvider>
+			<SessionProvider>
+				<EmotionProvider>
+					<QueryProvider>
+						<ThemeProvider>
+							{children}
+							<DrawersProvider />
+							<SnackbarProvider />
+							<DatePluginProvider />
+						</ThemeProvider>
+					</QueryProvider>
+				</EmotionProvider>
+			</SessionProvider>
+		</ErrorBoundaryProvider>
 	)
 }

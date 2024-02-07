@@ -17,12 +17,5 @@ import "dayjs/locale/ru"
 type Props = {} & PropsWithChildren
 
 export function DatePluginProvider({children}: Props) {
-	// useEffect(() => {
-	// 	dayjs.locale("ru")
-	// 	dayjs.extend(Duration)
-	// 	dayjs.extend(RelativeTime)
-	// 	dayjs.extend(LocalizedFormat)
-	// }, [])
-
 	return children
 }

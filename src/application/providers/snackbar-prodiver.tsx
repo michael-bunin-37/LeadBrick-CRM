@@ -15,16 +15,5 @@ const StyledContainer = styled(ToastContainer)({
 })
 
 export function SnackbarProvider({}: Props) {
-	return (
-		<StyledContainer
-		// toastClassName={(context) =>
-		// 	// prettier-ignore
-		// 	cn(context?.defaultClassName, "relative bg-white rounded-none")
-		// }
-		// bodyClassName={(context) => cn(context?.defaultClassName, "flex items-center [&_.Toastify__progress-bar]:rounded-none")}
-		// // style={{
-		// // 	"."
-		// // }}
-		/>
-	)
+	return <StyledContainer />
 }
