@@ -1,12 +1,13 @@
 import kyUniversal from "ky"
+import {auth} from "../firebase"
 export const api = kyUniversal.extend({
 	hooks: {
 		beforeRequest: [
 			// @ts-ignore
 			async (request) => {
 				// * => Insert User X-ID-TOKEN to request headers =>
-				// const token = await auth.currentUser?.getIdToken()
-				// request.headers.set("x-id-token", `${token}`)
+				const token = await auth.currentUser?.getIdToken()
+				request.headers.set("x-id-token", `${token}`)
 			},
 		],
 		afterResponse: [
