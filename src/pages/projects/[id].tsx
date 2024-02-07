@@ -30,7 +30,7 @@ export default function ProjectPage({}: Props) {
 
 	// QUERIES
 	const {data: project, isPending: isProjectPending} = useProjectById(
-		query.id as string,
+		{id: query.id as string},
 		{
 			enabled: !!query.id,
 		},

@@ -20,6 +20,7 @@ function ProjectsTotalStatistics({params}: ProjectsTotalStatisticsProps) {
 					{...data}
 					name="Общие показатели"
 					className="[&>*]:!font-semibold [&>*]:!text-gray-900"
+					slotsProps={{Link: {className: "pointer-events-none"}}}
 				/>
 			)}
 

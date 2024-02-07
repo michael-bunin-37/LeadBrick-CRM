@@ -45,14 +45,20 @@ export function InviteLinkPreviewRow(props: Props) {
 			<MyTableCell>
 				{props.sumTimeToDeposit != 0 && props.countTimeToDeposit != 0
 					? dayjs
-							.duration(props.sumTimeToDeposit / props.countTimeToDeposit, "milliseconds")
+							.duration(
+								props.sumTimeToDeposit / props.countTimeToDeposit,
+								"milliseconds",
+							)
 							.humanize()
 					: "-"}
 			</MyTableCell>
 			<MyTableCell>
 				{props.sumTimeToDialog != 0 && props.countTimeToDialog != 0
 					? dayjs
-							.duration(props.sumTimeToDialog / props.countTimeToDialog, "milliseconds")
+							.duration(
+								props.sumTimeToDialog / props.countTimeToDialog,
+								"milliseconds",
+							)
 							.humanize()
 					: "-"}
 			</MyTableCell>

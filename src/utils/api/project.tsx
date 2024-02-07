@@ -18,12 +18,15 @@ export const useProjectList = (
 }
 
 export const useProjectById = (
-	id: string,
+	{id, ...params}: {id: string; windowStart?: string; windowEnd?: string},
 	config?: Partial<UseQueryOptions<ProjectResDto, Error>>,
 ) => {
 	return useQuery({
-		queryKey: [QueryKeys["PROJECT"], id],
-		queryFn: () => api.get(`${API_URL}/project/${id}`).json<ProjectResDto>(),
+		queryKey: [QueryKeys["PROJECT"], {id, ...params}],
+		queryFn: () =>
+			api
+				.get(`${API_URL}/project/${id}`, {searchParams: Object.entries(params)})
+				.json<ProjectResDto>(),
 		refetchInterval: 1000 * 30,
 		...config,
 	})

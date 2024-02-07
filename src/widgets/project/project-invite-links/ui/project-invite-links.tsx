@@ -1,6 +1,15 @@
 import {MyPagination} from "@/components/Pagination"
-import {MyTable, MyTableBody, MyTableCell, MyTableHead, MyTableRow} from "@/components/Table"
-import {InviteLinkPreviewRow, InviteLinkPreviewRowSkeleton} from "@/entities/invite-link"
+import {
+	MyTable,
+	MyTableBody,
+	MyTableCell,
+	MyTableHead,
+	MyTableRow,
+} from "@/components/Table"
+import {
+	InviteLinkPreviewRow,
+	InviteLinkPreviewRowSkeleton,
+} from "@/entities/invite-link"
 import {ProjectsSort} from "@/features/projects/projects-sort"
 import {useInviteLinksList} from "@/utils/api/invite-links"
 import {useProjectById} from "@/utils/api/project"
@@ -15,6 +24,7 @@ import {IoHelpCircle, IoInformation, IoLink} from "react-icons/io5"
 import {IoCloudOfflineOutline} from "react-icons/io5"
 import {ProjectInviteLinksFilters} from "./project-invite-links-filters"
 import {ProjectsUnactiveSwitcher} from "@/features/projects/projects-unactive-swticher"
+import {ProjectInviteLinksTotal} from "./project-invite-link-total"
 
 type Props = {
 	className?: string
@@ -31,7 +41,6 @@ export function ProjectInviteLinksList({className, projectId}: Props) {
 	})
 
 	// QUERIES
-
 	const {data, isPending} = useInviteLinksList(
 		{...params, chatId: projectId as string},
 		{
@@ -86,7 +95,9 @@ export function ProjectInviteLinksList({className, projectId}: Props) {
 								<MyTableCell>
 									<div className="flex items-center gap-x-2">
 										Название ссылки
-										<span className="text-gray-500">{data ? `(${data.counter})` : ``}</span>
+										<span className="text-gray-500">
+											{data ? `(${data.counter})` : ``}
+										</span>
 									</div>
 								</MyTableCell>
 								{/* <MyTableCell>
@@ -194,6 +205,11 @@ export function ProjectInviteLinksList({className, projectId}: Props) {
 
 						{/* Ivnite links list body */}
 						<MyTableBody>
+							<ProjectInviteLinksTotal
+								projectId={projectId}
+								params={params}
+							/>
+
 							{data &&
 								data.data.map((item) => (
 									<InviteLinkPreviewRow
@@ -202,14 +218,18 @@ export function ProjectInviteLinksList({className, projectId}: Props) {
 									/>
 								))}
 
-							{isPending && [...Array(24)].map((_, i) => <InviteLinkPreviewRowSkeleton key={i} />)}
+							{isPending &&
+								[...Array(24)].map((_, i) => (
+									<InviteLinkPreviewRowSkeleton key={i} />
+								))}
 						</MyTableBody>
 					</MyTable>
 
 					{/* No Result */}
 					{data && data.data.length == 0 && !isPending && (
 						<div className="w-full px-[14px] py-9 flex gap-x-6 text-sm text-gray-500">
-							<IoCloudOfflineOutline size={20} />К сожалению, но мы ничего не нашли
+							<IoCloudOfflineOutline size={20} />К сожалению, но мы ничего не
+							нашли
 						</div>
 					)}
 				</Box>

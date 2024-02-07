@@ -1,5 +1,6 @@
 import {MyChip} from "@/components/Chip"
 import {MyTableCell, MyTableRow} from "@/components/Table"
+import {cn} from "@/utils/lib"
 import {ProjectResDto} from "@/utils/types/project"
 import dayjs from "dayjs"
 import Link from "next/link"
@@ -11,6 +12,11 @@ type Props = ProjectResDto & {
 		ProjectAddTag?: React.ElementType<{id: string}>
 		ProjectDeleteTag?: React.ElementType<{id: string}>
 		Img?: JSX.Element
+	}
+	slotsProps?: {
+		Link?: {
+			className?: string
+		}
 	}
 	className?: string
 }
@@ -24,7 +30,10 @@ export function ProjectPreviewRow(props: Props) {
 					{props.Slots?.Img}
 					<Link
 						href={`/projects/${props.id}`}
-						className="truncate flex-1">
+						className={cn(
+							"truncate flex-1",
+							props.slotsProps?.Link?.className,
+						)}>
 						{props.name}
 					</Link>
 				</div>

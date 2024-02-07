@@ -10,7 +10,9 @@ export type DateFilterStoreActions = {
 	setDateRange: (dateRange: DateRange | undefined) => void
 }
 
-export const useDateFilterStore = create<DateFilterStoreState & DateFilterStoreActions>((set) => ({
+export const useDateFilterStore = create<
+	DateFilterStoreState & DateFilterStoreActions
+>((set) => ({
 	dateRange: getToday(),
 	setDateRange: (dateRange) => set({dateRange}),
 }))

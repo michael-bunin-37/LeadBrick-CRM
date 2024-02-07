@@ -12,10 +12,14 @@ import {cn} from "@/utils/lib"
 import {Divider, IconButton, Popover} from "@mui/material"
 import {Calendar} from "@/components/Calendar"
 import {MyMenuItem} from "@/components/MenuItem"
-import {Cursor, FilterByParam} from "@/utils/types/server"
+import {Cursor, FilterByParam, FilterParam} from "@/utils/types/server"
 import {usePrevious} from "@/utils/hooks"
 import dayjs from "dayjs"
-import {DateFilterInitialOptionsTypeEnum, dateFilterOptionsFunctions, getToday} from "./model"
+import {
+	DateFilterInitialOptionsTypeEnum,
+	dateFilterOptionsFunctions,
+	getToday,
+} from "./model"
 import {HiOutlineSelector} from "react-icons/hi"
 import {MyMenu} from "@/components/Menu"
 import {useDateFilterStore} from "@/entities/date-filter-store"
@@ -37,10 +41,9 @@ export function ProjectsDateFilter({
 }: Props) {
 	// STATE
 	const [anch, setAnch] = useState<HTMLElement | null>(null)
-	const [option, setOption] = useState<keyof typeof DateFilterInitialOptionsTypeEnum>()
+	const [option, setOption] =
+		useState<keyof typeof DateFilterInitialOptionsTypeEnum>()
 	const {dateRange: date, setDateRange: setDate} = useDateFilterStore()
-
-	const prevDate = usePrevious(date) as undefined | DateRange
 
 	// EFFECTS
 	useEffect(() => {
@@ -48,45 +51,48 @@ export function ProjectsDateFilter({
 	}, [date])
 
 	useEffect(() => {
-		if (date && date.from && date.to) {
-			setParams({
-				...params,
-				...(type == "PARAMS" && {
-					windowStart: date.from.toISOString(),
-					windowEnd: date.to.toISOString(),
-				}),
-				...(type == "FILTER" && {
-					filters: params.filters
-						? [
-								...params.filters.filter((filter) => filter.filterBy !== filterBy),
-								{
-									filterBy,
-									filterValue: date.from.toISOString(),
-									filterOperator: "MORE_OR_EQUAL",
-								},
-								{
-									filterBy,
-									filterValue: date.to.toISOString(),
-									filterOperator: "LESS_OR_EQUAL",
-								},
-						  ]
-						: [],
-				}),
-			})
-		} else if (date === undefined && prevDate !== undefined)
-			setParams({
-				...params,
-				...(type == "PARAMS" && {
-					windowStart: new Date(0).toISOString(),
-					windowEnd: new Date().toISOString(),
-				}),
-				...(type == "FILTER" && {
-					filters: params.filters
-						? [...params.filters.filter((filter) => filter.filterBy !== filterBy)]
-						: [],
-				}),
-			})
-	}, [date, type, prevDate])
+		const newParams: Cursor = {...params}
+
+		if (date && type === "PARAMS") {
+			if (date.from) newParams.windowStart = date.from.toISOString()
+			if (date.to) newParams.windowEnd = date.to.toISOString()
+		}
+
+		if (date && type === "FILTER") {
+			const filters: FilterParam[] = []
+			if (date.from)
+				filters.push({
+					filterBy,
+					filterOperator: "MORE_OR_EQUAL",
+					filterValue: date.from.toISOString(),
+				})
+			if (date.to)
+				filters.push({
+					filterBy,
+					filterOperator: "LESS_OR_EQUAL",
+					filterValue: date.to.toISOString(),
+				})
+
+			newParams.filters = filters
+		}
+
+		if (!date && type === "PARAMS") {
+			newParams.windowStart = new Date(0).toISOString()
+			newParams.windowEnd = new Date().toISOString()
+		}
+
+		if (!date && type === "FILTER") {
+			newParams.filters = newParams.filters
+				? [
+						...newParams.filters.filter(
+							(filter) => filter.filterBy !== filterBy,
+						),
+				  ]
+				: []
+		}
+
+		setParams(newParams)
+	}, [date, type])
 
 	useEffect(() => {
 		if (option) {
@@ -147,7 +153,9 @@ export function ProjectsDateFilter({
 					{/* Preset Options */}
 					<div className="flex items-start">
 						<div className="flex flex-col gap-y-1 mt-3 pr-6 pl-3 border-r border-r-gray-200 border-dashed">
-							<div className="px-3 text-xs font-medium text-gray-500 mb-2">Выберите опции</div>
+							<div className="px-3 text-xs font-medium text-gray-500 mb-2">
+								Выберите опции
+							</div>
 							<MyButton
 								onClick={() => setOption("today")}
 								size={"sm"}

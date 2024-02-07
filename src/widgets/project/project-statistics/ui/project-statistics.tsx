@@ -1,12 +1,25 @@
 import {MyPagination} from "@/components/Pagination"
-import {MyTable, MyTableBody, MyTableCell, MyTableHead, MyTableRow} from "@/components/Table"
+import {
+	MyTable,
+	MyTableBody,
+	MyTableCell,
+	MyTableHead,
+	MyTableRow,
+} from "@/components/Table"
 import {StatisticsPreviewRow} from "@/entities/statistics"
 import {StatisticsPreviewRowSkeleton} from "@/entities/statistics"
-import {useStatisticsList, useStatisticsListCursorCounter} from "@/utils/api/statistics"
+import {
+	useStatisticsList,
+	useStatisticsListCursorCounter,
+} from "@/utils/api/statistics"
 import {Cursor} from "@/utils/types/server"
 import {Box, Tooltip} from "@mui/material"
 import React, {useState} from "react"
-import {IoCloudOfflineOutline, IoHelpCircle, IoInformation} from "react-icons/io5"
+import {
+	IoCloudOfflineOutline,
+	IoHelpCircle,
+	IoInformation,
+} from "react-icons/io5"
 import {ProjectStatisticsFilters} from "./project-statistics-filters"
 import {
 	ProjectStatisticsStoreState,
@@ -20,7 +33,9 @@ type Props = {
 
 export function ProjectStatistics({projectId, className}: Props) {
 	// STATE
-	const [params, setParams] = useState<Omit<Cursor, "filters" | "sort"> & {inviteLink?: string}>({
+	const [params, setParams] = useState<
+		Omit<Cursor, "filters" | "sort"> & {inviteLink?: string}
+	>({
 		page: 1,
 		pageSize: 30,
 	})
@@ -33,18 +48,21 @@ export function ProjectStatistics({projectId, className}: Props) {
 		{enabled: !!projectId},
 	)
 
-	const {data: counter, isPending: isCounterPending} = useStatisticsListCursorCounter(
-		{
-			telegramChatId: projectId as string,
-			...(params.windowEnd && {windowEnd: params.windowEnd}),
-			...(params.windowStart && {windowStart: params.windowStart}),
-		},
-		{enabled: !!projectId},
-	)
+	const {data: counter, isPending: isCounterPending} =
+		useStatisticsListCursorCounter(
+			{
+				telegramChatId: projectId as string,
+				...(params.windowEnd && {windowEnd: params.windowEnd}),
+				...(params.windowStart && {windowStart: params.windowStart}),
+			},
+			{enabled: !!projectId},
+		)
 
 	// HANDLERS
 	const onChangePage = (page: number) => setParams({...params, page})
-	const onClickRow = (windowRange: ProjectStatisticsStoreState["windowStart"]) => {
+	const onClickRow = (
+		windowRange: ProjectStatisticsStoreState["windowStart"],
+	) => {
 		setWindowStart(windowRange)
 		setChatId(projectId)
 		setOpen(true)
@@ -70,7 +88,9 @@ export function ProjectStatistics({projectId, className}: Props) {
 								<MyTableCell>
 									<div className="flex items-center gap-x-2">
 										Дата
-										<span className="text-gray-500">{counter ? `(${counter.counter})` : ``}</span>
+										<span className="text-gray-500">
+											{counter ? `(${counter.counter})` : ``}
+										</span>
 									</div>
 								</MyTableCell>
 								<MyTableCell>
@@ -168,14 +188,17 @@ export function ProjectStatistics({projectId, className}: Props) {
 
 							{!data &&
 								isPending &&
-								[...Array(12)].map((_, i) => <StatisticsPreviewRowSkeleton key={i} />)}
+								[...Array(12)].map((_, i) => (
+									<StatisticsPreviewRowSkeleton key={i} />
+								))}
 						</MyTableBody>
 					</MyTable>
 
 					{/* No Result */}
 					{data && data.data.length == 0 && !isPending && (
 						<div className="w-full px-[14px] py-9 flex gap-x-6 text-sm text-gray-500">
-							<IoCloudOfflineOutline size={20} />К сожалению, но мы ничего не нашли
+							<IoCloudOfflineOutline size={20} />К сожалению, но мы ничего не
+							нашли
 						</div>
 					)}
 				</Box>

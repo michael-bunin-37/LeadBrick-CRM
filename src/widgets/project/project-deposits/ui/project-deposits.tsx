@@ -1,5 +1,11 @@
 import {MyPagination} from "@/components/Pagination"
-import {MyTable, MyTableBody, MyTableCell, MyTableHead, MyTableRow} from "@/components/Table"
+import {
+	MyTable,
+	MyTableBody,
+	MyTableCell,
+	MyTableHead,
+	MyTableRow,
+} from "@/components/Table"
 import {DepositPreviewRow, DepositPreviewRowSkeleton} from "@/entities/deposit"
 import {useDepositList} from "@/utils/api/deposit"
 import {GrayToken} from "@/utils/theme"
@@ -51,7 +57,9 @@ export function ProjectDeposits({className, projectId}: Props) {
 								<MyTableCell>
 									<div className="flex items-center gap-x-2">
 										User Id
-										<span className="text-gray-500">{data ? `(${data.counter})` : ``}</span>
+										<span className="text-gray-500">
+											{data ? `(${data.counter})` : ``}
+										</span>
 									</div>
 								</MyTableCell>
 
@@ -103,14 +111,17 @@ export function ProjectDeposits({className, projectId}: Props) {
 
 							{!data &&
 								isPending &&
-								[...Array(12)].map((_, i) => <DepositPreviewRowSkeleton key={i} />)}
+								[...Array(12)].map((_, i) => (
+									<DepositPreviewRowSkeleton key={i} />
+								))}
 						</MyTableBody>
 					</MyTable>
 
 					{/* No Result */}
 					{data && data.data.length == 0 && !isPending && (
 						<div className="w-full px-[14px] py-9 flex gap-x-6 text-sm text-gray-500">
-							<IoCloudOfflineOutline size={20} />К сожалению, но мы ничего не нашли
+							<IoCloudOfflineOutline size={20} />К сожалению, но мы ничего не
+							нашли
 						</div>
 					)}
 				</Box>

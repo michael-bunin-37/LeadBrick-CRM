@@ -3,7 +3,13 @@ import {Cursor, SortParam} from "@/utils/types/server"
 import React, {useState} from "react"
 import {ProjectJoinsFilters} from "./project-joins-filters"
 import {Box} from "@mui/material"
-import {MyTable, MyTableBody, MyTableCell, MyTableHead, MyTableRow} from "@/components/Table"
+import {
+	MyTable,
+	MyTableBody,
+	MyTableCell,
+	MyTableHead,
+	MyTableRow,
+} from "@/components/Table"
 import {IoCloudOfflineOutline} from "react-icons/io5"
 import {MyPagination} from "@/components/Pagination"
 import {JoinPreviewRow} from "@/entities/join"
@@ -83,7 +89,8 @@ export function ProjectJoins({projectId, className}: Props) {
 					{/* No Result */}
 					{data && data.data.length == 0 && !isPending && (
 						<div className="w-full px-[14px] py-9 flex gap-x-6 text-sm text-gray-500">
-							<IoCloudOfflineOutline size={20} />К сожалению, но мы ничего не нашли
+							<IoCloudOfflineOutline size={20} />К сожалению, но мы ничего не
+							нашли
 						</div>
 					)}
 				</Box>
