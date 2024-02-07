@@ -8,9 +8,12 @@ type Props = JoinResDto
 export function JoinPreviewRow(props: Props) {
 	return (
 		<MyTableRow>
-			{/* <MyTableCell>{props.id}</MyTableCell> */}
-			<MyTableCell>{props.firstName !== "UNKNOWN" ? props.firstName : "-"}</MyTableCell>
-			<MyTableCell>{props.lastName !== "UNKNOWN" ? props.lastName : "-"}</MyTableCell>
+			<MyTableCell>
+				{props.firstName !== "UNKNOWN" ? props.firstName : "-"}
+			</MyTableCell>
+			<MyTableCell>
+				{props.lastName !== "UNKNOWN" ? props.lastName : "-"}
+			</MyTableCell>
 			<MyTableCell>
 				{props.username !== "UNKNOWN" ? (
 					<a
@@ -32,15 +35,25 @@ export function JoinPreviewRow(props: Props) {
 				)}
 			</MyTableCell>
 			<MyTableCell>
-				{props.inviteLinkName !== "LINK_NOT_DEFINED" ? props.inviteLinkName : "-"}
+				{props.inviteLinkName !== "LINK_NOT_DEFINED"
+					? props.inviteLinkName
+					: "-"}
 			</MyTableCell>
 			<MyTableCell>{`${props.dialog}`}</MyTableCell>
 			<MyTableCell>{`${props.firstDeposit}`}</MyTableCell>
 			<MyTableCell>{props.reDeposit}</MyTableCell>
-			<MyTableCell>{props.createdAt ? dayjs(props.createdAt).format("lll") : "-"}</MyTableCell>
-			<MyTableCell>{props.dialogAt ? dayjs(props.dialogAt).format("lll") : ""}</MyTableCell>
-			<MyTableCell>{props.depositAt ? dayjs(props.depositAt).format("lll") : ""}</MyTableCell>
-			<MyTableCell>{props.reDepositAt ? dayjs(props.reDepositAt).format("lll") : ""}</MyTableCell>
+			<MyTableCell>
+				{props.createdAt ? dayjs(props.createdAt).format("lll") : "-"}
+			</MyTableCell>
+			<MyTableCell>
+				{props.dialogAt ? dayjs(props.dialogAt).format("lll") : ""}
+			</MyTableCell>
+			<MyTableCell>
+				{props.depositAt ? dayjs(props.depositAt).format("lll") : ""}
+			</MyTableCell>
+			<MyTableCell>
+				{props.reDepositAt ? dayjs(props.reDepositAt).format("lll") : ""}
+			</MyTableCell>
 		</MyTableRow>
 	)
 }

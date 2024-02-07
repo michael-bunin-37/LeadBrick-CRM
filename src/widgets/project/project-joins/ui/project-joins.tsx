@@ -12,7 +12,7 @@ import {
 } from "@/components/Table"
 import {IoCloudOfflineOutline} from "react-icons/io5"
 import {MyPagination} from "@/components/Pagination"
-import {JoinPreviewRow} from "@/entities/join"
+import {JoinPreviewRow, JoinPreviewRowSkeleton} from "@/entities/join"
 
 type Props = {
 	projectId?: string
@@ -82,7 +82,10 @@ export function ProjectJoins({projectId, className}: Props) {
 									/>
 								))}
 
-							{/* {isPending && [...Array(24)].map((_, i) => <InviteLinkPreviewRowSkeleton key={i} />)} */}
+							{isPending &&
+								[...Array(24)].map((_, i) => (
+									<JoinPreviewRowSkeleton key={i} />
+								))}
 						</MyTableBody>
 					</MyTable>
 
