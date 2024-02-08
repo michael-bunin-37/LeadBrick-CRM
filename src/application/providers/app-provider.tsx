@@ -8,9 +8,9 @@ import {Router} from "next/router"
 import nProgress from "nprogress"
 import {DrawersProvider} from "./drawers-provider"
 import {SnackbarProvider} from "./snackbar-prodiver"
-import {DatePluginProvider} from "./date-plugin-provider"
 import {SessionRequired} from "@/features/session/session-required"
 import {SessionProvider} from "./session-provider"
+import dayjs from "dayjs"
 
 nProgress.configure({showSpinner: true, minimum: 0.4})
 Router.events.on("routeChangeStart", (url) => {
@@ -30,7 +30,6 @@ export function AppProvider({children}: PropsWithChildren) {
 							{children}
 							<DrawersProvider />
 							<SnackbarProvider />
-							<DatePluginProvider />
 						</ThemeProvider>
 					</QueryProvider>
 				</EmotionProvider>

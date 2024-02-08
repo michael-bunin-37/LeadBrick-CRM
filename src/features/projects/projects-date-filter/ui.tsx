@@ -43,7 +43,7 @@ export function ProjectsDateFilter({
 	const [anch, setAnch] = useState<HTMLElement | null>(null)
 	const [option, setOption] =
 		useState<keyof typeof DateFilterInitialOptionsTypeEnum>()
-	const {dateRange: date, setDateRange: setDate} = useDateFilterStore()
+	const {dateRange: date, setDateRange: setDate, etc_gmt} = useDateFilterStore()
 
 	// EFFECTS
 	useEffect(() => {
@@ -66,6 +66,7 @@ export function ProjectsDateFilter({
 					filterOperator: "MORE_OR_EQUAL",
 					filterValue: date.from.toISOString(),
 				})
+
 			if (date.to)
 				filters.push({
 					filterBy,
@@ -118,8 +119,15 @@ export function ProjectsDateFilter({
 				)}
 				{date && (
 					<>
-						{date.from ? dayjs(date.from).format("ll") : "Дата начала"} -&nbsp;
-						{date.to ? dayjs(date.to).format("ll") : "Дата окончания"}
+						{date.from
+							? // @ts-ignore
+							  dayjs(date.from).format("lll")
+							: "Дата начала"}{" "}
+						- &nbsp;
+						{date.to
+							? // @ts-ignore
+							  dayjs(date.to).format("lll")
+							: "Дата окончания"}
 					</>
 				)}
 				{date ? (

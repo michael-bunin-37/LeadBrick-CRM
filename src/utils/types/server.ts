@@ -9,7 +9,12 @@ export enum FilterByParamEnum {
 
 export type FilterByParam = keyof typeof FilterByParamEnum
 
-export type FilterOperatorParam = "EQUAL" | "MORE_OR_EQUAL" | "LESS_OR_EQUAL" | "LIKE%" | "%LIKE%"
+export type FilterOperatorParam =
+	| "EQUAL"
+	| "MORE_OR_EQUAL"
+	| "LESS_OR_EQUAL"
+	| "LIKE%"
+	| "%LIKE%"
 export type FilterParam = {
 	filterBy: FilterByParam
 	filterValue: string | string[]
@@ -44,6 +49,7 @@ export type Cursor = {
 	filters?: Array<FilterParam>
 	inviteLinkOrName?: string
 	tag?: string
+	timeZone?: string
 }
 
 export type CursorList<T> = {

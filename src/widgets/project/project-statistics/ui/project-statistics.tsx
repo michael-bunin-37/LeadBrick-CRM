@@ -14,7 +14,7 @@ import {
 } from "@/utils/api/statistics"
 import {Cursor} from "@/utils/types/server"
 import {Box, Tooltip} from "@mui/material"
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import {
 	IoCloudOfflineOutline,
 	IoHelpCircle,
@@ -26,6 +26,9 @@ import {
 	useProjectStatisticsStore,
 } from "../model/project-statistics-store"
 import {ProjectStatisticsTotal} from "./project-statistics-total"
+import {useDateFilterStore} from "@/entities/date-filter-store"
+import dayjs from "dayjs"
+import moment from "moment"
 
 type Props = {
 	projectId?: string
@@ -34,6 +37,8 @@ type Props = {
 
 export function ProjectStatistics({projectId, className}: Props) {
 	// STATE
+	const {etc_gmt} = useDateFilterStore()
+
 	const [params, setParams] = useState<
 		Omit<Cursor, "filters" | "sort"> & {inviteLink?: string}
 	>({
@@ -45,7 +50,16 @@ export function ProjectStatistics({projectId, className}: Props) {
 
 	// QUERIES
 	const {data, isPending} = useStatisticsList(
-		{...params, telegramChatId: projectId as string},
+		{
+			...params,
+			telegramChatId: projectId as string,
+			...(params.windowEnd && {
+				windowEnd: dayjs(params.windowEnd).tz(etc_gmt, true).toISOString(),
+			}),
+			...(params.windowStart && {
+				windowStart: dayjs(params.windowStart).tz(etc_gmt, true).toISOString(),
+			}),
+		},
 		{enabled: !!projectId},
 	)
 
@@ -53,11 +67,22 @@ export function ProjectStatistics({projectId, className}: Props) {
 		useStatisticsListCursorCounter(
 			{
 				telegramChatId: projectId as string,
-				...(params.windowEnd && {windowEnd: params.windowEnd}),
-				...(params.windowStart && {windowStart: params.windowStart}),
+				...(params.windowEnd && {
+					windowEnd: dayjs(params.windowEnd).tz(etc_gmt, true).toISOString(),
+				}),
+				...(params.windowStart && {
+					windowStart: dayjs(params.windowStart)
+						.tz(etc_gmt, true)
+						.toISOString(),
+				}),
 			},
 			{enabled: !!projectId},
 		)
+
+	// EFFECTS
+	useEffect(() => {
+		setParams((params) => ({...params, timeZone: etc_gmt}))
+	}, [etc_gmt])
 
 	// HANDLERS
 	const onChangePage = (page: number) => setParams({...params, page})

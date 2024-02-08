@@ -5,36 +5,36 @@ import {DateRange} from "react-day-picker"
 export const getToday = () => {
 	return {
 		// @ts-ignore
-		from: dayjs().utcOffset(0).startOf("day").toDate(),
+		from: dayjs().startOf("day").toDate(),
 		// @ts-ignore
-		to: dayjs().utcOffset(0).endOf("day").toDate(),
+		to: dayjs().endOf("day").toDate(),
 	} as DateRange
 }
 
 export const getYesterday = () => {
 	return {
 		// @ts-ignore
-		from: dayjs().utcOffset(0).subtract(1, "day").startOf("day").toDate(),
+		from: dayjs().subtract(1, "day").startOf("day").toDate(),
 		// @ts-ignore
-		to: dayjs().utcOffset(0).subtract(1, "day").endOf("day").toDate(),
+		to: dayjs().subtract(1, "day").endOf("day").toDate(),
 	} as DateRange
 }
 
 export const getLastSevenDayRange = () => {
 	return {
 		// @ts-ignore
-		from: dayjs().utcOffset(0).subtract(6, "day").startOf("day").toDate(),
+		from: dayjs().subtract(6, "day").startOf("day").toDate(),
 		// @ts-ignore
-		to: dayjs().utcOffset(0).endOf("day").toDate(),
+		to: dayjs().endOf("day").toDate(),
 	} as DateRange
 }
 
 export const getCurrentWeekRange = () => {
 	return {
 		// @ts-ignore
-		from: dayjs().utcOffset(0).startOf("week").startOf("day").toDate(),
+		from: dayjs().startOf("week").startOf("day").toDate(),
 		// @ts-ignore
-		to: dayjs().utcOffset(0).endOf("week").endOf("day").toDate(),
+		to: dayjs().endOf("week").endOf("day").toDate(),
 	} as DateRange
 }
 

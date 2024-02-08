@@ -1,4 +1,5 @@
 import {MyTableCell, MyTableRow} from "@/components/Table"
+import {useDateFilterStore} from "@/entities/date-filter-store"
 import {cn} from "@/utils/lib"
 import {StatisticsResDto} from "@/utils/types/statistics"
 import dayjs from "dayjs"
@@ -13,6 +14,7 @@ type Props = StatisticsResDto & {
 }
 
 export function StatisticsPreviewRow(props: Props) {
+	const {etc_gmt} = useDateFilterStore()
 	return (
 		<MyTableRow
 			onClick={props.onClick}
@@ -23,7 +25,8 @@ export function StatisticsPreviewRow(props: Props) {
 			)}>
 			{props.Slots?.Name || (
 				<MyTableCell>
-					{props.windowStart && dayjs(props.windowStart).format("lll")}
+					{props.windowStart &&
+						dayjs(props.windowStart).tz(etc_gmt).format("lll")}
 				</MyTableCell>
 			)}
 			<MyTableCell>

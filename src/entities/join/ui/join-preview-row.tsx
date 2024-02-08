@@ -1,11 +1,14 @@
 import {MyTableCell, MyTableRow} from "@/components/Table"
+import {useDateFilterStore} from "@/entities/date-filter-store"
 import {JoinResDto} from "@/utils/types/join"
 import dayjs from "dayjs"
-import React from "react"
+import React, {useEffect} from "react"
 
 type Props = JoinResDto
 
 export function JoinPreviewRow(props: Props) {
+	const {etc_gmt} = useDateFilterStore()
+
 	return (
 		<MyTableRow>
 			<MyTableCell>
@@ -43,16 +46,22 @@ export function JoinPreviewRow(props: Props) {
 			<MyTableCell>{`${props.firstDeposit}`}</MyTableCell>
 			<MyTableCell>{props.reDeposit}</MyTableCell>
 			<MyTableCell>
-				{props.createdAt ? dayjs(props.createdAt).format("lll") : "-"}
+				{props.createdAt
+					? dayjs(props.createdAt).tz(etc_gmt).format("lll")
+					: "-"}
 			</MyTableCell>
 			<MyTableCell>
-				{props.dialogAt ? dayjs(props.dialogAt).format("lll") : ""}
+				{props.dialogAt ? dayjs(props.dialogAt).tz(etc_gmt).format("lll") : ""}
 			</MyTableCell>
 			<MyTableCell>
-				{props.depositAt ? dayjs(props.depositAt).format("lll") : ""}
+				{props.depositAt
+					? dayjs(props.depositAt).tz(etc_gmt).format("lll")
+					: ""}
 			</MyTableCell>
 			<MyTableCell>
-				{props.reDepositAt ? dayjs(props.reDepositAt).format("lll") : ""}
+				{props.reDepositAt
+					? dayjs(props.reDepositAt).tz(etc_gmt).format("lll")
+					: ""}
 			</MyTableCell>
 		</MyTableRow>
 	)

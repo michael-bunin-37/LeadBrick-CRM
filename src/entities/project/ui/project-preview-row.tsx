@@ -26,8 +26,7 @@ export function ProjectPreviewRow(props: Props) {
 		<MyTableRow className={props.className}>
 			<MyTableCell>
 				<div className="flex items-center gap-x-3 truncate">
-					{/* <div className="h-6 w-6 rounded-[4px] bg-gray-100" /> */}
-					{props.Slots?.Img}
+					{/* {props.Slots?.Img} */}
 					<Link
 						href={`/app/projects/${props.id}`}
 						className={cn(

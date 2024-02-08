@@ -8,7 +8,9 @@ export type ProjectStatisticsStoreState = {
 }
 export type ProjectStatisticsStoreActions = {
 	setOpen: (isOpen: boolean) => void
-	setWindowStart: (windowRange: ProjectStatisticsStoreState["windowStart"]) => void
+	setWindowStart: (
+		windowRange: ProjectStatisticsStoreState["windowStart"],
+	) => void
 	setChatId: (chatId?: string | null) => void
 }
 

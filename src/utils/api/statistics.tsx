@@ -4,6 +4,7 @@ import {Cursor, CursorList} from "../types/server"
 import {api} from "./api"
 import {API_URL} from "../config"
 import {StatisticsResDto} from "../types/statistics"
+import {DateFilterStoreState} from "@/entities/date-filter-store"
 
 export const useStatisticsList = (
 	params: Omit<Cursor, "filters" | "sort"> & {
@@ -51,6 +52,7 @@ export const useStatisticsListCursorCounter = (
 		windowStart?: string
 		windowEnd?: string
 		inviteLink?: string
+		timeZone?: DateFilterStoreState["etc_gmt"]
 	},
 	config?: Partial<UseQueryOptions<{counter: number}, Error>>,
 ) => {
