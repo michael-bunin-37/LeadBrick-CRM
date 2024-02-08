@@ -121,12 +121,12 @@ export function ProjectsDateFilter({
 					<>
 						{date.from
 							? // @ts-ignore
-							  dayjs(date.from).format("lll")
+							  dayjs(date.from).tz(etc_gmt).format("lll")
 							: "Дата начала"}{" "}
 						- &nbsp;
 						{date.to
 							? // @ts-ignore
-							  dayjs(date.to).format("lll")
+							  dayjs(date.to).tz(etc_gmt).format("lll")
 							: "Дата окончания"}
 					</>
 				)}
