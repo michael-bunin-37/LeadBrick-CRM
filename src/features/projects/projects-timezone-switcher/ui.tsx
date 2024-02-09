@@ -41,7 +41,7 @@ function ProjectsTimezoneSwitcher({className}: ProjectsTimezoneSwitcherProps) {
 					"gap-x-2 h-9 w-full flex items-center cursor-pointer",
 				)}>
 				<span>GMT:</span>
-				{EtcTimezone[etc_gmt]}{" "}
+				{EtcTimezone[etc_gmt]}&nbsp;
 				{EtcTimezone[etc_gmt] === "GMT+2" && `( Ukraine, Kyiv )`}
 				<span>
 					<IoChevronDown />
@@ -66,7 +66,7 @@ function ProjectsTimezoneSwitcher({className}: ProjectsTimezoneSwitcherProps) {
 				onClose={() => setAnch(null)}
 				open={!!anch}
 				anchorEl={anch}>
-				{/* {Object.entries(EtcTimezone).map(([key, value]) => (
+				{Object.entries(EtcTimezone).map(([key, value]) => (
 					<MyMenuItem
 						// @ts-ignore
 						onClick={() => onChange(key)}
@@ -74,20 +74,7 @@ function ProjectsTimezoneSwitcher({className}: ProjectsTimezoneSwitcherProps) {
 						selected={etc_gmt === key}>
 						{value}
 					</MyMenuItem>
-				))} */}
-				<MyMenuItem
-					// @ts-ignore
-					onClick={() => onChange("Etc/GMT-2")}
-					// key={}
-					selected={etc_gmt == "Etc/GMT-2"}>
-					"ETC/GMT-2"
-				</MyMenuItem>
-				<MyMenuItem
-					// @ts-ignore
-					onClick={() => onChange("Etc/GMT+5")}
-					selected={etc_gmt == "Etc/GMT+5"}>
-					"ETC/GMT+5"
-				</MyMenuItem>
+				))}
 			</MyMenu>
 		</div>
 	)
