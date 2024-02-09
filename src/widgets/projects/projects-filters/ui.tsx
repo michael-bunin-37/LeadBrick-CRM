@@ -1,6 +1,7 @@
 import {ProjectSearch} from "@/features/project/project-search"
 import {ProjectsDateFilter} from "@/features/projects/projects-date-filter"
-import {ProjectsTagFilter} from "@/features/projects/projects-tag-filter/ui"
+import {ProjectsTagFilter} from "@/features/projects/projects-tag-filter"
+import {ProjectsTimezoneSwitcher} from "@/features/projects/projects-timezone-switcher"
 import {cn} from "@/utils/lib"
 import {Cursor} from "@/utils/types/server"
 import React from "react"
@@ -18,6 +19,8 @@ export function ProjectsFilters({className, setParams, params}: Props) {
 				params={params}
 				setParams={setParams}
 			/>
+
+			<ProjectsTimezoneSwitcher />
 
 			<ProjectsDateFilter
 				setParams={setParams}

@@ -6,12 +6,15 @@ import {IconButton, capitalize} from "@mui/material"
 import {IoCopyOutline} from "react-icons/io5"
 import {toast} from "react-toastify"
 import {MyTab} from "@/components/Tab"
+import {useDateFilterStore} from "@/entities/date-filter-store"
 
 type Props = DepositResDto & {
 	className?: string
 }
 
 export function DepositPreviewRow(props: Props) {
+	const {etc_gmt} = useDateFilterStore()
+
 	return (
 		<MyTableRow className={props.className}>
 			<MyTableCell>{props.userId}</MyTableCell>
@@ -46,7 +49,7 @@ export function DepositPreviewRow(props: Props) {
 					? props.inviteLinkName
 					: "-"}
 			</MyTableCell>
-			<MyTableCell>{dayjs(props.date).format("lll")}</MyTableCell>
+			<MyTableCell>{dayjs(props.date).tz(etc_gmt).format("lll")}</MyTableCell>
 			<MyTableCell>
 				{props.timeToDeposit != 0
 					? dayjs.duration(props.timeToDeposit, "milliseconds").humanize()

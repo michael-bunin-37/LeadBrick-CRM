@@ -7,7 +7,11 @@ import {cn} from "@/utils/lib"
 import {Cursor, FilterParam} from "@/utils/types/server"
 import {IconButton, InputAdornment, Popover} from "@mui/material"
 import React, {useEffect, useState} from "react"
-import {IoCloseOutline, IoPricetagOutline, IoPricetagsOutline} from "react-icons/io5"
+import {
+	IoCloseOutline,
+	IoPricetagOutline,
+	IoPricetagsOutline,
+} from "react-icons/io5"
 
 type ProjectsTagFilterProps = {
 	className?: string
@@ -23,7 +27,9 @@ function ProjectsTagFilter({params, setParams}: ProjectsTagFilterProps) {
 	const {data: tagsList, isPending: isTagsListPending} = useTagsList({
 		select: (data) =>
 			value.length !== 0
-				? data.filter((tag) => tag.toLocaleLowerCase().match(value.toLowerCase()))
+				? data.filter((tag) =>
+						tag.toLocaleLowerCase().match(value.toLowerCase()),
+				  )
 				: data,
 	})
 
@@ -35,7 +41,8 @@ function ProjectsTagFilter({params, setParams}: ProjectsTagFilterProps) {
 	// EFFECTS
 	useEffect(() => {
 		const filters: FilterParam[] = []
-		if (tag) filters.push({filterBy: "tag", filterOperator: "EQUAL", filterValue: tag})
+		if (tag)
+			filters.push({filterBy: "tag", filterOperator: "EQUAL", filterValue: tag})
 		setParams({...params, filters})
 	}, [tag])
 
@@ -95,7 +102,9 @@ function ProjectsTagFilter({params, setParams}: ProjectsTagFilterProps) {
 				/>
 
 				<div className="p-2 mt-2">
-					<p className="mb-2 text-xs px-2 text-gray-400">Выбрать из предложеных</p>
+					<p className="mb-2 text-xs px-2 text-gray-400">
+						Выбрать из предложеных
+					</p>
 					{tagsList &&
 						tagsList.map((t) => (
 							<MyMenuItem
@@ -111,7 +120,9 @@ function ProjectsTagFilter({params, setParams}: ProjectsTagFilterProps) {
 								/>
 							</MyMenuItem>
 						))}
-					{tagsList?.length == 0 && <p className="text-xs px-2">Ничего не найдено!</p>}
+					{tagsList?.length == 0 && (
+						<p className="text-xs px-2">Ничего не найдено!</p>
+					)}
 				</div>
 			</Popover>
 		</React.Fragment>

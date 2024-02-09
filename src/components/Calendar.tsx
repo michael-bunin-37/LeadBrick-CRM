@@ -10,7 +10,12 @@ import dayjs from "dayjs"
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
 
-export function Calendar({className, classNames, showOutsideDays = true, ...props}: CalendarProps) {
+export function Calendar({
+	className,
+	classNames,
+	showOutsideDays = true,
+	...props
+}: CalendarProps) {
 	return (
 		<DayPicker
 			showOutsideDays={showOutsideDays}
@@ -34,7 +39,8 @@ export function Calendar({className, classNames, showOutsideDays = true, ...prop
 				cell: "z-[2] relative h-9 w-9 text-center text-xs text-gray-700 [&:has(.day-today)]:!bg-blue-500 rounded-md",
 				// cell: "text-center text-sm p-0 relative rounded-md [&:has([aria-selected].day-today)]:!bg-blue-500 [&:has([aria-selected].day-today)>*]:!text-gray-100 [&:has([aria-selected].day-outside)]:bg-gray-50 [&:has([aria-selected].day-outside)]:opacity-50 [&:has([aria-selected].day-range-start)]:bg-gray-900 [&:has([aria-selected].day-range-start)>*]:text-gray-50 [&:has([aria-selected].day-range-end)]:bg-gray-900 [&:has([aria-selected].day-range-end)>*]:text-gray-50 [&:has([aria-selected])]:bg-gray-100  focus-within:relative focus-within:z-20",
 				day: "rounded-md h-full z-[1] w-full absolute top-0 left-0 hover:!bg-gray-900 hover:text-gray-50 focus:bg-gray-900 focus:text-gray-50 transition-all",
-				day_range_middle: "[&:not(.day-today)]:bg-gray-100 [&]:hover:!bg-gray-900",
+				day_range_middle:
+					"[&:not(.day-today)]:bg-gray-100 [&]:hover:!bg-gray-900",
 				day_today: "day-today bg-blue-500 text-gray-50",
 				day_outside: "opacity-50",
 				day_range_start: "bg-gray-900 text-gray-50",
@@ -48,13 +54,13 @@ export function Calendar({className, classNames, showOutsideDays = true, ...prop
 				IconLeft: ({...props}) => (
 					<IoChevronBackOutline
 						size={16}
-						className='w-6'
+						className="w-6"
 					/>
 				),
 				IconRight: ({...props}) => (
 					<IoChevronForwardOutline
 						size={16}
-						className='w-6'
+						className="w-6"
 					/>
 				),
 			}}

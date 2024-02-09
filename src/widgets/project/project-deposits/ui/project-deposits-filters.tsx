@@ -1,5 +1,6 @@
 import {ProjectDepositsSearch} from "@/features/project/project-deposits-search"
 import {ProjectsDateFilter} from "@/features/projects/projects-date-filter"
+import {ProjectsTimezoneSwitcher} from "@/features/projects/projects-timezone-switcher"
 import {cn} from "@/utils/lib"
 import {Cursor} from "@/utils/types/server"
 import React from "react"
@@ -23,6 +24,8 @@ export function ProjectDepositsFilters({className, params, setParams}: Props) {
 				params={params}
 				setParams={setParams}
 			/>
+
+			<ProjectsTimezoneSwitcher />
 
 			<ProjectsDateFilter
 				type="FILTER"

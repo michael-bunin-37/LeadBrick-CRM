@@ -9,4 +9,5 @@ export enum QueryKeys {
 	"TAGS",
 	"JOINS",
 	"USER.BY.ID",
+	"PERSIST.TIMEZONE",
 }

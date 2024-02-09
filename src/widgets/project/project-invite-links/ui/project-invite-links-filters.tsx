@@ -1,6 +1,7 @@
 import {ProjectInviteLinksSearch} from "@/features/project/project-invite-links-search/ui"
 import {ProjectSearch} from "@/features/project/project-search"
 import {ProjectsDateFilter} from "@/features/projects/projects-date-filter"
+import {ProjectsTimezoneSwitcher} from "@/features/projects/projects-timezone-switcher"
 import {cn} from "@/utils/lib"
 import {Cursor} from "@/utils/types/server"
 import React from "react"
@@ -11,7 +12,11 @@ type Props = {
 	params: Cursor
 }
 
-export function ProjectInviteLinksFilters({className, setParams, params}: Props) {
+export function ProjectInviteLinksFilters({
+	className,
+	setParams,
+	params,
+}: Props) {
 	return (
 		<div className={cn("flex items-center gap-x-2", className)}>
 			<ProjectInviteLinksSearch
@@ -19,6 +24,8 @@ export function ProjectInviteLinksFilters({className, setParams, params}: Props)
 				params={params}
 				setParams={setParams}
 			/>
+
+			<ProjectsTimezoneSwitcher />
 
 			<ProjectsDateFilter
 				setParams={setParams}

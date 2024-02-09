@@ -98,7 +98,7 @@ export function ProjectsDateFilter({
 	useEffect(() => {
 		if (option) {
 			const func = dateFilterOptionsFunctions[option]
-			setDate(func())
+			setDate(func(etc_gmt))
 		}
 	}, [option])
 
@@ -159,7 +159,7 @@ export function ProjectsDateFilter({
 				anchorEl={anch}>
 				<div className="flex gap-x-6 pt-6">
 					{/* Preset Options */}
-					<div className="flex items-start">
+					<div className="flex items-start flex-col gap-y-3">
 						<div className="flex flex-col gap-y-1 mt-3 pr-6 pl-3 border-r border-r-gray-200 border-dashed">
 							<div className="px-3 text-xs font-medium text-gray-500 mb-2">
 								Выберите опции

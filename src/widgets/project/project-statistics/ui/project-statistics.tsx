@@ -54,10 +54,10 @@ export function ProjectStatistics({projectId, className}: Props) {
 			...params,
 			telegramChatId: projectId as string,
 			...(params.windowEnd && {
-				windowEnd: dayjs(params.windowEnd).tz(etc_gmt, true).toISOString(),
+				windowEnd: dayjs(params.windowEnd).toISOString(),
 			}),
 			...(params.windowStart && {
-				windowStart: dayjs(params.windowStart).tz(etc_gmt, true).toISOString(),
+				windowStart: dayjs(params.windowStart).toISOString(),
 			}),
 		},
 		{enabled: !!projectId},
@@ -68,12 +68,10 @@ export function ProjectStatistics({projectId, className}: Props) {
 			{
 				telegramChatId: projectId as string,
 				...(params.windowEnd && {
-					windowEnd: dayjs(params.windowEnd).tz(etc_gmt, true).toISOString(),
+					windowEnd: dayjs(params.windowEnd).toISOString(),
 				}),
 				...(params.windowStart && {
-					windowStart: dayjs(params.windowStart)
-						.tz(etc_gmt, true)
-						.toISOString(),
+					windowStart: dayjs(params.windowStart).toISOString(),
 				}),
 			},
 			{enabled: !!projectId},

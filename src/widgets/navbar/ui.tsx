@@ -29,11 +29,11 @@ export function Navbar({}: Props) {
 			{/* Navbar Items */}
 			<div className="flex flex-grow flex-col items-center justify-between my-3">
 				<div className="flex flex-col px-3 gap-y-1">
-					<NavbarItem
+					{/* <NavbarItem
 						href="/app"
 						label="Дашборд"
 						Slots={{Icon: IoAnalyticsOutline}}
-					/>
+					/> */}
 
 					<NavbarItem
 						href="/app/projects"
@@ -42,7 +42,7 @@ export function Navbar({}: Props) {
 					/>
 
 					<Divider className="border-gray-200 border-dashed mx-2 my-2" />
-
+					{/* 
 					<NavbarItem
 						href="/app/settings"
 						label="Настройки"
@@ -53,7 +53,7 @@ export function Navbar({}: Props) {
 						href="/app/help"
 						label="Помощь"
 						Slots={{Icon: IoHelp}}
-					/>
+					/> */}
 				</div>
 
 				<SessionMenu />

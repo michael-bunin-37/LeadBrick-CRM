@@ -12,6 +12,7 @@ import UTC from "dayjs/plugin/utc"
 import Timezone from "dayjs/plugin/timezone"
 
 import "dayjs/locale/ru"
+import {useEffect} from "react"
 dayjs.locale("ru")
 dayjs.extend(UTC)
 dayjs.extend(Timezone)

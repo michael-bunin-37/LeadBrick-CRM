@@ -1,54 +1,61 @@
 // import {sub} from "date-fns"
+import {DateFilterStoreState} from "@/entities/date-filter-store"
 import dayjs from "dayjs"
 import {DateRange} from "react-day-picker"
+import Duration from "dayjs/plugin/duration"
+import RelativeTime from "dayjs/plugin/relativeTime"
+import LocalizedFormat from "dayjs/plugin/localizedFormat"
+import UTC from "dayjs/plugin/utc"
+import Timezone from "dayjs/plugin/timezone"
+import {todo} from "node:test"
+dayjs.extend(UTC)
+dayjs.extend(Timezone)
 
-export const getToday = () => {
+export const getToday = (etc_gmt: DateFilterStoreState["etc_gmt"]) => {
 	return {
-		// @ts-ignore
-		from: dayjs().startOf("day").toDate(),
-		// @ts-ignore
-		to: dayjs().endOf("day").toDate(),
+		from: dayjs().tz(etc_gmt).startOf("day").toDate(),
+		to: dayjs().tz(etc_gmt).endOf("day").toDate(),
 	} as DateRange
 }
 
-export const getYesterday = () => {
+export const getYesterday = (etc_gmt: DateFilterStoreState["etc_gmt"]) => {
 	return {
-		// @ts-ignore
-		from: dayjs().subtract(1, "day").startOf("day").toDate(),
-		// @ts-ignore
-		to: dayjs().subtract(1, "day").endOf("day").toDate(),
+		from: dayjs().tz(etc_gmt).subtract(1, "day").startOf("day").toDate(),
+		to: dayjs().tz(etc_gmt).subtract(1, "day").endOf("day").toDate(),
 	} as DateRange
 }
 
-export const getLastSevenDayRange = () => {
+export const getLastSevenDayRange = (
+	etc_gmt: DateFilterStoreState["etc_gmt"],
+) => {
 	return {
-		// @ts-ignore
-		from: dayjs().subtract(6, "day").startOf("day").toDate(),
-		// @ts-ignore
-		to: dayjs().endOf("day").toDate(),
+		from: dayjs().tz(etc_gmt).subtract(6, "day").startOf("day").toDate(),
+		to: dayjs().tz(etc_gmt).endOf("day").toDate(),
 	} as DateRange
 }
 
-export const getCurrentWeekRange = () => {
+export const getCurrentWeekRange = (
+	etc_gmt: DateFilterStoreState["etc_gmt"],
+) => {
 	return {
 		// @ts-ignore
-		from: dayjs().startOf("week").startOf("day").toDate(),
+		from: dayjs().tz(etc_gmt).startOf("week").startOf("day").toDate(),
 		// @ts-ignore
-		to: dayjs().endOf("week").endOf("day").toDate(),
+		to: dayjs().tz(etc_gmt).endOf("week").endOf("day").toDate(),
 	} as DateRange
 }
 
-export const getLastMonthRange = () => {
+export const getLastMonthRange = (etc_gmt: DateFilterStoreState["etc_gmt"]) => {
 	return {
-		from: dayjs().startOf("month").startOf("day").toDate(),
-		to: dayjs().endOf("month").endOf("day").toDate(),
+		from: dayjs().tz(etc_gmt).startOf("month").startOf("day").toDate(),
+		to: dayjs().tz(etc_gmt).endOf("month").endOf("day").toDate(),
 	} as DateRange
 }
 
-export const getLastYearRange = () => {
+export const getLastYearRange = (etc_gmt: DateFilterStoreState["etc_gmt"]) => {
 	return {
-		from: dayjs().startOf("year").startOf("day").toDate(),
-		to: new Date(Date.now()),
+		from: dayjs().tz(etc_gmt).startOf("year").startOf("day").toDate(),
+		to: dayjs().tz(etc_gmt).endOf("year").endOf("day").toDate(),
 	}
 }
 
