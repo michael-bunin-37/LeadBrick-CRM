@@ -175,7 +175,10 @@ export function ProjectsList({
 									<ProjectPreviewRowSkeleton key={i} />
 								))}
 
-							<ProjectsTotalStatistics params={params} />
+							<ProjectsTotalStatistics
+								className="sticky bottom-0"
+								params={params}
+							/>
 						</MyTableBody>
 					</MyTable>
 

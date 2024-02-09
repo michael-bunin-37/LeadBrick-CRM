@@ -4,17 +4,20 @@ import {
 } from "@/entities/invite-link"
 import {ProjectPreviewRow, ProjectPreviewRowSkeleton} from "@/entities/project"
 import {useProjectById} from "@/utils/api/project"
+import {cn} from "@/utils/lib"
 import {Cursor} from "@/utils/types/server"
 import React from "react"
 
 type ProjectInviteLinksTotalProps = {
 	params: Omit<Cursor, "filters" | "sort" | "page" | "pageSize">
 	projectId?: string
+	className?: string
 }
 
 function ProjectInviteLinksTotal({
 	params,
 	projectId,
+	className,
 }: ProjectInviteLinksTotalProps) {
 	// QUERIES
 	const {data, isPending} = useProjectById(
@@ -35,7 +38,7 @@ function ProjectInviteLinksTotal({
 				<InviteLinkPreviewRow
 					{...data}
 					name="Общие показатели"
-					className="[&>*]:!font-semibold [&>*]:!text-gray-900"
+					className={cn("[&>*]:!font-semibold [&>*]:!text-gray-900", className)}
 					// slotsProps={{Link: {className: "pointer-events-none"}}}
 				/>
 			)}

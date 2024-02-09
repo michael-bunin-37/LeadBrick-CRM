@@ -219,6 +219,7 @@ export function ProjectInviteLinksList({className, projectId}: Props) {
 								))}
 
 							<ProjectInviteLinksTotal
+								className="sticky bottom-0"
 								projectId={projectId}
 								params={params}
 							/>

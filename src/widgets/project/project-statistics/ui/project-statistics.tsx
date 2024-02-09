@@ -217,6 +217,7 @@ export function ProjectStatistics({projectId, className}: Props) {
 								))}
 
 							<ProjectStatisticsTotal
+								className="sticky bottom-0"
 								projectId={projectId}
 								params={params}
 							/>

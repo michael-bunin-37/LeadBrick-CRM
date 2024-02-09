@@ -4,17 +4,20 @@ import {
 	StatisticsPreviewRowSkeleton,
 } from "@/entities/statistics"
 import {useProjectById} from "@/utils/api/project"
+import {cn} from "@/utils/lib"
 import {Cursor} from "@/utils/types/server"
 import React from "react"
 
 type ProjectStatisticsTotalProps = {
 	params: Omit<Cursor, "filters" | "sort" | "page" | "pageSize">
 	projectId?: string
+	className?: string
 }
 
 function ProjectStatisticsTotal({
 	params,
 	projectId,
+	className,
 }: ProjectStatisticsTotalProps) {
 	// QUERIES
 	const {data, isPending} = useProjectById(
@@ -38,7 +41,7 @@ function ProjectStatisticsTotal({
 					Slots={{
 						Name: <MyTableCell>Общие показатели</MyTableCell>,
 					}}
-					className="[&>*]:!font-semibold [&>*]:!text-gray-900"
+					className={cn("[&>*]:!font-semibold [&>*]:!text-gray-900", className)}
 				/>
 			)}
 
