@@ -45,17 +45,14 @@ export function ProjectsDateFilter({
 		useState<keyof typeof DateFilterInitialOptionsTypeEnum>()
 	const {dateRange: date, setDateRange: setDate, etc_gmt} = useDateFilterStore()
 
-	// EFFECTS
-	useEffect(() => {
-		if (!date) setOption(undefined)
-	}, [date])
-
 	useEffect(() => {
 		const newParams: Cursor = {...params}
 
 		if (date && type === "PARAMS") {
-			if (date.from) newParams.windowStart = date.from.toISOString()
-			if (date.to) newParams.windowEnd = date.to.toISOString()
+			if (date.from)
+				newParams.windowStart = dayjs(date.from).tz(etc_gmt, true).toISOString()
+			if (date.to)
+				newParams.windowEnd = dayjs(date.to).tz(etc_gmt, true).toISOString()
 		}
 
 		if (date && type === "FILTER") {
@@ -64,14 +61,14 @@ export function ProjectsDateFilter({
 				filters.push({
 					filterBy,
 					filterOperator: "MORE_OR_EQUAL",
-					filterValue: date.from.toISOString(),
+					filterValue: dayjs(date.from).tz(etc_gmt, true).toISOString(),
 				})
 
 			if (date.to)
 				filters.push({
 					filterBy,
 					filterOperator: "LESS_OR_EQUAL",
-					filterValue: date.to.toISOString(),
+					filterValue: dayjs(date.to).tz(etc_gmt, true).toISOString(),
 				})
 
 			newParams.filters = filters
@@ -93,7 +90,7 @@ export function ProjectsDateFilter({
 		}
 
 		setParams(newParams)
-	}, [date, type])
+	}, [date, type, etc_gmt])
 
 	useEffect(() => {
 		if (option) {
@@ -101,6 +98,11 @@ export function ProjectsDateFilter({
 			setDate(func(etc_gmt))
 		}
 	}, [option])
+
+	const onChange = (date: DateRange | undefined) => {
+		console.log(date)
+		setDate(date)
+	}
 
 	return (
 		<div className={className}>
@@ -121,12 +123,12 @@ export function ProjectsDateFilter({
 					<>
 						{date.from
 							? // @ts-ignore
-							  dayjs(date.from).tz(etc_gmt).format("lll")
+							  dayjs(date.from).format("lll")
 							: "Дата начала"}{" "}
 						- &nbsp;
 						{date.to
 							? // @ts-ignore
-							  dayjs(date.to).tz(etc_gmt).format("lll")
+							  dayjs(date.to).format("lll")
 							: "Дата окончания"}
 					</>
 				)}
@@ -224,7 +226,7 @@ export function ProjectsDateFilter({
 						mode="range"
 						defaultMonth={date?.from}
 						selected={date}
-						onSelect={setDate}
+						onSelect={(date) => onChange(date)}
 						numberOfMonths={2}
 						disabled={{
 							before: dayjs().subtract(2, "month").toDate(),

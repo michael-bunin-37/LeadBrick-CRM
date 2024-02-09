@@ -10,7 +10,10 @@ export const useDepositList = (
 	config?: Partial<UseQueryOptions<CursorList<DepositResDto[]>, Error>>,
 ) => {
 	return useQuery({
-		queryFn: () => api.post(`${API_URL}/event/deposit/list`, {json: params}).json<CursorList<DepositResDto[]>>(),
+		queryFn: () =>
+			api
+				.post(`${API_URL}/event/deposit/list`, {json: params})
+				.json<CursorList<DepositResDto[]>>(),
 		queryKey: [QueryKeys["DEPOSIT"], params],
 		refetchInterval: 1000 * 30,
 		...config,

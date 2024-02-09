@@ -13,6 +13,7 @@ import {
 import {IoCloudOfflineOutline} from "react-icons/io5"
 import {MyPagination} from "@/components/Pagination"
 import {JoinPreviewRow, JoinPreviewRowSkeleton} from "@/entities/join"
+import {useDateFilterStore} from "@/entities/date-filter-store"
 
 type Props = {
 	projectId?: string
@@ -20,6 +21,8 @@ type Props = {
 }
 
 export function ProjectJoins({projectId, className}: Props) {
+	const {etc_gmt} = useDateFilterStore()
+
 	// STATE
 	const [params, setParams] = useState<Cursor>({
 		page: 1,
@@ -29,7 +32,6 @@ export function ProjectJoins({projectId, className}: Props) {
 	})
 
 	// QUERIES
-
 	const {data, isPending} = useJoinsList(
 		{...params, chatId: projectId as string},
 		{

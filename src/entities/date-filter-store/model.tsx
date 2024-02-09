@@ -52,6 +52,6 @@ export const useDateFilterStore = create<
 	setEtc_gmt: (etc_gmt) => {
 		set({etc_gmt})
 	},
-	dateRange: getToday("Etc/GMT-2"),
+	dateRange: undefined,
 	setDateRange: (dateRange) => set({dateRange}),
 }))
