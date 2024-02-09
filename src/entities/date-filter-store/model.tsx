@@ -45,7 +45,7 @@ export type DateFilterStoreActions = {
 export const useDateFilterStore = create<
 	DateFilterStoreState & DateFilterStoreActions
 >((set) => ({
-	etc_gmt: "Etc/GMT+5",
+	etc_gmt: "Etc/GMT-2",
 	setEtc_gmt: (etc_gmt) => {
 		set({etc_gmt})
 	},
